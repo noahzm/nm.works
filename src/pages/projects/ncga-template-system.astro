@@ -1,0 +1,44 @@
+---
+import CaseStudy from "@/layouts/case-study.astro"
+import { getProject } from "@/data/projects"
+
+const project = getProject("ncga-template-system")!
+---
+
+<CaseStudy
+  project={project}
+  title="NCGA Reusable Template System"
+  description="A draft case study about reusable templates and visual standards for recurring public-sector communications."
+>
+  <h2>Overview</h2>
+  <p>
+    This page is a placeholder for a future case study about template systems
+    and production standards at the North Carolina General Assembly. The current
+    framing comes from my resume: reusable templates, consistent recurring
+    materials, and complex legislative content made easier to scan and produce
+    accurately.
+  </p>
+
+  <h2>Problem</h2>
+  <!-- TODO: Add the recurring material types, production pain points, accessibility considerations, and stakeholder context. -->
+  <p>
+    Recurring legislative materials needed a more consistent structure so teams
+    could produce accurate print and digital communications without rebuilding
+    the same decisions each cycle.
+  </p>
+
+  <h2>Role</h2>
+  <p>
+    Graphic and production designer at the North Carolina General Assembly,
+    working across layout systems, visual standards, production workflows, and
+    public-sector communication needs.
+  </p>
+
+  <h2>Next Draft Pass</h2>
+  <!-- TODO: Add representative artifacts, template anatomy, accessibility notes, and a real outcome grounded in production workflow. -->
+  <p>
+    The next pass should add representative artifacts, define the template
+    system’s parts, and describe production improvements with only verifiable
+    claims.
+  </p>
+</CaseStudy>

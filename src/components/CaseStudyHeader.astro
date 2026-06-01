@@ -1,0 +1,77 @@
+---
+import { Picture } from "astro:assets"
+import ExternalArrow from "@/components/ExternalArrow.astro"
+import MetadataList from "@/components/MetadataList.astro"
+import type { Project } from "@/data/projects"
+
+interface Props {
+  project: Project
+  title?: string
+  description?: string
+}
+
+const {
+  project,
+  title = project.title,
+  description = project.description,
+} = Astro.props
+---
+
+<header class="mb-12">
+  <a
+    href="/projects"
+    class="mb-8 inline-block rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+  >
+    Back to projects
+  </a>
+  <p
+    class="mb-4 text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase"
+  >
+    {project.meta}
+  </p>
+  <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-5xl">
+    {title}
+  </h1>
+  <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+    {description}
+  </p>
+  <div class="mt-8 max-w-2xl">
+    <MetadataList
+      items={[
+        { label: "Role", value: project.role },
+        { label: "Year", value: project.year },
+        {
+          label: "Status",
+          value: project.status === "published" ? "Published" : "Draft",
+        },
+      ]}
+    />
+  </div>
+  {
+    project.liveUrl && (
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noreferrer"
+        class="mt-6 inline-flex items-center gap-1.5 border-b border-current pb-px text-sm font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+      >
+        Visit live app
+        <ExternalArrow />
+      </a>
+    )
+  }
+  {
+    project.image && project.imageAlt && (
+      <figure class="mt-12">
+        <Picture
+          src={project.image}
+          formats={["avif", "webp"]}
+          widths={[720, 1200, 1600]}
+          sizes="(min-width: 768px) 768px, 100vw"
+          alt={project.imageAlt}
+          class="aspect-[3/2] w-full rounded-md border object-cover"
+        />
+      </figure>
+    )
+  }
+</header>

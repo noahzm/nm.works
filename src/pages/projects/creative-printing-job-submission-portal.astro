@@ -1,0 +1,44 @@
+---
+import CaseStudy from "@/layouts/case-study.astro"
+import { getProject } from "@/data/projects"
+
+const project = getProject("creative-printing-job-submission-portal")!
+---
+
+<CaseStudy
+  project={project}
+  title="Creative Printing Job Submission Portal"
+  description="A draft case study about redesigning a print-shop submission path so customers could move from project type to the right job request with less friction."
+>
+  <h2>Overview</h2>
+  <p>
+    This page is a placeholder for a future case study about the Creative
+    Printing job submission portal redesign. The current framing comes from my
+    resume and old portfolio notes: responsive icon-grid navigation, clearer
+    information hierarchy, and a simpler path from project selection to
+    submission.
+  </p>
+
+  <h2>Problem</h2>
+  <!-- TODO: Add the original submission flow, user pain points, and the business context from Creative Printing. -->
+  <p>
+    Customers needed a clearer way to identify the kind of print job they were
+    submitting and reach the correct request path without reading through
+    unrelated service content.
+  </p>
+
+  <h2>Role</h2>
+  <p>
+    Web and graphic designer at Creative Printing and Internet Services, working
+    across information architecture, interface design, and front-end
+    implementation.
+  </p>
+
+  <h2>Next Draft Pass</h2>
+  <!-- TODO: Add screenshots, before/after structure, final route labels, and any real outcome or qualitative feedback. -->
+  <p>
+    The next pass should add screenshots, define the submission categories, and
+    describe what changed in the user flow without inventing performance
+    metrics.
+  </p>
+</CaseStudy>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  title?: string
+  description: string
+  href?: string
+  label?: string
+}
+
+const {
+  title = "Let’s make complex work easier to use.",
+  description,
+  href = "mailto:hi@nm.works?subject=Hi%20from%20nm.works",
+  label = "Start a conversation",
+} = Astro.props
+---
+
+<section
+  class="flex flex-col gap-6 border-t border-border py-12 sm:flex-row sm:items-end sm:justify-between"
+>
+  <div class="max-w-xl">
+    <h2 class="text-2xl font-bold tracking-tight">{title}</h2>
+    <p class="mt-3 text-base leading-relaxed text-muted-foreground">
+      {description}
+    </p>
+  </div>
+  <a
+    href={href}
+    class="inline-flex w-fit items-center border-b border-current pb-px text-sm font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+  >
+    {label}
+  </a>
+</section>

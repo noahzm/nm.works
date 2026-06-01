@@ -1,0 +1,109 @@
+---
+import { Picture } from "astro:assets"
+import CaseStudy from "@/layouts/case-study.astro"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { getProject } from "@/data/projects"
+import grouchWhite from "@/assets/projects/grouch/grouchwhite.png"
+import hat from "@/assets/projects/grouch/hat.jpg"
+import setup from "@/assets/projects/grouch/setup.jpg"
+import stickers from "@/assets/projects/grouch/stickers.jpg"
+
+const project = getProject("grouch")!
+const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
+---
+
+<CaseStudy
+  project={project}
+  title="Grouch"
+  description="A supporting visual project: brand identity, apparel graphics, and small-run production for a limited merch experiment."
+  seoTitle="Grouch · Brand and Apparel Work"
+  seoDescription="Grouch was a limited-run brand and apparel project by Noah Michaels, spanning identity, T-shirts, hats, totes, stickers, and hands-on production."
+>
+  <h2>Overview</h2>
+  <p>
+    Grouch was a small apparel identity built around a direct typographic mark,
+    high-contrast colorways, and a limited set of merch: T-shirts, hats, tote
+    bags, and stickers.
+  </p>
+  <p>
+    This work sits here as visual and production range, not as a primary UX case
+    study. The value is in the mark, material decisions, and seeing a compact
+    brand system through to finished objects.
+  </p>
+
+  <h2>Brand</h2>
+  <p>
+    The identity leaned into a clean, skate-adjacent tone: simple enough for a
+    shirt, bold enough to hold its own as a sticker, and flexible enough for
+    embroidery and screen printing.
+  </p>
+
+  <figure>
+    <AspectRatio ratio={4 / 3}>
+      <Picture
+        src={grouchWhite}
+        formats={pictureFormats}
+        widths={[600, 1000]}
+        sizes="(min-width: 768px) 768px, 100vw"
+        alt="White Grouch T-shirt with a large orange typographic mark."
+      />
+    </AspectRatio>
+    <figcaption>
+      A clean white tee kept the mark sharp without adding extra graphic
+      elements.
+    </figcaption>
+  </figure>
+
+  <h2>Production</h2>
+  <p>
+    The project moved from identity into objects quickly. Shirts were screen
+    printed by hand, while hats and stickers were produced offsite. Keeping the
+    line small made the system easier to manage and gave each piece a clear
+    role.
+  </p>
+
+  <div class="grid gap-8 sm:grid-cols-2">
+    <figure>
+      <AspectRatio ratio={4 / 3}>
+        <Picture
+          src={hat}
+          formats={pictureFormats}
+          widths={[480, 800]}
+          sizes="(min-width: 768px) 360px, 100vw"
+          alt="Black Grouch snapback hat with an embroidered orange logo."
+        />
+      </AspectRatio>
+      <figcaption>Snapback hat with embroidered Grouch logo.</figcaption>
+    </figure>
+    <figure>
+      <AspectRatio ratio={4 / 3}>
+        <Picture
+          src={stickers}
+          formats={pictureFormats}
+          widths={[480, 800]}
+          sizes="(min-width: 768px) 360px, 100vw"
+          alt="Die-cut Grouch stickers arranged on a tabletop."
+        />
+      </AspectRatio>
+      <figcaption>
+        Die-cut stickers extended the identity into orders.
+      </figcaption>
+    </figure>
+  </div>
+
+  <figure>
+    <AspectRatio ratio={4 / 3}>
+      <Picture
+        src={setup}
+        formats={pictureFormats}
+        widths={[720, 1200]}
+        sizes="(min-width: 768px) 768px, 100vw"
+        alt="Grouch merchandise setup with T-shirts, hat, and tote bag arranged together."
+      />
+    </AspectRatio>
+    <figcaption>
+      The full setup kept the system compact: apparel, accessories, and
+      stickers.
+    </figcaption>
+  </figure>
+</CaseStudy>

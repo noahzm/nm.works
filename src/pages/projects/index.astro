@@ -1,0 +1,164 @@
+---
+import { Picture } from "astro:assets"
+import Layout from "@/layouts/main.astro"
+import {
+  publishedCaseStudies,
+  upcomingCaseStudies,
+  visualWork,
+} from "@/data/projects"
+---
+
+<Layout
+  title="Projects · Noah Michaels"
+  description="Product design, accessibility, front-end implementation, and selected visual work by Noah Michaels."
+>
+  <section class="px-6 pt-4">
+    <div class="mx-auto max-w-5xl border-b border-border pb-10 md:pb-14">
+      <p
+        class="text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase"
+      >
+        Projects
+      </p>
+      <h1 class="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+        Product design and visual systems.
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+        A focused portfolio of digital work, public-sector systems, and selected
+        brand production.
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-5xl px-6 py-14">
+    <section aria-labelledby="case-studies-title">
+      <h2 id="case-studies-title" class="text-2xl font-bold tracking-tight">
+        Case studies
+      </h2>
+      <div class="mt-8 divide-y">
+        {
+          publishedCaseStudies.map((project) => (
+            <a
+              href={`/projects/${project.slug}`}
+              aria-label={`View ${project.title}`}
+              class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
+            >
+              {project.image && project.imageAlt && (
+                <Picture
+                  src={project.image}
+                  formats={["avif", "webp"]}
+                  widths={[360, 600]}
+                  sizes="(min-width: 768px) 224px, 100vw"
+                  alt=""
+                  class="aspect-[4/3] w-full rounded-md border object-cover"
+                />
+              )}
+              <div>
+                <div class="mb-3 flex flex-wrap items-center gap-3">
+                  <p class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+                    {project.meta}
+                  </p>
+                </div>
+                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                  {project.title}
+                </h3>
+                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  {project.summary}
+                </p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
+      class="mt-14 border-t border-border pt-12"
+      aria-labelledby="upcoming-title"
+    >
+      <h2 id="upcoming-title" class="text-2xl font-bold tracking-tight">
+        In progress
+      </h2>
+      <div class="mt-8 divide-y">
+        {
+          upcomingCaseStudies.map((project) => (
+            <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
+              {project.image && project.imageAlt ? (
+                <Picture
+                  src={project.image}
+                  formats={["avif", "webp"]}
+                  widths={[360, 600]}
+                  sizes="(min-width: 768px) 224px, 100vw"
+                  alt=""
+                  class="aspect-[4/3] w-full rounded-md border object-cover"
+                />
+              ) : (
+                <div
+                  class="hidden aspect-[4/3] rounded-md border bg-muted md:block"
+                  aria-hidden="true"
+                />
+              )}
+              <div>
+                <div class="mb-3 flex flex-wrap items-center gap-3">
+                  <p class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+                    {project.meta}
+                  </p>
+                  <span class="rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground">
+                    Coming soon
+                  </span>
+                </div>
+                <h3 class="text-xl font-bold tracking-tight">
+                  {project.title}
+                </h3>
+                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  {project.summary}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
+      class="mt-14 border-t border-border pt-12"
+      aria-labelledby="visual-work-title"
+    >
+      <h2 id="visual-work-title" class="text-2xl font-bold tracking-tight">
+        Selected visual work
+      </h2>
+      <div class="mt-8 divide-y">
+        {
+          visualWork.map((project) => (
+            <a
+              href={`/projects/${project.slug}`}
+              aria-label={`View ${project.title}`}
+              class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
+            >
+              {project.image && project.imageAlt && (
+                <Picture
+                  src={project.image}
+                  formats={["avif", "webp"]}
+                  widths={[360, 600]}
+                  sizes="(min-width: 768px) 224px, 100vw"
+                  alt=""
+                  class="aspect-[4/3] w-full rounded-md border object-cover"
+                />
+              )}
+              <div>
+                <p class="mb-3 text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+                  {project.meta}
+                </p>
+                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                  {project.title}
+                </h3>
+                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  {project.summary}
+                </p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Layout>

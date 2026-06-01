@@ -1,0 +1,92 @@
+---
+import "@/styles/global.css"
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+  ogType?: "website" | "article"
+  noindex?: boolean
+  headerWidth?: "default" | "narrow"
+}
+
+const {
+  title = "Noah Michaels · Product Designer",
+  description = "Product designer with experience across visual design, accessible web interfaces, public-sector communications, and front-end implementation.",
+  image = "/favicon.svg",
+  ogType = "website",
+  noindex = false,
+  headerWidth = "default",
+} = Astro.props
+
+const canonicalURL = new URL(
+  Astro.url.pathname.replace(/\/$/, "") || "/",
+  Astro.site ?? Astro.url.origin
+)
+
+const headerWidthClass = headerWidth === "narrow" ? "max-w-3xl" : "max-w-5xl"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://use.typekit.net/exv5yiv.css" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, canonicalURL)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only bg-background text-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-sm focus:px-3 focus:py-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
+    >
+      Skip to content
+    </a>
+    <header class="px-6 py-10 md:py-14">
+      <nav
+        class:list={[
+          "mx-auto flex items-baseline justify-between gap-6",
+          headerWidthClass,
+        ]}
+        aria-label="Main navigation"
+      >
+        <a
+          href="/"
+          class="rounded-sm text-2xl font-bold tracking-tight transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+        >
+          Noah Michaels
+        </a>
+        <div class="flex items-baseline gap-5">
+          <a
+            href="/projects"
+            class="rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          >
+            Projects
+          </a>
+          <a
+            href="mailto:hi@nm.works?subject=Hi%20from%20nm.works"
+            class="rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          >
+            hi@nm.works
+          </a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+  </body>
+</html>

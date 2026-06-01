@@ -1,0 +1,117 @@
+---
+import Layout from "@/layouts/main.astro"
+import CaseStudyHeader from "@/components/CaseStudyHeader.astro"
+import { publishedProjects, type Project } from "@/data/projects"
+
+interface Props {
+  project: Project
+  title?: string
+  description?: string
+  seoTitle?: string
+  seoDescription?: string
+}
+
+const {
+  project,
+  title = project.title,
+  description = project.description,
+  seoTitle = `${project.title} · Noah Michaels`,
+  seoDescription = project.description,
+} = Astro.props
+
+const nextProjects = publishedProjects.filter((p) => p.slug !== project.slug)
+const next = nextProjects[0] ?? null
+---
+
+<Layout
+  title={seoTitle}
+  description={seoDescription}
+  image={project.image?.src}
+  ogType="article"
+  noindex={project.status === "coming-soon"}
+  headerWidth="narrow"
+>
+  <div class="mx-auto max-w-3xl px-6 pt-4 pb-12 sm:pb-16">
+    <CaseStudyHeader
+      project={project}
+      title={title}
+      description={description}
+    />
+    <article class="case-study">
+      <slot />
+    </article>
+
+    {
+      next && (
+        <footer class="mt-24 border-t border-border pt-8">
+          <a
+            href={`/projects/${next.slug}`}
+            class="group flex items-baseline justify-between gap-6 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          >
+            <span class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+              Next
+            </span>
+            <span class="text-base font-bold tracking-tight transition-colors group-hover:text-muted-foreground">
+              {next.title}
+            </span>
+          </a>
+        </footer>
+      )
+    }
+  </div>
+</Layout>
+
+<style is:global>
+  .case-study {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .case-study > * + * {
+    margin-top: 1rem;
+  }
+  .case-study p {
+    max-width: 65ch;
+  }
+  .case-study h2 {
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  .case-study h2:first-child {
+    margin-top: 0;
+  }
+  .case-study h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .case-study ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .case-study ul li + li {
+    margin-top: 0.375rem;
+  }
+  .case-study figure {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .case-study figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border);
+  }
+  .case-study figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+  }
+</style>

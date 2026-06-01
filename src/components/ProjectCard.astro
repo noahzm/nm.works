@@ -1,0 +1,86 @@
+---
+import { Picture } from "astro:assets"
+import type { Project } from "@/data/projects"
+
+interface Props {
+  project: Project
+  featured?: boolean
+}
+
+const { project, featured = false } = Astro.props
+const href = `/projects/${project.slug}`
+const imageSizes = featured
+  ? "(min-width: 1024px) 520px, 100vw"
+  : "(min-width: 768px) 360px, 100vw"
+---
+
+<article
+  class:list={[
+    "group grid gap-5",
+    featured && "md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-8",
+  ]}
+>
+  {
+    project.image && project.imageAlt && (
+      <a
+        href={href}
+        aria-label={`View ${project.title}`}
+        class="block overflow-hidden rounded-md border bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+      >
+        <Picture
+          src={project.image}
+          formats={["avif", "webp"]}
+          widths={[600, 1000, 1400]}
+          sizes={imageSizes}
+          alt={project.imageAlt}
+          class="aspect-[4/3] h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+        />
+      </a>
+    )
+  }
+
+  <div class="min-w-0">
+    <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+      <p
+        class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase"
+      >
+        {project.meta}
+      </p>
+      {
+        project.status === "coming-soon" && (
+          <span class="rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground">
+            Coming soon
+          </span>
+        )
+      }
+    </div>
+    <h3
+      class:list={[
+        "font-bold tracking-tight",
+        featured ? "text-2xl sm:text-3xl" : "text-xl",
+      ]}
+    >
+      <a
+        href={href}
+        class="rounded-sm transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+      >
+        {project.title}
+      </a>
+    </h3>
+    <p
+      class:list={[
+        "mt-3 leading-relaxed text-muted-foreground",
+        featured ? "text-base" : "text-sm",
+      ]}
+    >
+      {project.summary}
+    </p>
+    <ul class="mt-5 flex flex-wrap gap-2" aria-label={`${project.title} tags`}>
+      {
+        project.tags.map((tag) => (
+          <li class="rounded-sm bg-muted px-2 py-1 text-xs">{tag}</li>
+        ))
+      }
+    </ul>
+  </div>
+</article>
