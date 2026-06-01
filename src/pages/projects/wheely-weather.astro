@@ -34,6 +34,26 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
     quality, daylight, and alerts.
   </p>
 
+  <h2>Project Frame</h2>
+  <ul>
+    <li>
+      <strong>Audience:</strong> cyclists making a near-term decision about whether
+      conditions are worth a ride.
+    </li>
+    <li>
+      <strong>Surface:</strong> a responsive web app built for quick phone checks
+      before leaving home.
+    </li>
+    <li>
+      <strong>Role:</strong> solo product strategy, UX/UI design, rating logic, front-end
+      implementation, and launch.
+    </li>
+    <li>
+      <strong>Core product question:</strong> how might a weather app make the ride
+      decision feel immediate without hiding the forecast data behind it?
+    </li>
+  </ul>
+
   <h2>Problem</h2>
   <p>
     Before a ride, I was checking one weather app and falling back to another
@@ -47,11 +67,33 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
     rides than rain, and the decision usually happens in the moment.
   </p>
 
-  <h2>Role</h2>
+  <h2>Research Signals</h2>
   <p>
-    Solo, end-to-end product design and front-end implementation. I shaped the
-    product concept, interaction model, visual system, rating logic, responsive
-    UI, and shipped front end.
+    The research was intentionally lightweight. I was not trying to validate a
+    large market; I was trying to understand the moment before a ride and the
+    weather signals riders use to make that call.
+  </p>
+  <ul>
+    <li>Riders wanted a first-pass answer before studying the details.</li>
+    <li>
+      Wind and gusts carried more decision weight than standard weather apps
+      implied.
+    </li>
+    <li>
+      A single bad condition could override an otherwise acceptable forecast.
+    </li>
+    <li>
+      When conditions were poor, riders still wanted to know whether a better
+      window was coming later.
+    </li>
+  </ul>
+
+  <h2>Product Goal</h2>
+  <p>
+    The goal was not to build another complete forecast. It was to turn forecast
+    data into a decision path: tell the rider whether now is worth it, explain
+    the reason, and point to the next useful opportunity when conditions
+    improve.
   </p>
 
   <h2>Constraints</h2>
@@ -85,6 +127,13 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
   <p>
     The core flow became: verdict now, why it got that verdict, when it gets
     better, what to wear, and which day in the week is most promising.
+  </p>
+
+  <h2>Information Architecture</h2>
+  <p>
+    The screen order follows the decision sequence instead of the structure of a
+    forecast API. The rider sees the verdict first, then the supporting
+    conditions, then the time-based views that help them change plans.
   </p>
 
   <figure>
@@ -125,6 +174,11 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
     <li>
       <strong>Use color as a decision cue.</strong> The verdict card carries the rating
       color, so the first impression and the written call reinforce each other.
+    </li>
+    <li>
+      <strong>Keep the system adjustable.</strong> The rating logic stays visible
+      in the interface and isolated in code, so future rider feedback can tune the
+      model without redesigning the product.
     </li>
   </ul>
 
@@ -167,6 +221,11 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
     because every condition that can change the verdict is visible in the UI and
     represented in the front-end logic.
   </p>
+  <p>
+    The strongest product shift was moving weather from reference material to a
+    recommendation. The app still exposes the underlying signals, but the first
+    read is now framed around the rider’s actual question.
+  </p>
 
   <h2>Tech</h2>
   <p>
@@ -182,5 +241,13 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
     know how often riders disagree with the verdict, which condition caused the
     disagreement, and whether configurable weighting would make the product more
     useful without making the first answer less clear.
+  </p>
+
+  <h2>What I Would Revisit</h2>
+  <p>
+    The product now needs sharper feedback loops. A future version should let
+    riders challenge a verdict in context, capture which signal felt wrong, and
+    use that evidence to tune the thresholds without turning the interface into
+    a settings-heavy weather tool.
   </p>
 </CaseStudy>

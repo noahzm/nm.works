@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css"
+import { ClientRouter } from "astro:transitions"
 
 interface Props {
   title?: string
@@ -7,7 +8,6 @@ interface Props {
   image?: string
   ogType?: "website" | "article"
   noindex?: boolean
-  headerWidth?: "default" | "narrow"
 }
 
 const {
@@ -16,7 +16,6 @@ const {
   image = "/favicon.svg",
   ogType = "website",
   noindex = false,
-  headerWidth = "default",
 } = Astro.props
 
 const canonicalURL = new URL(
@@ -24,7 +23,7 @@ const canonicalURL = new URL(
   Astro.site ?? Astro.url.origin
 )
 
-const headerWidthClass = headerWidth === "narrow" ? "max-w-3xl" : "max-w-5xl"
+const headerWidthClass = "max-w-3xl"
 ---
 
 <html lang="en">
@@ -47,6 +46,7 @@ const headerWidthClass = headerWidth === "narrow" ? "max-w-3xl" : "max-w-5xl"
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, canonicalURL)} />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
     <a

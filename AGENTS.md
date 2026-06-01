@@ -4,7 +4,7 @@ Guidance for Codex and other coding agents working in this repository.
 
 ## Project Snapshot
 
-This is an Astro 5 portfolio site with React enabled through
+This is an Astro 6 portfolio site with React enabled through
 [@astrojs/react](astro.config.mjs). Tailwind v4 is loaded as a Vite plugin in
 [astro.config.mjs](astro.config.mjs); there is no `tailwind.config.*` file.
 Theme configuration lives in [src/styles/global.css](src/styles/global.css) via
