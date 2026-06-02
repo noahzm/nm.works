@@ -1,4 +1,7 @@
 ---
+import { buttonVariants } from "@/components/ui/button-variants"
+import { Separator } from "@/components/ui/separator"
+
 interface Props {
   title?: string
   description: string
@@ -14,19 +17,25 @@ const {
 } = Astro.props
 ---
 
-<section
-  class="flex flex-col gap-6 border-t border-border py-12 sm:flex-row sm:items-end sm:justify-between"
->
-  <div class="max-w-xl">
-    <h2 class="text-2xl font-bold tracking-tight">{title}</h2>
-    <p class="mt-3 text-base leading-relaxed text-muted-foreground">
-      {description}
-    </p>
-  </div>
-  <a
-    href={href}
-    class="inline-flex w-fit items-center border-b border-current pb-px text-sm font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+<section class="py-12">
+  <Separator />
+  <div
+    class="flex flex-col gap-6 pt-12 sm:flex-row sm:items-end sm:justify-between"
   >
-    {label}
-  </a>
+    <div class="max-w-xl">
+      <h2 class="text-2xl font-bold tracking-tight">{title}</h2>
+      <p class="mt-3 text-base leading-relaxed text-muted-foreground">
+        {description}
+      </p>
+    </div>
+    <a
+      href={href}
+      data-slot="button"
+      data-variant="outline"
+      data-size="default"
+      class={buttonVariants({ variant: "outline", className: "w-fit" })}
+    >
+      {label}
+    </a>
+  </div>
 </section>

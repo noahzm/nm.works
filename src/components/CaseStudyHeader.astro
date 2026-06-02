@@ -1,6 +1,7 @@
 ---
 import { Picture } from "astro:assets"
 import ExternalArrow from "@/components/ExternalArrow.astro"
+import { buttonVariants } from "@/components/ui/button-variants"
 import type { Project } from "@/data/projects"
 
 interface Props {
@@ -61,7 +62,14 @@ const metadataItems = [
         href={project.liveUrl}
         target="_blank"
         rel="noreferrer"
-        class="mt-5 inline-flex items-center gap-1.5 border-b border-current pb-px text-sm font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+        data-slot="button"
+        data-variant="outline"
+        data-size="sm"
+        class={buttonVariants({
+          variant: "outline",
+          size: "sm",
+          className: "mt-5",
+        })}
       >
         Visit live app
         <ExternalArrow />

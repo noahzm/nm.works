@@ -1,6 +1,9 @@
 ---
 import { Picture } from "astro:assets"
 import Layout from "@/layouts/main.astro"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 import {
   publishedCaseStudies,
   upcomingCaseStudies,
@@ -13,7 +16,7 @@ import {
   description="Product design, accessibility, front-end implementation, and selected visual work by Noah Michaels."
 >
   <section class="px-6 pt-4">
-    <div class="mx-auto max-w-3xl border-b border-border pb-10 md:pb-14">
+    <div class="mx-auto max-w-3xl pb-10 md:pb-14">
       <p
         class="text-sm font-bold tracking-[0.18em] text-muted-foreground uppercase"
       >
@@ -27,6 +30,7 @@ import {
         brand production.
       </p>
     </div>
+    <Separator className="mx-auto max-w-3xl" />
   </section>
 
   <div class="mx-auto max-w-3xl px-6 py-14">
@@ -43,14 +47,18 @@ import {
               class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
             >
               {project.image && project.imageAlt && (
-                <Picture
-                  src={project.image}
-                  formats={["avif", "webp"]}
-                  widths={[360, 600]}
-                  sizes="(min-width: 768px) 224px, 100vw"
-                  alt=""
-                  class="aspect-[4/3] w-full rounded-md border object-cover"
-                />
+                <div class="overflow-hidden rounded-md border">
+                  <AspectRatio ratio={4 / 3}>
+                    <Picture
+                      src={project.image}
+                      formats={["avif", "webp"]}
+                      widths={[360, 600]}
+                      sizes="(min-width: 768px) 224px, 100vw"
+                      alt=""
+                      class="h-full w-full object-cover"
+                    />
+                  </AspectRatio>
+                </div>
               )}
               <div>
                 <div class="mb-3 flex flex-wrap items-center gap-3">
@@ -71,10 +79,8 @@ import {
       </div>
     </section>
 
-    <section
-      class="mt-14 border-t border-border pt-12"
-      aria-labelledby="upcoming-title"
-    >
+    <section class="mt-14 pt-12" aria-labelledby="upcoming-title">
+      <Separator className="-mt-12 mb-12" />
       <h2 id="upcoming-title" class="text-2xl font-bold tracking-tight">
         In progress
       </h2>
@@ -83,28 +89,31 @@ import {
           upcomingCaseStudies.map((project) => (
             <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
               {project.image && project.imageAlt ? (
-                <Picture
-                  src={project.image}
-                  formats={["avif", "webp"]}
-                  widths={[360, 600]}
-                  sizes="(min-width: 768px) 224px, 100vw"
-                  alt=""
-                  class="aspect-[4/3] w-full rounded-md border object-cover"
-                />
+                <div class="overflow-hidden rounded-md border">
+                  <AspectRatio ratio={4 / 3}>
+                    <Picture
+                      src={project.image}
+                      formats={["avif", "webp"]}
+                      widths={[360, 600]}
+                      sizes="(min-width: 768px) 224px, 100vw"
+                      alt=""
+                      class="h-full w-full object-cover"
+                    />
+                  </AspectRatio>
+                </div>
               ) : (
-                <div
-                  class="hidden aspect-[4/3] rounded-md border bg-muted md:block"
-                  aria-hidden="true"
-                />
+                <div class="hidden rounded-md border bg-muted md:block">
+                  <AspectRatio ratio={4 / 3} />
+                </div>
               )}
               <div>
                 <div class="mb-3 flex flex-wrap items-center gap-3">
                   <p class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
                     {project.meta}
                   </p>
-                  <span class="rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground">
+                  <Badge variant="outline" className="text-muted-foreground">
                     Coming soon
-                  </span>
+                  </Badge>
                 </div>
                 <h3 class="text-xl font-bold tracking-tight">
                   {project.title}
@@ -119,10 +128,8 @@ import {
       </div>
     </section>
 
-    <section
-      class="mt-14 border-t border-border pt-12"
-      aria-labelledby="visual-work-title"
-    >
+    <section class="mt-14 pt-12" aria-labelledby="visual-work-title">
+      <Separator className="-mt-12 mb-12" />
       <h2 id="visual-work-title" class="text-2xl font-bold tracking-tight">
         Selected visual work
       </h2>
@@ -135,14 +142,18 @@ import {
               class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
             >
               {project.image && project.imageAlt && (
-                <Picture
-                  src={project.image}
-                  formats={["avif", "webp"]}
-                  widths={[360, 600]}
-                  sizes="(min-width: 768px) 224px, 100vw"
-                  alt=""
-                  class="aspect-[4/3] w-full rounded-md border object-cover"
-                />
+                <div class="overflow-hidden rounded-md border">
+                  <AspectRatio ratio={4 / 3}>
+                    <Picture
+                      src={project.image}
+                      formats={["avif", "webp"]}
+                      widths={[360, 600]}
+                      sizes="(min-width: 768px) 224px, 100vw"
+                      alt=""
+                      class="h-full w-full object-cover"
+                    />
+                  </AspectRatio>
+                </div>
               )}
               <div>
                 <p class="mb-3 text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">

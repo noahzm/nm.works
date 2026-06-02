@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/main.astro"
 import CaseStudyHeader from "@/components/CaseStudyHeader.astro"
+import { Separator } from "@/components/ui/separator"
 import { publishedProjects, type Project } from "@/data/projects"
 
 interface Props {
@@ -42,7 +43,8 @@ const next = nextProjects[0] ?? null
 
     {
       next && (
-        <footer class="mt-16 border-t border-border pt-7 sm:mt-20">
+        <footer class="mt-16 pt-7 sm:mt-20">
+          <Separator className="-mt-7 mb-7" />
           <a
             href={`/projects/${next.slug}`}
             class="group flex items-baseline justify-between gap-6 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"

@@ -1,6 +1,8 @@
 ---
 import { Picture } from "astro:assets"
 import Layout from "@/layouts/main.astro"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Separator } from "@/components/ui/separator"
 import { publishedCaseStudies, visualWork } from "@/data/projects"
 
 const selectedWork = [
@@ -14,7 +16,7 @@ const selectedWork = [
 
 <Layout>
   <div class="mx-auto max-w-3xl px-6 pt-4 pb-12 sm:pb-16">
-    <section class="border-b border-border pb-10 md:pb-14">
+    <section class="pb-10 md:pb-14">
       <h1 class="text-3xl font-bold tracking-tight md:text-4xl">
         Product designer
       </h1>
@@ -24,6 +26,7 @@ const selectedWork = [
         enough front-end fluency to carry the work into production.
       </p>
     </section>
+    <Separator />
 
     <section class="py-12" aria-labelledby="work-title">
       <div class="mb-10">
@@ -55,15 +58,17 @@ const selectedWork = [
               </div>
               {project.image && project.imageAlt && (
                 <div class="overflow-hidden rounded-md border bg-muted">
-                  <Picture
-                    src={project.image}
-                    formats={["avif", "webp"]}
-                    widths={[600, 1000]}
-                    sizes="(min-width: 768px) 768px, 100vw"
-                    alt=""
-                    loading={index === 0 ? "eager" : "lazy"}
-                    class="aspect-[4/3] h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
-                  />
+                  <AspectRatio ratio={4 / 3}>
+                    <Picture
+                      src={project.image}
+                      formats={["avif", "webp"]}
+                      widths={[600, 1000]}
+                      sizes="(min-width: 768px) 768px, 100vw"
+                      alt=""
+                      loading={index === 0 ? "eager" : "lazy"}
+                      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                    />
+                  </AspectRatio>
                 </div>
               )}
             </a>
