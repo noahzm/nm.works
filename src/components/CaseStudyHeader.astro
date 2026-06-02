@@ -1,7 +1,6 @@
 ---
 import { Picture } from "astro:assets"
 import ExternalArrow from "@/components/ExternalArrow.astro"
-import MetadataList from "@/components/MetadataList.astro"
 import type { Project } from "@/data/projects"
 
 interface Props {
@@ -15,12 +14,21 @@ const {
   title = project.title,
   description = project.description,
 } = Astro.props
+
+const metadataItems = [
+  { label: "Role", value: project.role },
+  { label: "Year", value: project.year },
+  {
+    label: "Status",
+    value: project.status === "published" ? "Published" : "Draft",
+  },
+]
 ---
 
-<header class="mb-12">
+<header class="mb-10 sm:mb-12">
   <a
     href="/projects"
-    class="mb-8 inline-block rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+    class="mb-7 inline-block rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
   >
     Back to projects
   </a>
@@ -35,25 +43,25 @@ const {
   <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
     {description}
   </p>
-  <div class="mt-8 max-w-2xl">
-    <MetadataList
-      items={[
-        { label: "Role", value: project.role },
-        { label: "Year", value: project.year },
-        {
-          label: "Status",
-          value: project.status === "published" ? "Published" : "Draft",
-        },
-      ]}
-    />
-  </div>
+  <dl
+    class="mt-7 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-3 border-y border-border py-4 text-sm sm:grid-cols-[minmax(0,1fr)_auto_auto]"
+  >
+    {
+      metadataItems.map((item, index) => (
+        <div class:list={[index === 0 && "col-span-2 sm:col-span-1"]}>
+          <dt class="text-muted-foreground">{item.label}</dt>
+          <dd class="mt-1 font-medium">{item.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
   {
     project.liveUrl && (
       <a
         href={project.liveUrl}
         target="_blank"
         rel="noreferrer"
-        class="mt-6 inline-flex items-center gap-1.5 border-b border-current pb-px text-sm font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+        class="mt-5 inline-flex items-center gap-1.5 border-b border-current pb-px text-sm font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
       >
         Visit live app
         <ExternalArrow />
@@ -62,7 +70,7 @@ const {
   }
   {
     project.image && project.imageAlt && (
-      <figure class="mt-12">
+      <figure class="mt-9 sm:mt-10">
         <Picture
           src={project.image}
           formats={["avif", "webp"]}

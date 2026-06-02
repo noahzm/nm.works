@@ -17,123 +17,59 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  description="A cycling weather decision app that turns forecast data into a plain-language ride verdict, the best window to go, and the gear signals cyclists check before heading out."
+  description="A cycling weather app that turns forecast data into a ride verdict, the best window to go, and the gear cues cyclists check before leaving."
   seoTitle="Wheely Weather · Cycling Weather Decision App"
   seoDescription="Wheely Weather is a cycling weather decision app that translates forecast data into ride-quality verdicts, hourly riding windows, and weather-based kit guidance."
 >
   <h2>Overview</h2>
   <p>
-    Wheely Weather answers a near-term riding question: <em
-      >can I ride right now, and if not, when?</em
-    > The app leads with a verdict, then keeps the signals behind that verdict close
-    enough for riders who want to check the call.
+    Wheely Weather answers one near-term riding question: <em
+      >is it worth going now?</em
+    > General forecasts show the numbers, but they still leave cyclists to translate
+    wind, rain, temperature, daylight, and air quality into a decision.
   </p>
   <p>
-    The product is intentionally small. It focuses on the conditions that shape
-    a bike ride: feels-like temperature, wind, gusts, rain chance, dewpoint, air
-    quality, daylight, and alerts.
+    I designed and built the product as a focused web app: verdict first,
+    evidence close, and a useful next window when the current answer is no.
   </p>
 
-  <h2>Project Frame</h2>
-  <ul>
-    <li>
-      <strong>Audience:</strong> cyclists making a near-term decision about whether
-      conditions are worth a ride.
-    </li>
-    <li>
-      <strong>Surface:</strong> a responsive web app built for quick phone checks
-      before leaving home.
-    </li>
-    <li>
-      <strong>Role:</strong> solo product strategy, UX/UI design, rating logic, front-end
-      implementation, and launch.
-    </li>
-    <li>
-      <strong>Core product question:</strong> how might a weather app make the ride
-      decision feel immediate without hiding the forecast data behind it?
-    </li>
-  </ul>
-
-  <h2>Problem</h2>
+  <h2>The Decision Moment</h2>
   <p>
     Before a ride, I was checking one weather app and falling back to another
-    when the first came up short. The numbers were available, but the decision
-    was not. A general-purpose forecast still left me asking whether the ride
-    made sense.
+    when the first came up short. The data was available, but the call was not.
+    Six rider conversations confirmed the same pattern: feels-like temperature
+    mattered more than the actual number, wind canceled more rides than rain,
+    and one bad condition could override an otherwise decent forecast.
   </p>
   <p>
-    I talked with six riders I knew. The pattern was consistent: feels-like
-    temperature matters more than the actual temperature, wind cancels more
-    rides than rain, and the decision usually happens in the moment.
+    That made the product brief narrow by design. The app had to work at a
+    glance on a phone, state the recommendation clearly, and still show enough
+    data for riders who wanted to check the call.
   </p>
 
-  <h2>Research Signals</h2>
-  <p>
-    The research was intentionally lightweight. I was not trying to validate a
-    large market; I was trying to understand the moment before a ride and the
-    weather signals riders use to make that call.
-  </p>
+  <h2>Product Direction</h2>
   <ul>
-    <li>Riders wanted a first-pass answer before studying the details.</li>
     <li>
-      Wind and gusts carried more decision weight than standard weather apps
-      implied.
+      Lead with a five-level ride rating: Great, Good, Fair, Poor, or Bad.
     </li>
     <li>
-      A single bad condition could override an otherwise acceptable forecast.
+      Score the weakest riding signal instead of averaging bad conditions away.
+    </li>
+    <li>Name the limiting condition when the ride rating drops.</li>
+    <li>
+      Keep the raw weather signals visible for riders who disagree with the
+      recommendation.
     </li>
     <li>
-      When conditions were poor, riders still wanted to know whether a better
-      window was coming later.
+      Point to the next usable window before asking anyone to study a chart.
     </li>
   </ul>
 
-  <h2>Product Goal</h2>
+  <h2>System Design</h2>
   <p>
-    The goal was not to build another complete forecast. It was to turn forecast
-    data into a decision path: tell the rider whether now is worth it, explain
-    the reason, and point to the next useful opportunity when conditions
-    improve.
-  </p>
-
-  <h2>Constraints</h2>
-  <ul>
-    <li>
-      The app needed to make the first answer visible without hiding the raw
-      weather signals.
-    </li>
-    <li>
-      The rating model had to stay explainable, because riders disagree about
-      wind, rain, heat, and what counts as “worth it.”
-    </li>
-    <li>
-      Free weather and geocoding APIs shaped the data model, refresh behavior,
-      and error states.
-    </li>
-    <li>
-      The interface had to work at a glance on a phone before someone leaves the
-      house.
-    </li>
-  </ul>
-
-  <h2>Process</h2>
-  <p>
-    I started with the ride-planning behavior itself: what people check, what
-    makes them cancel, and what they still want to know after a “no.” From
-    there, I mapped the forecast inputs into a small set of ride-quality
-    judgments and built the interface around the order a rider would naturally
-    ask questions.
-  </p>
-  <p>
-    The core flow became: verdict now, why it got that verdict, when it gets
-    better, what to wear, and which day in the week is most promising.
-  </p>
-
-  <h2>Information Architecture</h2>
-  <p>
-    The screen order follows the decision sequence instead of the structure of a
-    forecast API. The rider sees the verdict first, then the supporting
-    conditions, then the time-based views that help them change plans.
+    The screen order follows the rider’s question sequence instead of the shape
+    of a forecast API: can I go, why did it get that rating, what should I wear,
+    and when does it improve?
   </p>
 
   <figure>
@@ -147,40 +83,17 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
       />
     </AspectRatio>
     <figcaption>
-      Ride Specs keeps the forecast signals close to the verdict instead of
-      burying them in a general forecast.
+      Ride Specs keeps the forecast signals close to the verdict, so the
+      recommendation stays explainable.
     </figcaption>
   </figure>
 
-  <h2>Key Design Decisions</h2>
-  <ul>
-    <li>
-      <strong>One verdict first.</strong> A five-level ride rating gives the first
-      answer quickly: Great, Good, Fair, Poor, or Bad.
-    </li>
-    <li>
-      <strong>Worst factor, not average.</strong> A 90% rain day should not average
-      out to “mostly fine.” For cycling, one bad condition can define the ride, so
-      the verdict uses the weakest signal rather than smoothing it away.
-    </li>
-    <li>
-      <strong>Name what is wrong.</strong> When conditions are poor, the summary names
-      the failing variable: heavy wind, rain, air quality, or another clear cause.
-    </li>
-    <li>
-      <strong>Show the next ride window.</strong> If now is bad but later improves,
-      the app points to the better hour before asking the rider to study the chart.
-    </li>
-    <li>
-      <strong>Use color as a decision cue.</strong> The verdict card carries the rating
-      color, so the first impression and the written call reinforce each other.
-    </li>
-    <li>
-      <strong>Keep the system adjustable.</strong> The rating logic stays visible
-      in the interface and isolated in code, so future rider feedback can tune the
-      model without redesigning the product.
-    </li>
-  </ul>
+  <h2>Riding Windows</h2>
+  <p>
+    A bad current rating should not end the session. The hourly view turns a
+    “not now” into a specific window, while the week view highlights the day
+    worth watching when today is not promising.
+  </p>
 
   <figure>
     <AspectRatio ratio={4 / 3}>
@@ -217,37 +130,13 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
   <p>
     The shipped app replaced a scattered pre-ride check with one clear decision
     path: read the verdict, confirm the cause, and choose the next useful ride
-    window. The first release also made the rating model easier to adjust,
-    because every condition that can change the verdict is visible in the UI and
-    represented in the front-end logic.
+    window. React, Vite, Tailwind CSS 4, Open-Meteo, OpenStreetMap/Nominatim,
+    the NWS API, and Cloudflare Pages power the release.
   </p>
   <p>
-    The strongest product shift was moving weather from reference material to a
-    recommendation. The app still exposes the underlying signals, but the first
-    read is now framed around the rider’s actual question.
-  </p>
-
-  <h2>Tech</h2>
-  <p>
-    React 19, Vite, Tailwind CSS 4, Open-Meteo forecast and AQI data,
-    OpenStreetMap/Nominatim reverse geocoding, the NWS API for U.S. weather
-    alerts, and Cloudflare Pages. Vitest covers the rating logic because the
-    verdict is the highest-risk part of the product.
-  </p>
-
-  <h2>Next Steps</h2>
-  <p>
-    The next pass is more rider testing before another threshold tune. I want to
-    know how often riders disagree with the verdict, which condition caused the
-    disagreement, and whether configurable weighting would make the product more
-    useful without making the first answer less clear.
-  </p>
-
-  <h2>What I Would Revisit</h2>
-  <p>
-    The product now needs sharper feedback loops. A future version should let
-    riders challenge a verdict in context, capture which signal felt wrong, and
-    use that evidence to tune the thresholds without turning the interface into
-    a settings-heavy weather tool.
+    The strongest shift was moving weather from reference material to a
+    recommendation. The next pass should capture where riders disagree with the
+    verdict, then tune thresholds without turning a quick decision tool into a
+    settings-heavy forecast app.
   </p>
 </CaseStudy>
