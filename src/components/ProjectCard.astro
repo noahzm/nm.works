@@ -1,6 +1,7 @@
 ---
 import { Picture } from "astro:assets"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
 import { Badge } from "@/components/ui/badge"
 import type { Project } from "@/data/projects"
 
@@ -45,11 +46,10 @@ const imageSizes = featured
 
   <div class="min-w-0">
     <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-      <p
-        class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase"
-      >
-        {project.meta}
-      </p>
+      <ProjectDisciplines
+        disciplines={project.disciplines}
+        label={`${project.title} disciplines`}
+      />
       {
         project.status === "coming-soon" && (
           <Badge variant="outline" className="text-muted-foreground">

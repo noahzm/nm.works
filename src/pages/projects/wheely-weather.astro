@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Badge } from "@/components/ui/badge"
 import { getProject } from "@/data/projects"
 import hourlyImg from "@/assets/projects/wheely-weather/hourly.png"
 import specsImg from "@/assets/projects/wheely-weather/specs.png"
@@ -12,12 +13,20 @@ const project = getProject("wheely-weather")!
 const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
 const pictureWidths = [720, 1200]
 const pictureSizes = "(min-width: 768px) 768px, 100vw"
+
+const specsAnnotations = [
+  "Five-level ride rating",
+  "Limiting condition shown first",
+  "Kit guidance translates weather into action",
+]
+
+const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
 ---
 
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  description="A cycling weather app that turns forecast data into a ride verdict, the best window to go, and the gear cues cyclists check before leaving."
+  description="A cycling weather app that turns forecast data into a clear ride recommendation, the best window to go, and weather-based kit guidance."
   seoTitle="Wheely Weather · Cycling Weather Decision App"
   seoDescription="Wheely Weather is a cycling weather decision app that translates forecast data into ride-quality verdicts, hourly riding windows, and weather-based kit guidance."
 >
@@ -72,16 +81,29 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
     and when does it improve?
   </p>
 
-  <figure>
-    <AspectRatio ratio={4 / 3}>
-      <Picture
-        src={specsImg}
-        formats={pictureFormats}
-        widths={pictureWidths}
-        sizes={pictureSizes}
-        alt="Ride Specs panel showing rain chance, feels-like temperature, wind, air quality, dewpoint, UV index, sunrise, and sunset."
-      />
-    </AspectRatio>
+  <figure class="annotated-figure annotated-figure--specs">
+    <div class="annotated-figure__media">
+      <AspectRatio ratio={4 / 3}>
+        <Picture
+          src={specsImg}
+          formats={pictureFormats}
+          widths={pictureWidths}
+          sizes={pictureSizes}
+          alt="Ride Specs panel showing rain chance, feels-like temperature, wind, air quality, dewpoint, UV index, sunrise, and sunset."
+        />
+      </AspectRatio>
+      <ul class="annotation-list" aria-label="Ride Specs annotations">
+        {
+          specsAnnotations.map((annotation) => (
+            <li>
+              <Badge variant="outline" className="annotation-badge">
+                {annotation}
+              </Badge>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
     <figcaption>
       Ride Specs keeps the forecast signals close to the verdict, so the
       recommendation stays explainable.
@@ -95,16 +117,29 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
     worth watching when today is not promising.
   </p>
 
-  <figure>
-    <AspectRatio ratio={4 / 3}>
-      <Picture
-        src={hourlyImg}
-        formats={pictureFormats}
-        widths={pictureWidths}
-        sizes={pictureSizes}
-        alt="Hour-by-hour Wheely Weather panel with a ride-quality chart and a plain-language note about a rain window."
-      />
-    </AspectRatio>
+  <figure class="annotated-figure annotated-figure--hourly">
+    <div class="annotated-figure__media">
+      <AspectRatio ratio={4 / 3}>
+        <Picture
+          src={hourlyImg}
+          formats={pictureFormats}
+          widths={pictureWidths}
+          sizes={pictureSizes}
+          alt="Hour-by-hour Wheely Weather panel with a ride-quality chart and a plain-language note about a rain window."
+        />
+      </AspectRatio>
+      <ul class="annotation-list" aria-label="Hourly view annotations">
+        {
+          hourlyAnnotations.map((annotation) => (
+            <li>
+              <Badge variant="outline" className="annotation-badge">
+                {annotation}
+              </Badge>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
     <figcaption>
       The hourly view lets a “no right now” turn into a specific ride window.
     </figcaption>
@@ -136,7 +171,111 @@ const pictureSizes = "(min-width: 768px) 768px, 100vw"
   <p>
     The strongest shift was moving weather from reference material to a
     recommendation. The next pass should capture where riders disagree with the
-    verdict, then tune thresholds without turning a quick decision tool into a
-    settings-heavy forecast app.
+    recommendation, then use that feedback to tune thresholds without turning
+    the app into a settings-heavy forecast tool.
   </p>
 </CaseStudy>
+
+<style>
+  .annotated-figure__media {
+    position: relative;
+  }
+
+  .annotation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .annotation-badge {
+    height: auto;
+    min-height: 1.75rem;
+    justify-content: flex-start;
+    border-color: var(--border);
+    background: color-mix(in oklch, var(--background) 92%, transparent);
+    padding: 0.3125rem 0.625rem;
+    text-align: left;
+    white-space: normal;
+    font-size: 0.75rem;
+    line-height: 1.25;
+    color: var(--foreground);
+    backdrop-filter: blur(10px);
+  }
+
+  @media (min-width: 768px) {
+    .annotation-list {
+      position: absolute;
+      inset: 0;
+      display: block;
+      margin: 0;
+      pointer-events: none;
+    }
+
+    .annotation-list li {
+      position: absolute;
+      max-width: 14rem;
+    }
+
+    .annotation-list li::before {
+      position: absolute;
+      top: 50%;
+      width: 2.5rem;
+      height: 1px;
+      background: color-mix(in oklch, var(--foreground) 35%, transparent);
+      content: "";
+    }
+
+    .annotation-list li::after {
+      position: absolute;
+      top: calc(50% - 0.1875rem);
+      width: 0.375rem;
+      height: 0.375rem;
+      border-radius: 999px;
+      background: var(--foreground);
+      content: "";
+    }
+
+    .annotated-figure--specs .annotation-list li:nth-child(1) {
+      top: 16%;
+      right: 3%;
+    }
+
+    .annotated-figure--specs .annotation-list li:nth-child(2) {
+      top: 39%;
+      left: 4%;
+    }
+
+    .annotated-figure--specs .annotation-list li:nth-child(3) {
+      right: 5%;
+      bottom: 15%;
+    }
+
+    .annotated-figure--hourly .annotation-list li {
+      right: 5%;
+      bottom: 17%;
+    }
+
+    .annotated-figure--specs .annotation-list li:nth-child(1)::before,
+    .annotated-figure--specs .annotation-list li:nth-child(3)::before,
+    .annotated-figure--hourly .annotation-list li::before {
+      right: 100%;
+    }
+
+    .annotated-figure--specs .annotation-list li:nth-child(1)::after,
+    .annotated-figure--specs .annotation-list li:nth-child(3)::after,
+    .annotated-figure--hourly .annotation-list li::after {
+      right: calc(100% + 2.5rem);
+    }
+
+    .annotated-figure--specs .annotation-list li:nth-child(2)::before {
+      left: 100%;
+    }
+
+    .annotated-figure--specs .annotation-list li:nth-child(2)::after {
+      left: calc(100% + 2.5rem);
+    }
+  }
+</style>

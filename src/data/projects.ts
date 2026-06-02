@@ -4,6 +4,13 @@ import grouchImg from "@/assets/projects/grouch/grouchorange.png"
 import wheelyHeroImg from "@/assets/projects/wheely-weather/hero.png"
 
 export type ProjectCategory = "case-study" | "visual-work"
+export type ProjectDiscipline =
+  | "product-design"
+  | "front-end"
+  | "ux-ui"
+  | "information-architecture"
+  | "public-sector-design-system"
+  | "brand-apparel"
 export type ProjectStatus = "published" | "coming-soon"
 
 export interface Project {
@@ -11,7 +18,7 @@ export interface Project {
   title: string
   category: ProjectCategory
   status: ProjectStatus
-  meta: string
+  disciplines: ProjectDiscipline[]
   role: string
   year: string
   summary: string
@@ -29,11 +36,11 @@ export const projects: Project[] = [
     title: "Wheely Weather",
     category: "case-study",
     status: "published",
-    meta: "Product Design · Front-End · 2025",
+    disciplines: ["product-design", "front-end"],
     role: "Solo product design and front-end development",
     year: "2025",
     summary:
-      "A cycling weather decision app built around one question: is today a good day to ride?",
+      "A cycling weather decision app that turns forecast data into ride guidance, kit recommendations, and best-day picks.",
     description:
       "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, best-day picks, and weather-based kit guidance for cyclists.",
     tags: ["UX/UI", "Product strategy", "React", "Accessibility"],
@@ -48,11 +55,11 @@ export const projects: Project[] = [
     title: "Creative Printing Job Submission Portal",
     category: "case-study",
     status: "coming-soon",
-    meta: "UX/UI · Information Architecture · 2020",
+    disciplines: ["ux-ui", "information-architecture"],
     role: "Web and graphic designer",
     year: "2020",
     summary:
-      "A responsive portal redesign that clarified how print customers moved from project type to submission.",
+      "A responsive portal redesign that clarified the path from project type to submission.",
     description:
       "A draft case study about simplifying a print-shop job submission flow with clearer hierarchy, icon-grid navigation, and a more direct path to the right form.",
     tags: ["Workflow design", "IA", "Responsive web"],
@@ -65,11 +72,11 @@ export const projects: Project[] = [
     title: "NCGA Reusable Template System",
     category: "case-study",
     status: "coming-soon",
-    meta: "Public-Sector Design System · 2021–Present",
+    disciplines: ["public-sector-design-system"],
     role: "Graphic and production designer",
     year: "2021–Present",
     summary:
-      "A reusable standards and template system for recurring legislative materials across print and digital channels.",
+      "Reusable standards and templates for recurring legislative materials across print and digital channels.",
     description:
       "A draft case study about making complex public-sector communications more consistent, scannable, and efficient to produce.",
     tags: ["Design systems", "Templates", "Accessibility", "Complex content"],
@@ -79,11 +86,11 @@ export const projects: Project[] = [
     title: "Grouch",
     category: "visual-work",
     status: "published",
-    meta: "Brand & Apparel · 2019",
+    disciplines: ["brand-apparel"],
     role: "Brand and apparel design",
     year: "2019",
     summary:
-      "A small apparel identity with T-shirts, hats, totes, stickers, and a lean path from mark to merch.",
+      "A skate-inspired DIY apparel project with original graphics, screen-printed shirts, and small-run merch.",
     description:
       "Grouch was a limited-run visual identity and apparel experiment built around a simple mark, bold colorways, and hands-on production.",
     tags: ["Brand identity", "Apparel", "Print production"],
@@ -91,6 +98,15 @@ export const projects: Project[] = [
     imageAlt: "Orange Grouch T-shirt with a large black typographic mark.",
   },
 ]
+
+export const disciplineLabels: Record<ProjectDiscipline, string> = {
+  "product-design": "Product Design",
+  "front-end": "Front-End",
+  "ux-ui": "UX/UI",
+  "information-architecture": "Information Architecture",
+  "public-sector-design-system": "Public-Sector Design System",
+  "brand-apparel": "Brand & Apparel",
+}
 
 export const caseStudies = projects.filter(
   (project) => project.category === "case-study"

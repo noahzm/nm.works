@@ -1,6 +1,8 @@
 ---
 import { Picture } from "astro:assets"
+import { ArrowLeft } from "lucide-react"
 import ExternalArrow from "@/components/ExternalArrow.astro"
+import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
 import { buttonVariants } from "@/components/ui/button-variants"
 import type { Project } from "@/data/projects"
 
@@ -29,15 +31,17 @@ const metadataItems = [
 <header class="mb-10 sm:mb-12">
   <a
     href="/projects"
-    class="mb-7 inline-block rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+    class="mb-7 inline-flex items-center gap-1 rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none [&_svg]:size-3.5 [&_svg]:shrink-0"
   >
+    <ArrowLeft aria-hidden="true" data-icon="inline-start" strokeWidth={2} />
     Back to projects
   </a>
-  <p
-    class="mb-4 text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase"
-  >
-    {project.meta}
-  </p>
+  <div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+    <ProjectDisciplines
+      disciplines={project.disciplines}
+      label={`${project.title} disciplines`}
+    />
+  </div>
   <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-5xl">
     {title}
   </h1>
