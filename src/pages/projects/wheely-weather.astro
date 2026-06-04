@@ -46,9 +46,10 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
   <p>
     Before a ride, I was checking one weather app and falling back to another
     when the first came up short. The data was available, but the call was not.
-    Six rider conversations confirmed the same pattern: feels-like temperature
-    mattered more than the actual number, wind canceled more rides than rain,
-    and one bad condition could override an otherwise decent forecast.
+    Six conversations with recreational and commuter cyclists confirmed the same
+    pattern: feels-like temperature mattered more than the actual number, wind
+    canceled more rides than rain, and one bad condition could override an
+    otherwise decent forecast.
   </p>
   <p>
     That made the product brief narrow by design. The app had to work at a
@@ -173,17 +174,11 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
 
   <h2>Outcome</h2>
   <p>
-    The shipped app replaced a scattered pre-ride check with one clear decision
-    path: read the verdict, confirm the cause, and choose the next useful ride
-    window. The release runs on React, Vite, Tailwind CSS 4, Open-Meteo,
-    OpenStreetMap/Nominatim, the NWS API, and Cloudflare Pages.
-  </p>
-  <p>
-    The product moved weather from reference data to a decision path. Riders
-    can read the verdict, check the cause, and choose the next useful window
-    without comparing multiple forecasts. The next pass should capture where
-    riders disagree with the recommendation, then use that feedback to tune
-    thresholds without turning the app into a settings-heavy forecast tool.
+    Wheely Weather shipped as a focused web app on Cloudflare Pages, using
+    React, Tailwind CSS 4, and Open-Meteo and NWS forecast data. It turns a
+    scatter of weather signals into one ride decision. The next pass will
+    capture where riders disagree with the verdict, using that feedback to
+    sharpen thresholds without adding configuration overhead.
   </p>
 </CaseStudy>
 
