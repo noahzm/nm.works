@@ -31,8 +31,7 @@ const headerWidthClass = "max-w-3xl"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
-    <link rel="stylesheet" href="https://use.typekit.net/exv5yiv.css" />
+
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalURL} />
@@ -59,7 +58,7 @@ const headerWidthClass = "max-w-3xl"
     <header class="px-6 py-10 md:py-14">
       <nav
         class:list={[
-          "mx-auto flex items-baseline justify-between gap-6",
+          "mx-auto flex flex-col items-baseline gap-4 md:flex-row md:justify-between md:gap-6",
           headerWidthClass,
         ]}
         aria-label="Main navigation"

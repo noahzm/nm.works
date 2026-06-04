@@ -40,9 +40,9 @@ export const projects: Project[] = [
     role: "Solo product design and front-end development",
     year: "2025",
     summary:
-      "A cycling weather decision app that turns forecast data into ride guidance, kit recommendations, and best-day picks.",
+      "A cycling weather app that translates complex forecast APIs into glanceable ride-quality verdicts, visual hourly windows, and adaptive kit guidance.",
     description:
-      "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, best-day picks, and weather-based kit guidance for cyclists.",
+      "Wheely Weather translates complex forecast APIs into glanceable ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists.",
     tags: ["UX/UI", "Product strategy", "React", "Accessibility"],
     image: wheelyHeroImg,
     imageAlt:
@@ -54,14 +54,14 @@ export const projects: Project[] = [
     slug: "creative-printing-job-submission-portal",
     title: "Creative Printing Job Submission Portal",
     category: "case-study",
-    status: "coming-soon",
-    disciplines: ["ux-ui", "information-architecture"],
-    role: "Web and graphic designer",
-    year: "2020",
+    status: "published",
+    disciplines: ["ux-ui", "information-architecture", "front-end"],
+    role: "UX/UI designer and developer",
+    year: "2018–2020",
     summary:
-      "A responsive portal redesign that clarified the path from project type to submission.",
+      "A workflow redesign that replaced a high-dropoff submission process with responsive, task-oriented navigation, mapping diverse customer intents directly to target print specifications.",
     description:
-      "A draft case study about simplifying a print-shop job submission flow with clearer hierarchy, icon-grid navigation, and a more direct path to the right form.",
+      "Replaced a high-dropoff, desktop-only print submission path with a responsive icon-grid portal that mapped client project intents directly to the correct print specifications.",
     tags: ["Workflow design", "IA", "Responsive web"],
     image: creativePrintingImg,
     imageAlt:
@@ -71,14 +71,14 @@ export const projects: Project[] = [
     slug: "ncga-template-system",
     title: "NCGA Reusable Template System",
     category: "case-study",
-    status: "coming-soon",
-    disciplines: ["public-sector-design-system"],
-    role: "Graphic and production designer",
+    status: "published",
+    disciplines: ["public-sector-design-system", "information-architecture"],
+    role: "Systems and information designer",
     year: "2021–Present",
     summary:
-      "Reusable standards and templates for recurring legislative materials across print and digital channels.",
+      "A multi-channel design system and layout standards serving 170+ legislative members, standardizing complex legislative publications and connecting print collateral to digital channels via QR systems.",
     description:
-      "A draft case study about making complex public-sector communications more consistent, scannable, and efficient to produce.",
+      "Designed a multi-channel layout system and production templates for the North Carolina General Assembly, standardizing complex legislative publications and connecting print materials to digital workflows.",
     tags: ["Design systems", "Templates", "Accessibility", "Complex content"],
   },
   {

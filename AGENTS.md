@@ -112,21 +112,29 @@ Write copy that is:
 
 - Confident and plainspoken. State the work and its impact without overselling.
 - Specific. Name tools, surfaces, audiences, behaviors, and shipped artifacts.
-- Active. Prefer “I designed and built”, “I redesigned the flow so…”, and
-  “you see…” over passive or corporate phrasing. Use “the team shipped” only
-  when a real team is named in the case study.
+- Active. Prefer "I designed and built", "I redesigned the flow so…", and
+  "the design prioritizes…" over passive or corporate phrasing. Use "the team
+  shipped" only when a real team is named in the case study.
 - Outcome-oriented. Connect claims to a user need, behavior change, business
   result, or concrete deliverable.
-- Tight. Cut filler such as “in order to”, “very”, “really”, “essentially”, and
-  “leverage” unless the word is literal.
-- Aspirational without becoming grandiose. “Set new standards” can work;
+- Tight. Cut filler such as "in order to", "very", "really", "essentially",
+  "leverage" (unless the word is literal), "bridge the gap between", and
+  "iterative" when paired with "feedback-driven" or "design cycles."
+- Aspirational without becoming grandiose. "Set new standards" can work;
   LinkedIn-style humblebrags do not.
 
-Craft should be implied through specificity. Do not write “great taste”,
-“passionate”, “talented”, or stacked adjectives that ask the reader to admire the
+Craft should be implied through specificity. Do not write "great taste",
+"passionate", "talented", or stacked adjectives that ask the reader to admire the
 work before seeing it.
 
-Use curly quotes in rendered prose: “ ” and ‘ ’. Straight quotes are for code,
+Do not break the fourth wall. Lines like "you see the design prioritize action"
+or "what you notice here is…" are performative meta-commentary, not active voice.
+Let the description speak for itself.
+
+Avoid throat-clearing openers ("With a background in…", "During this time, I
+also applied this approach to…"). Start with the subject and the action.
+
+Use curly quotes in rendered prose: " " and ' '. Straight quotes are for code,
 string literals, JSX attributes, and other source syntax.
 
 Use em dashes sparingly. Prefer periods, commas, and colons unless the sentence
