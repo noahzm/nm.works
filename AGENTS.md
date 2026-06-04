@@ -18,23 +18,29 @@ Package management is npm. Use `package-lock.json` as the source of truth.
 - `npm run build` creates a production build.
 - `npm run preview` serves the built site.
 - `npm run typecheck` runs `astro check` for TypeScript and `.astro`
-  diagnostics.
-- `npm run lint` runs ESLint over the repo. The config only targets
-  `**/*.{ts,tsx}`.
+  diagnostics. Run this after edits to `.astro`, `.ts`, and `.tsx` files.
+- `npm run lint` runs ESLint. The config in
+  [eslint.config.js](eslint.config.js) only targets `**/*.{ts,tsx}`. `.astro`
+  files are not linted.
 - `npm run format` runs Prettier over `**/*.{ts,tsx,astro}`.
 
-There is no test runner configured.
+There is no test runner configured. `playwright` is listed under devDependencies
+but no script uses it, so do not assume `npm test` exists.
 
 ## Architecture
 
 Routes are file-based under [src/pages/](src/pages/). Shared page chrome lives in
 [src/layouts/](src/layouts/), with [src/layouts/main.astro](src/layouts/main.astro)
-importing global styles. Case study framing lives in
-[src/layouts/case-study.astro](src/layouts/case-study.astro).
+importing global styles and mounting `ClientRouter` from `astro:transitions`
+site-wide. Case study framing lives in
+[src/layouts/case-study.astro](src/layouts/case-study.astro), which pulls the
+"next project" link from `publishedProjects`.
 
 Project metadata is centralized in [src/data/projects.ts](src/data/projects.ts).
 Prefer updating that data source over duplicating project details in multiple
-pages.
+pages. Projects with `status: "coming-soon"` are still rendered at their public
+URLs but the case-study layout sets `noindex` on them. They are listed in the
+"In progress" section of [src/pages/projects/index.astro](src/pages/projects/index.astro).
 
 React components used inside `.astro` files render as server-rendered HTML by
 default. Add an Astro hydration directive such as `client:load`, `client:idle`,
@@ -67,7 +73,10 @@ npx shadcn@latest add <component>
 ```
 
 Use `@/components/ui/...` and `@/lib/utils` rather than relative paths for shared
-UI and utilities.
+UI and utilities. `cn` is exported from [src/lib/utils.ts](src/lib/utils.ts).
+
+`package.json` pins an `overrides` entry for `yaml` to `^2.9.0` (CVE-2025-64756).
+Do not remove it when regenerating or sorting the file.
 
 ## Code Style
 
@@ -96,15 +105,16 @@ they are already part of the project’s visual system.
 ## Voice And Copy
 
 All user-facing copy, including case studies, intros, headings, captions, alt
-text, and microcopy, should sound like a senior product designer speaking in an
-Apple-level design brief.
+text, and microcopy, should sound like a senior product designer writing a
+direct, plainspoken brief. Confident and specific, never performative.
 
 Write copy that is:
 
 - Confident and plainspoken. State the work and its impact without overselling.
 - Specific. Name tools, surfaces, audiences, behaviors, and shipped artifacts.
-- Active. Prefer “I led”, “the team shipped”, and “you craft” over passive or
-  corporate phrasing.
+- Active. Prefer “I designed and built”, “I redesigned the flow so…”, and
+  “you see…” over passive or corporate phrasing. Use “the team shipped” only
+  when a real team is named in the case study.
 - Outcome-oriented. Connect claims to a user need, behavior change, business
   result, or concrete deliverable.
 - Tight. Cut filler such as “in order to”, “very”, “really”, “essentially”, and

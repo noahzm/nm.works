@@ -12,7 +12,7 @@ interface Props {
 
 const {
   title = "Noah Michaels · Product Designer",
-  description = "Product designer with experience across visual design, accessible web interfaces, public-sector communications, and front-end implementation.",
+  description = "Product designer in visual design, accessible web interfaces, public-sector communications, and front-end implementation.",
   image = "/favicon.svg",
   ogType = "website",
   noindex = false,
@@ -31,6 +31,7 @@ const headerWidthClass = "max-w-3xl"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
     <link rel="stylesheet" href="https://use.typekit.net/exv5yiv.css" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -75,6 +76,14 @@ const headerWidthClass = "max-w-3xl"
             class="rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
           >
             Projects
+          </a>
+          <a
+            href="/NoahMichaelsResume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          >
+            Resume
           </a>
           <a
             href="mailto:hi@nm.works?subject=Hi%20from%20nm.works"

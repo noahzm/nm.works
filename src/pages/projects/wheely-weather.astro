@@ -15,12 +15,12 @@ const pictureWidths = [720, 1200]
 const pictureSizes = "(min-width: 768px) 768px, 100vw"
 
 const specsAnnotations = [
-  "Five-level ride rating",
-  "Limiting condition shown first",
-  "Kit guidance translates weather into action",
+  "Core weather signals stay visible",
+  "Limiting conditions are easy to scan",
+  "Timing details support ride planning",
 ]
 
-const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
+const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
 ---
 
 <CaseStudy
@@ -94,8 +94,13 @@ const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
       </AspectRatio>
       <ul class="annotation-list" aria-label="Ride Specs annotations">
         {
-          specsAnnotations.map((annotation) => (
-            <li>
+          specsAnnotations.map((annotation, index) => (
+            <li
+              class:list={[
+                "annotation-list__item",
+                `annotation-list__item--specs-${index + 1}`,
+              ]}
+            >
               <Badge variant="outline" className="annotation-badge">
                 {annotation}
               </Badge>
@@ -131,7 +136,12 @@ const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
       <ul class="annotation-list" aria-label="Hourly view annotations">
         {
           hourlyAnnotations.map((annotation) => (
-            <li>
+            <li
+              class:list={[
+                "annotation-list__item",
+                "annotation-list__item--hourly-1",
+              ]}
+            >
               <Badge variant="outline" className="annotation-badge">
                 {annotation}
               </Badge>
@@ -165,14 +175,15 @@ const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
   <p>
     The shipped app replaced a scattered pre-ride check with one clear decision
     path: read the verdict, confirm the cause, and choose the next useful ride
-    window. React, Vite, Tailwind CSS 4, Open-Meteo, OpenStreetMap/Nominatim,
-    the NWS API, and Cloudflare Pages power the release.
+    window. The release runs on React, Vite, Tailwind CSS 4, Open-Meteo,
+    OpenStreetMap/Nominatim, the NWS API, and Cloudflare Pages.
   </p>
   <p>
-    The strongest shift was moving weather from reference material to a
-    recommendation. The next pass should capture where riders disagree with the
-    recommendation, then use that feedback to tune thresholds without turning
-    the app into a settings-heavy forecast tool.
+    The product moved weather from reference data to a decision path. Riders
+    can read the verdict, check the cause, and choose the next useful window
+    without comparing multiple forecasts. The next pass should capture where
+    riders disagree with the recommendation, then use that feedback to tune
+    thresholds without turning the app into a settings-heavy forecast tool.
   </p>
 </CaseStudy>
 
@@ -214,12 +225,12 @@ const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
       pointer-events: none;
     }
 
-    .annotation-list li {
+    .annotation-list__item {
       position: absolute;
       max-width: 14rem;
     }
 
-    .annotation-list li::before {
+    .annotation-list__item::before {
       position: absolute;
       top: 50%;
       width: 2.5rem;
@@ -228,7 +239,7 @@ const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
       content: "";
     }
 
-    .annotation-list li::after {
+    .annotation-list__item::after {
       position: absolute;
       top: calc(50% - 0.1875rem);
       width: 0.375rem;
@@ -238,43 +249,43 @@ const hourlyAnnotations = ["Hourly view turns forecast into a ride window"]
       content: "";
     }
 
-    .annotated-figure--specs .annotation-list li:nth-child(1) {
-      top: 16%;
-      right: 3%;
+    .annotation-list__item--specs-1 {
+      top: 38%;
+      right: 4%;
     }
 
-    .annotated-figure--specs .annotation-list li:nth-child(2) {
-      top: 39%;
+    .annotation-list__item--specs-2 {
+      top: 58%;
       left: 4%;
     }
 
-    .annotated-figure--specs .annotation-list li:nth-child(3) {
-      right: 5%;
-      bottom: 15%;
+    .annotation-list__item--specs-3 {
+      top: 78%;
+      right: 4%;
     }
 
-    .annotated-figure--hourly .annotation-list li {
+    .annotation-list__item--hourly-1 {
+      top: 40%;
       right: 5%;
-      bottom: 17%;
     }
 
-    .annotated-figure--specs .annotation-list li:nth-child(1)::before,
-    .annotated-figure--specs .annotation-list li:nth-child(3)::before,
-    .annotated-figure--hourly .annotation-list li::before {
+    .annotation-list__item--specs-1::before,
+    .annotation-list__item--specs-3::before,
+    .annotation-list__item--hourly-1::before {
       right: 100%;
     }
 
-    .annotated-figure--specs .annotation-list li:nth-child(1)::after,
-    .annotated-figure--specs .annotation-list li:nth-child(3)::after,
-    .annotated-figure--hourly .annotation-list li::after {
+    .annotation-list__item--specs-1::after,
+    .annotation-list__item--specs-3::after,
+    .annotation-list__item--hourly-1::after {
       right: calc(100% + 2.5rem);
     }
 
-    .annotated-figure--specs .annotation-list li:nth-child(2)::before {
+    .annotation-list__item--specs-2::before {
       left: 100%;
     }
 
-    .annotated-figure--specs .annotation-list li:nth-child(2)::after {
+    .annotation-list__item--specs-2::after {
       left: calc(100% + 2.5rem);
     }
   }
