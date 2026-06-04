@@ -3,14 +3,12 @@ import { Picture } from "astro:assets"
 import Layout from "@/layouts/main.astro"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Separator } from "@/components/ui/separator"
-import { publishedCaseStudies, visualWork } from "@/data/projects"
+import { getProject } from "@/data/projects"
 
 const selectedWork = [
-  publishedCaseStudies.find((project) => project.slug === "wheely-weather")!,
-  ...publishedCaseStudies.filter(
-    (project) => project.slug !== "wheely-weather"
-  ),
-  ...visualWork.filter((project) => project.status === "published"),
+  getProject("wheely-weather")!,
+  getProject("ncga-template-system")!,
+  getProject("creative-printing-job-submission-portal")!,
 ]
 ---
 
@@ -21,8 +19,10 @@ const selectedWork = [
         Product designer
       </h1>
       <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-        I design clear, accessible product experiences for complex content
-        and workflows. Front-end skills help me prototype, test, and ship.
+        I design interfaces that make dense, complicated information clear and
+        actionable. My background in print systems and front-end development
+        means I can prototype and ship what I design, not just hand it off.
+        Looking for a product design role where that matters.
       </p>
     </section>
     <Separator />
