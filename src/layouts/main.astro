@@ -13,7 +13,7 @@ interface Props {
 const {
   title = "Noah Michaels · Product Designer",
   description = "Product designer in visual design, accessible web interfaces, public-sector communications, and front-end implementation.",
-  image = "/favicon.svg",
+  image,
   ogType = "website",
   noindex = false,
 } = Astro.props
@@ -22,6 +22,7 @@ const canonicalURL = new URL(
   Astro.url.pathname.replace(/\/$/, "") || "/",
   Astro.site ?? Astro.url.origin
 )
+const socialImageURL = image ? new URL(image, canonicalURL) : null
 
 const headerWidthClass = "max-w-3xl"
 ---
@@ -40,11 +41,14 @@ const headerWidthClass = "max-w-3xl"
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, canonicalURL)} />
-    <meta name="twitter:card" content="summary_large_image" />
+    {socialImageURL && <meta property="og:image" content={socialImageURL} />}
+    <meta
+      name="twitter:card"
+      content={socialImageURL ? "summary_large_image" : "summary"}
+    />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, canonicalURL)} />
+    {socialImageURL && <meta name="twitter:image" content={socialImageURL} />}
     <title>{title}</title>
     <ClientRouter />
   </head>
