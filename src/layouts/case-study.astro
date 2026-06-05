@@ -21,8 +21,14 @@ const {
   seoDescription = project.description,
 } = Astro.props
 
-const nextProjects = publishedProjects.filter((p) => p.slug !== project.slug)
-const next = nextProjects[0] ?? null
+const currentProjectIndex = publishedProjects.findIndex(
+  (p) => p.slug === project.slug
+)
+const hasNextProject =
+  currentProjectIndex >= 0 && publishedProjects.length > 1
+const next = hasNextProject
+  ? publishedProjects[(currentProjectIndex + 1) % publishedProjects.length]
+  : null
 ---
 
 <Layout
