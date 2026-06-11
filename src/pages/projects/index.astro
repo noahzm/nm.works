@@ -1,7 +1,6 @@
 ---
-import { Picture } from "astro:assets"
 import Layout from "@/layouts/main.astro"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
+import ProjectPreview from "@/components/ProjectPreview.astro"
 import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -29,20 +28,11 @@ import {
               aria-label={`View ${project.title}`}
               class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
             >
-              {project.image && project.imageAlt && (
-                <div class="overflow-hidden rounded-md border">
-                  <AspectRatio ratio={4 / 3}>
-                    <Picture
-                      src={project.image}
-                      formats={["avif", "webp"]}
-                      widths={[360, 600]}
-                      sizes="(min-width: 768px) 224px, 100vw"
-                      alt=""
-                      class="h-full w-full object-cover"
-                    />
-                  </AspectRatio>
-                </div>
-              )}
+              <ProjectPreview
+                project={project}
+                widths={[360, 600]}
+                sizes="(min-width: 768px) 224px, 100vw"
+              />
               <div>
                 <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
                   <ProjectDisciplines
@@ -56,6 +46,11 @@ import {
                 <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                   {project.summary}
                 </p>
+                {project.recruiterSignal && (
+                  <p class="mt-2 max-w-2xl text-sm leading-relaxed">
+                    {project.recruiterSignal}
+                  </p>
+                )}
               </div>
             </a>
           ))
@@ -78,24 +73,11 @@ import {
           <div class="mt-8 divide-y">
             {upcomingCaseStudies.map((project) => (
               <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
-                {project.image && project.imageAlt ? (
-                  <div class="overflow-hidden rounded-md border">
-                    <AspectRatio ratio={4 / 3}>
-                      <Picture
-                        src={project.image}
-                        formats={["avif", "webp"]}
-                        widths={[360, 600]}
-                        sizes="(min-width: 768px) 224px, 100vw"
-                        alt=""
-                        class="h-full w-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
-                ) : (
-                  <div class="hidden rounded-md border bg-muted md:block">
-                    <AspectRatio ratio={4 / 3} />
-                  </div>
-                )}
+                <ProjectPreview
+                  project={project}
+                  widths={[360, 600]}
+                  sizes="(min-width: 768px) 224px, 100vw"
+                />
                 <div>
                   <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
                     <ProjectDisciplines
@@ -112,6 +94,11 @@ import {
                   <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                     {project.summary}
                   </p>
+                  {project.recruiterSignal && (
+                    <p class="mt-2 max-w-2xl text-sm leading-relaxed">
+                      {project.recruiterSignal}
+                    </p>
+                  )}
                 </div>
               </article>
             ))}
@@ -133,20 +120,11 @@ import {
               aria-label={`View ${project.title}`}
               class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
             >
-              {project.image && project.imageAlt && (
-                <div class="overflow-hidden rounded-md border">
-                  <AspectRatio ratio={4 / 3}>
-                    <Picture
-                      src={project.image}
-                      formats={["avif", "webp"]}
-                      widths={[360, 600]}
-                      sizes="(min-width: 768px) 224px, 100vw"
-                      alt=""
-                      class="h-full w-full object-cover"
-                    />
-                  </AspectRatio>
-                </div>
-              )}
+              <ProjectPreview
+                project={project}
+                widths={[360, 600]}
+                sizes="(min-width: 768px) 224px, 100vw"
+              />
               <div>
                 <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
                   <ProjectDisciplines

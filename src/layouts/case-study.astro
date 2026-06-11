@@ -24,8 +24,7 @@ const {
 const currentProjectIndex = publishedProjects.findIndex(
   (p) => p.slug === project.slug
 )
-const hasNextProject =
-  currentProjectIndex >= 0 && publishedProjects.length > 1
+const hasNextProject = currentProjectIndex >= 0 && publishedProjects.length > 1
 const next = hasNextProject
   ? publishedProjects[(currentProjectIndex + 1) % publishedProjects.length]
   : null

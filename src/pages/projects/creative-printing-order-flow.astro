@@ -1,0 +1,182 @@
+---
+import CaseStudy from "@/layouts/case-study.astro"
+import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
+import { getProject } from "@/data/projects"
+
+const project = getProject("creative-printing-order-flow")!
+
+const snapshotItems = [
+  {
+    label: "Problem",
+    value: "Customers needed a faster way to choose the right order path.",
+  },
+  {
+    label: "Primary users",
+    value:
+      "Local customers ordering print, signs, multimedia, or website services.",
+  },
+  {
+    label: "Design move",
+    value: "Surface the main order categories as large icon-grid entry points.",
+  },
+  {
+    label: "Result",
+    value:
+      "The category grid shipped as the homepage entry point for every service path, and still anchors the live site.",
+  },
+]
+---
+
+<CaseStudy
+  project={project}
+  title="Creative Printing Order Flow"
+  description="Redesigned the homepage order path around a responsive icon grid, helping customers choose the right print, sign, multimedia, website, or service intake route."
+  seoTitle="Creative Printing Order Flow · UX Redesign"
+  seoDescription="Redesigning Creative Printing’s homepage order path with responsive icon-grid navigation, clearer information architecture, and direct routes into service intake."
+>
+  <h2>Overview</h2>
+  <p>
+    Creative Printing’s homepage needed to do more than introduce the shop. It
+    had to help customers start the right kind of order: copy and print,
+    business cards, envelopes, wide format, signage, multimedia conversions,
+    website work, or general service questions.
+  </p>
+  <p>
+    I redesigned and built the order entry experience around a simple question:
+    what are you trying to make? The homepage moved from broad service browsing
+    toward a direct category grid that sent customers into the right intake
+    path.
+  </p>
+
+  <CaseStudySnapshot items={snapshotItems} />
+
+  <h2>The Friction in the Flow</h2>
+  <p>
+    Customers often arrived with a specific job in mind, but print work spans
+    different mental models. A business card order, a sign request, and a
+    website refresh do not need the same questions or the same next step.
+  </p>
+  <p>The order path needed to solve three practical problems:</p>
+  <ul>
+    <li>
+      <strong>Different service types.</strong> Printing, signs, multimedia, and websites
+      each needed a distinct entry point.
+    </li>
+    <li>
+      <strong>Fast recognition.</strong> Customers needed to see their job type before
+      reading through service pages.
+    </li>
+    <li>
+      <strong>Mobile access.</strong> The order entry points had to be usable from
+      small screens, not only from the desktop navigation.
+    </li>
+  </ul>
+
+  <h2>Refactoring the Information Architecture</h2>
+  <p>
+    I restructured the homepage around the “Order Now” moment. Instead of
+    forcing customers to choose from navigation menus first, the page introduces
+    a large icon grid with the main job categories.
+  </p>
+  <p>
+    The categories use plain service names customers already understand: “Copy &
+    Print,” “Business Cards,” “Envelopes,” “Wide Format,” “Signage,” “Multimedia
+    Conversions,” “Website Design and Hosting,” and “Questions About Services.”
+    Each tile acts as a decision point, moving customers toward the relevant
+    service page or intake form.
+  </p>
+
+  <div class="order-flow" aria-label="Creative Printing order flow">
+    <div class="order-flow__node">
+      <span>Homepage</span>
+      <strong>Order Now</strong>
+    </div>
+    <div class="order-flow__connector" aria-hidden="true"></div>
+    <div class="order-flow__node order-flow__node--wide">
+      <span>Category grid</span>
+      <strong>Recognize the job type</strong>
+    </div>
+    <div class="order-flow__connector" aria-hidden="true"></div>
+    <div class="order-flow__node">
+      <span>Next step</span>
+      <strong>Service page or intake form</strong>
+    </div>
+  </div>
+
+  <h2>Responsive Design and Implementation</h2>
+  <p>
+    I built the homepage and order grid to work across screen sizes, with large
+    visual targets and clear labels. The interaction stayed intentionally
+    simple: find the closest category, select it, and continue into the
+    appropriate service path.
+  </p>
+  <p>
+    The interface keeps the main service paths visible before customers commit
+    to a form, so picking the wrong category costs one step back rather than a
+    restart.
+  </p>
+
+  <h2>Outcomes</h2>
+  <p>
+    The redesigned order path shipped on Creative Printing’s homepage, giving
+    customers a direct route from recognizing their job type to the right
+    intake form. Years later, the grid still anchors the live site — structure
+    that held up in daily use, not a one-off concept.
+  </p>
+</CaseStudy>
+
+<style>
+  .order-flow {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.75rem 0;
+  }
+
+  .order-flow__node {
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background: color-mix(in oklch, var(--background) 96%, var(--muted));
+  }
+
+  .order-flow__node span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .order-flow__node strong {
+    display: block;
+    font-size: 0.9375rem;
+    line-height: 1.35;
+  }
+
+  .order-flow__connector {
+    width: 1px;
+    height: 1.25rem;
+    margin-left: 1.25rem;
+    background: var(--border);
+  }
+
+  @media (min-width: 640px) {
+    .order-flow {
+      grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1.2fr) 2rem minmax(
+          0,
+          1fr
+        );
+      align-items: center;
+      gap: 0;
+    }
+
+    .order-flow__connector {
+      width: 100%;
+      height: 1px;
+      margin-left: 0;
+    }
+  }
+</style>

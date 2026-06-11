@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "shadcn/tailwind.css";
-
 @font-face {
   font-family: "univers-next-pro";
   src: url("/fonts/univers-next-pro-regular.woff2") format("woff2");

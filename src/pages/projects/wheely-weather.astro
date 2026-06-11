@@ -1,26 +1,53 @@
 ---
 import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
+import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
 import { Badge } from "@/components/ui/badge"
 import { getProject } from "@/data/projects"
-import hourlyImg from "@/assets/projects/wheely-weather/hourly.png"
-import specsImg from "@/assets/projects/wheely-weather/specs.png"
-import weekImg from "@/assets/projects/wheely-weather/week.png"
+import verdictSfImg from "@/assets/projects/wheely-weather/verdict-sf.png"
+import verdictRaleighImg from "@/assets/projects/wheely-weather/verdict-raleigh.png"
+import theNumbersImg from "@/assets/projects/wheely-weather/the-numbers.png"
+import hourByHourImg from "@/assets/projects/wheely-weather/hour-by-hour.png"
+import weekAheadImg from "@/assets/projects/wheely-weather/week-ahead.png"
 
 const project = getProject("wheely-weather")!
 
 const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
-const pictureWidths = [720, 1200]
-const pictureSizes = "(min-width: 768px) 768px, 100vw"
+const pictureWidths = [340, 680, 1020]
+const pictureSizes = "(min-width: 640px) 340px, 88vw"
+const pairSizes = "(min-width: 640px) 320px, 88vw"
 
-const specsAnnotations = [
-  "Core weather signals stay visible",
-  "Limiting conditions are easy to scan",
-  "Timing details support ride planning",
+const numbersAnnotations = [
+  { label: "All forecast signals in one view", position: "numbers-1" },
+  { label: "Limiting conditions flagged inline", position: "numbers-2" },
 ]
 
-const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
+const hourlyAnnotations = [
+  {
+    label: "Chart turns the forecast into a ride window",
+    position: "hourly-1",
+  },
+]
+
+const snapshotItems = [
+  {
+    label: "Question",
+    value: "Is it worth riding right now?",
+  },
+  {
+    label: "Audience",
+    value: "Recreational and commuter cyclists planning short-term rides.",
+  },
+  {
+    label: "Core decision",
+    value: "Score the weakest weather signal instead of averaging risk away.",
+  },
+  {
+    label: "Shipped as",
+    value:
+      "A focused Astro and React app on Cloudflare Pages using Open-Meteo and NWS data.",
+  },
+]
 ---
 
 <CaseStudy
@@ -28,7 +55,7 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
   title="Wheely Weather"
   description="A cycling weather app that turns forecast data into a clear ride recommendation, the best window to go, and weather-based kit guidance."
   seoTitle="Wheely Weather · Cycling Weather Decision App"
-  seoDescription="Wheely Weather is a cycling weather decision app that translates forecast data into ride-quality verdicts, hourly riding windows, and weather-based kit guidance."
+  seoDescription="Wheely Weather is a cycling weather decision app that turns raw forecast data into clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists."
 >
   <h2>Overview</h2>
   <p>
@@ -38,9 +65,11 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
     wind, rain, temperature, daylight, and air quality into a decision.
   </p>
   <p>
-    I designed and built the product as a focused web app: verdict first,
-    evidence close, and a useful next window when the current answer is no.
+    I designed and built it as a focused web app: verdict first, evidence close,
+    and a next ride window when the answer is no.
   </p>
+
+  <CaseStudySnapshot items={snapshotItems} />
 
   <h2>The Decision Moment</h2>
   <p>
@@ -49,12 +78,15 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
     Six conversations with recreational and commuter cyclists confirmed the same
     pattern: feels-like temperature mattered more than the actual number, wind
     canceled more rides than rain, and one bad condition could override an
-    otherwise decent forecast.
+    otherwise decent forecast. That last point drove the most important system
+    decision: average the signals and you smooth away the condition that was
+    actually going to cancel the ride. Scoring by the weakest signal instead
+    kept the verdict honest.
   </p>
   <p>
-    That made the product brief narrow by design. The app had to work at a
-    glance on a phone, state the recommendation clearly, and still show enough
-    data for riders who wanted to check the call.
+    That kept the scope tight. The app had to work at a glance on a phone, state
+    the recommendation clearly, and still show enough evidence for riders who
+    wanted to check the call.
   </p>
 
   <h2>Product Direction</h2>
@@ -73,37 +105,72 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
     <li>
       Point to the next usable window before asking anyone to study a chart.
     </li>
+    <li>
+      Guide kit selection from the same data, so no separate clothing app is
+      needed.
+    </li>
   </ul>
+
+  <figure class="verdict-pair">
+    <div class="verdict-pair__grid">
+      <div class="phone phone--cropped">
+        <Picture
+          src={verdictSfImg}
+          formats={pictureFormats}
+          widths={[320, 640, 960]}
+          sizes={pairSizes}
+          alt="Wheely Weather verdict for San Francisco on a deep green ride-day card."
+        />
+      </div>
+      <div class="phone phone--cropped">
+        <Picture
+          src={verdictRaleighImg}
+          formats={pictureFormats}
+          widths={[320, 640, 960]}
+          sizes={pairSizes}
+          alt="Wheely Weather verdict for Raleigh on an orange rest-day card calling out extreme heat."
+        />
+      </div>
+    </div>
+    <figcaption>
+      The verdict adapts to conditions, green when it’s worth going and orange
+      when it isn’t, and names the limiting factor when the answer is no.
+    </figcaption>
+  </figure>
 
   <h2>System Design</h2>
   <p>
     The screen order follows the rider’s question sequence instead of the shape
-    of a forecast API: can I go, why did it get that rating, what should I wear,
-    and when does it improve?
+    of a forecast API: can I go, why did it get that rating, what should I wear?
+    The verdict card uses color and a plain-language label rather than a numeric
+    score — a number would push the threshold decision back onto the rider,
+    which is exactly what the app is trying to resolve. The Numbers panel keeps
+    the raw signals close to the verdict, so the recommendation stays
+    explainable.
   </p>
 
-  <figure class="annotated-figure annotated-figure--specs">
+  <figure class="annotated-figure">
     <div class="annotated-figure__media">
-      <AspectRatio ratio={4 / 3}>
+      <div class="phone">
         <Picture
-          src={specsImg}
+          src={theNumbersImg}
           formats={pictureFormats}
           widths={pictureWidths}
           sizes={pictureSizes}
-          alt="Ride Specs panel showing rain chance, feels-like temperature, wind, air quality, dewpoint, UV index, sunrise, and sunset."
+          alt="The Numbers panel showing rain chance, feels-like temperature, wind, air quality, dewpoint, UV index, sunrise, and sunset on individual cards."
         />
-      </AspectRatio>
-      <ul class="annotation-list" aria-label="Ride Specs annotations">
+      </div>
+      <ul class="annotation-list" aria-label="The Numbers annotations">
         {
-          specsAnnotations.map((annotation, index) => (
+          numbersAnnotations.map((a) => (
             <li
               class:list={[
                 "annotation-list__item",
-                `annotation-list__item--specs-${index + 1}`,
+                `annotation-list__item--${a.position}`,
               ]}
             >
               <Badge variant="outline" className="annotation-badge">
-                {annotation}
+                {a.label}
               </Badge>
             </li>
           ))
@@ -111,40 +178,40 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
       </ul>
     </div>
     <figcaption>
-      Ride Specs keeps the forecast signals close to the verdict, so the
-      recommendation stays explainable.
+      Each signal gets its own card, and the one dragging the rating down is
+      flagged inline.
     </figcaption>
   </figure>
 
   <h2>Riding Windows</h2>
   <p>
-    A bad current rating should not end the session. The hourly view turns a
-    “not now” into a specific window, while the week view highlights the day
-    worth watching when today is not promising.
+    A bad current rating shouldn’t end the session. Hour by Hour turns a “not
+    now” into a specific window, while the Week Ahead surfaces the best day to
+    ride when today isn’t promising.
   </p>
 
-  <figure class="annotated-figure annotated-figure--hourly">
+  <figure class="annotated-figure">
     <div class="annotated-figure__media">
-      <AspectRatio ratio={4 / 3}>
+      <div class="phone">
         <Picture
-          src={hourlyImg}
+          src={hourByHourImg}
           formats={pictureFormats}
           widths={pictureWidths}
           sizes={pictureSizes}
-          alt="Hour-by-hour Wheely Weather panel with a ride-quality chart and a plain-language note about a rain window."
+          alt="Hour-by-Hour panel with a ride-quality chart, a Now marker on the current hour, and Today’s Kit below."
         />
-      </AspectRatio>
-      <ul class="annotation-list" aria-label="Hourly view annotations">
+      </div>
+      <ul class="annotation-list" aria-label="Hour by Hour annotations">
         {
-          hourlyAnnotations.map((annotation) => (
+          hourlyAnnotations.map((a) => (
             <li
               class:list={[
                 "annotation-list__item",
-                "annotation-list__item--hourly-1",
+                `annotation-list__item--${a.position}`,
               ]}
             >
               <Badge variant="outline" className="annotation-badge">
-                {annotation}
+                {a.label}
               </Badge>
             </li>
           ))
@@ -152,46 +219,99 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
       </ul>
     </div>
     <figcaption>
-      The hourly view lets a “no right now” turn into a specific ride window.
+      The chart reads as a window, not a forecast: ride quality by hour, a Now
+      marker, and kit guidance below.
     </figcaption>
   </figure>
 
   <figure>
-    <AspectRatio ratio={4 / 3}>
+    <div class="phone phone--centered">
       <Picture
-        src={weekImg}
+        src={weekAheadImg}
         formats={pictureFormats}
         widths={pictureWidths}
         sizes={pictureSizes}
-        alt="Eight-day forecast view titled “The Week’s Wheelies,” with the best riding day highlighted."
+        alt="The Week Ahead panel showing eight days of ride ratings with the best riding days highlighted."
       />
-    </AspectRatio>
+    </div>
     <figcaption>
-      When today is not promising, the week view highlights the day worth
+      When today is off the table, the Week Ahead points to the day worth
       watching.
     </figcaption>
   </figure>
 
   <h2>Outcome</h2>
   <p>
-    Wheely Weather shipped as a focused web app on Cloudflare Pages, using
-    React, Tailwind CSS 4, and Open-Meteo and NWS forecast data. It turns a
-    scatter of weather signals into one ride decision. The next pass will
-    capture where riders disagree with the verdict, using that feedback to
-    sharpen thresholds without adding configuration overhead.
+    Wheely Weather shipped as a focused web app on Cloudflare Pages, built with
+    Astro, React, Tailwind, Open-Meteo, and NWS forecast data. I use it before every
+    ride now, which is the outcome I was building toward. Next, I want a quick
+    way to log when the verdict feels wrong on a ride, so I can sharpen the
+    thresholds against my own disagreements before opening it up further.
   </p>
 </CaseStudy>
 
 <style>
+  /* Phone-shaped display wrapper around portrait screenshots. */
+  .phone {
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto;
+    aspect-ratio: 9 / 19.5;
+    overflow: hidden;
+    border-radius: 1.125rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+  }
+
+  .phone :global(picture),
+  .phone :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .phone--centered {
+    /* default already centered; alias for semantics */
+  }
+
+  /* Cropped variant for the verdict pair: focuses on the verdict card. The
+     two screenshots differ in height, so a fade keeps either crop from
+     slicing through content. */
+  .phone--cropped {
+    aspect-ratio: 4 / 4.6;
+    max-width: 22rem;
+  }
+
+  .phone--cropped :global(img) {
+    mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  }
+
+  .verdict-pair__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    justify-items: center;
+  }
+
+  @media (min-width: 640px) {
+    .verdict-pair__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  /* Annotated figure: image + side annotations on desktop. */
   .annotated-figure__media {
     position: relative;
   }
 
+  /* Annotations need their connector lines to mean anything; below md the
+     figcaption carries the information instead. */
   .annotation-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 0.75rem 0 0;
+    display: none;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
@@ -212,6 +332,10 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
   }
 
   @media (min-width: 768px) {
+    .annotated-figure__media {
+      /* Carve out side gutters by constraining the inner phone column. */
+    }
+
     .annotation-list {
       position: absolute;
       inset: 0;
@@ -222,13 +346,13 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
 
     .annotation-list__item {
       position: absolute;
-      max-width: 14rem;
+      max-width: 12rem;
     }
 
     .annotation-list__item::before {
       position: absolute;
       top: 50%;
-      width: 2.5rem;
+      width: 2.25rem;
       height: 1px;
       background: color-mix(in oklch, var(--foreground) 35%, transparent);
       content: "";
@@ -244,44 +368,41 @@ const hourlyAnnotations = ["Hourly chart turns the forecast into a ride window"]
       content: "";
     }
 
-    .annotation-list__item--specs-1 {
-      top: 38%;
-      right: 4%;
+    /* The Numbers panel: annotations alternate sides. */
+    .annotation-list__item--numbers-1 {
+      top: 26%;
+      left: 0;
     }
 
-    .annotation-list__item--specs-2 {
-      top: 58%;
-      left: 4%;
+    .annotation-list__item--numbers-2 {
+      top: 42%;
+      right: 0;
     }
 
-    .annotation-list__item--specs-3 {
-      top: 78%;
-      right: 4%;
-    }
-
+    /* Hour by Hour: single annotation pointing at the chart. */
     .annotation-list__item--hourly-1 {
-      top: 40%;
-      right: 5%;
+      top: 16%;
+      right: 0;
     }
 
-    .annotation-list__item--specs-1::before,
-    .annotation-list__item--specs-3::before,
+    /* Left-side annotations: connector extends to the right. */
+    .annotation-list__item--numbers-1::before {
+      left: 100%;
+    }
+
+    .annotation-list__item--numbers-1::after {
+      left: calc(100% + 2.25rem);
+    }
+
+    /* Right-side annotations: connector extends to the left. */
+    .annotation-list__item--numbers-2::before,
     .annotation-list__item--hourly-1::before {
       right: 100%;
     }
 
-    .annotation-list__item--specs-1::after,
-    .annotation-list__item--specs-3::after,
+    .annotation-list__item--numbers-2::after,
     .annotation-list__item--hourly-1::after {
-      right: calc(100% + 2.5rem);
-    }
-
-    .annotation-list__item--specs-2::before {
-      left: 100%;
-    }
-
-    .annotation-list__item--specs-2::after {
-      left: calc(100% + 2.5rem);
+      right: calc(100% + 2.25rem);
     }
   }
 </style>
