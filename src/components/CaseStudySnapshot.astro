@@ -1,0 +1,76 @@
+---
+interface SnapshotItem {
+  label: string
+  value: string
+}
+
+interface Props {
+  items: SnapshotItem[]
+}
+
+const { items } = Astro.props
+---
+
+<dl class="case-study-snapshot" aria-label="Case study snapshot">
+  {
+    items.map((item) => (
+      <div>
+        <dt>{item.label}</dt>
+        <dd>{item.value}</dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .case-study-snapshot {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .case-study-snapshot > div {
+    padding: 1rem 0;
+  }
+
+  .case-study-snapshot > div + div {
+    border-top: 1px solid var(--border);
+  }
+
+  .case-study-snapshot dt {
+    margin-bottom: 0.375rem;
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .case-study-snapshot dd {
+    margin: 0;
+    max-width: 34rem;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 640px) {
+    .case-study-snapshot {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .case-study-snapshot > div {
+      padding: 1rem 1.25rem 1rem 0;
+    }
+
+    .case-study-snapshot > div + div {
+      border-top: 0;
+    }
+
+    .case-study-snapshot > div:nth-child(n + 3) {
+      border-top: 1px solid var(--border);
+    }
+  }
+</style>

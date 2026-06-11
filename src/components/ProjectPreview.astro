@@ -1,0 +1,47 @@
+---
+import { Picture } from "astro:assets"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import type { Project } from "@/data/projects"
+
+interface Props {
+  project: Project
+  widths?: number[]
+  sizes?: string
+  class?: string
+}
+
+const {
+  project,
+  widths = [600, 1000],
+  sizes = "(min-width: 768px) 768px, 100vw",
+  class: className,
+} = Astro.props
+
+const hasImage = project.image && project.imageAlt
+---
+
+{
+  hasImage ? (
+    <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
+      <AspectRatio ratio={4 / 3}>
+        <Picture
+          src={project.image!}
+          formats={["avif", "webp"]}
+          widths={widths}
+          sizes={sizes}
+          alt=""
+          style={
+            project.imageObjectPosition
+              ? `object-position: ${project.imageObjectPosition}`
+              : undefined
+          }
+          class="h-full w-full object-cover"
+        />
+      </AspectRatio>
+    </div>
+  ) : (
+    <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
+      <AspectRatio ratio={4 / 3} />
+    </div>
+  )
+}

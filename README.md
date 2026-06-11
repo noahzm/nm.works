@@ -1,7 +1,7 @@
 # nm.works
 
 Portfolio site for Noah Michaels, built with Astro, React, TypeScript,
-Tailwind CSS v4, and shadcn/ui.
+and Tailwind CSS v4.
 
 ## Commands
 
@@ -13,13 +13,3 @@ npm run typecheck
 npm run lint
 npm run format
 ```
-
-## Adding components
-
-To add shadcn/ui components, run:
-
-```bash
-npx shadcn@latest add <component>
-```
-
-This writes components into `src/components/ui/`.

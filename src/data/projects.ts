@@ -1,7 +1,7 @@
 import type { ImageMetadata } from "astro"
-import creativePrintingImg from "@/assets/projects/creative-printing/creative-printing.png"
+import creativePrintingImg from "@/assets/projects/creative-printing/order-grid-current.png"
 import grouchImg from "@/assets/projects/grouch/grouchorange.png"
-import wheelyHeroImg from "@/assets/projects/wheely-weather/hero.png"
+import wheelyHeroImg from "@/assets/projects/wheely-weather/verdict-sf.png"
 
 export type ProjectCategory = "case-study" | "visual-work"
 export type ProjectDiscipline =
@@ -9,7 +9,6 @@ export type ProjectDiscipline =
   | "front-end"
   | "ux-ui"
   | "information-architecture"
-  | "public-sector-design-system"
   | "brand-apparel"
 export type ProjectStatus = "published" | "coming-soon"
 
@@ -22,10 +21,12 @@ export interface Project {
   role: string
   year: string
   summary: string
+  recruiterSignal?: string
   description: string
   tags: string[]
   image?: ImageMetadata
   imageAlt?: string
+  imageObjectPosition?: string
   liveUrl?: string
   featured?: boolean
 }
@@ -40,46 +41,37 @@ export const projects: Project[] = [
     role: "Solo product design and front-end development",
     year: "2025",
     summary:
-      "A cycling weather app that translates complex forecast APIs into glanceable ride-quality verdicts, visual hourly windows, and adaptive kit guidance.",
+      "A cycling weather app that tells riders whether to go now, why the rating dropped, and which window is better when the answer is no.",
+    recruiterSignal:
+      "Mobile decision UI, accessible forecast states, and front-end implementation in one shipped app.",
     description:
-      "Wheely Weather translates complex forecast APIs into glanceable ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists.",
-    tags: ["UX/UI", "Product strategy", "React", "Accessibility"],
+      "Wheely Weather turns raw forecast data into clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists.",
+    tags: ["UX/UI", "Product strategy", "Astro & React", "Accessibility"],
     image: wheelyHeroImg,
     imageAlt:
-      "iPhone home screen with a lime-green “Good to Ride” verdict card and cycling weather stats.",
+      "Wheely Weather app showing an “IDEAL RIDE CONDITIONS” verdict on a deep green background for San Francisco.",
+    imageObjectPosition: "top",
     liveUrl: "https://wheelyweather.app",
     featured: true,
   },
   {
-    slug: "creative-printing-job-submission-portal",
-    title: "Creative Printing Job Submission Portal",
+    slug: "creative-printing-order-flow",
+    title: "Creative Printing Order Flow",
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
     role: "UX/UI designer and developer",
     year: "2018–2020",
     summary:
-      "A workflow redesign that replaced a high-dropoff submission process with responsive, task-oriented navigation, mapping diverse customer intents directly to target print specifications.",
+      "A responsive order-entry flow that moved print customers from the homepage into the right service category or intake form.",
+    recruiterSignal:
+      "Task-based IA that routes customer intent into the right service path.",
     description:
-      "Replaced a high-dropoff, desktop-only print submission path with a responsive icon-grid portal that mapped client project intents directly to the correct print specifications.",
+      "Redesigned Creative Printing’s homepage order path around an icon-grid entry point, routing customers to print, sign, multimedia, website, and service intake options.",
     tags: ["Workflow design", "IA", "Responsive web"],
     image: creativePrintingImg,
     imageAlt:
-      "Creative Printing and Internet Services website home page shown in a browser.",
-  },
-  {
-    slug: "ncga-template-system",
-    title: "NCGA Reusable Template System",
-    category: "case-study",
-    status: "published",
-    disciplines: ["public-sector-design-system", "information-architecture"],
-    role: "Systems and information designer",
-    year: "2021–Present",
-    summary:
-      "A multi-channel design system and layout standards serving 170+ legislative members, standardizing complex legislative publications and connecting print collateral to digital channels via QR systems.",
-    description:
-      "Designed a multi-channel layout system and production templates for the North Carolina General Assembly, standardizing complex legislative publications and connecting print materials to digital workflows.",
-    tags: ["Design systems", "Templates", "Accessibility", "Complex content"],
+      "Creative Printing order-entry grid with eight service categories for online requests.",
   },
   {
     slug: "grouch",
@@ -91,6 +83,8 @@ export const projects: Project[] = [
     year: "2019",
     summary:
       "A skate-inspired DIY apparel project with original graphics, screen-printed shirts, and small-run merch.",
+    recruiterSignal:
+      "Visual identity carried through production, materials, and finished objects.",
     description:
       "Grouch was a limited-run visual identity and apparel experiment built around a simple mark, bold colorways, and hands-on production.",
     tags: ["Brand identity", "Apparel", "Print production"],
@@ -104,7 +98,6 @@ export const disciplineLabels: Record<ProjectDiscipline, string> = {
   "front-end": "Front-End",
   "ux-ui": "UX/UI",
   "information-architecture": "Information Architecture",
-  "public-sector-design-system": "Public-Sector Design System",
   "brand-apparel": "Brand & Apparel",
 }
 

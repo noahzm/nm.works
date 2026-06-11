@@ -1,42 +1,43 @@
 ---
-import { Picture } from "astro:assets"
 import Layout from "@/layouts/main.astro"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
+import ProjectPreview from "@/components/ProjectPreview.astro"
 import { Separator } from "@/components/ui/separator"
 import { getProject } from "@/data/projects"
 
 const selectedWork = [
   getProject("wheely-weather")!,
-  getProject("ncga-template-system")!,
-  getProject("creative-printing-job-submission-portal")!,
+  getProject("creative-printing-order-flow")!,
 ]
 ---
 
 <Layout>
   <div class="mx-auto max-w-3xl px-6 pt-4 pb-12 sm:pb-16">
     <section class="pb-10 md:pb-14">
-      <h1 class="text-3xl font-bold tracking-tight md:text-4xl">
-        Product designer
+      <h1 class="text-4xl font-bold tracking-tight md:text-5xl">
+        UX &amp; product designer for complex workflows
       </h1>
       <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-        I design interfaces that make dense, complicated information clear and
-        actionable. My background in print systems and front-end development
-        means I can prototype and ship what I design, not just hand it off.
-        Looking for a product design role where that matters.
+        I design interfaces that turn dense operational data into clear
+        decisions, then prototype and ship them in front-end code. Case studies
+        include a cycling weather app that makes the go/no-go call for riders
+        and a print shop’s order intake flow.
       </p>
     </section>
     <Separator />
 
     <section class="py-12" aria-labelledby="work-title">
       <div class="mb-10">
-        <h2 id="work-title" class="text-2xl font-bold tracking-tight">
+        <h2
+          id="work-title"
+          class="text-xs font-medium tracking-widest text-muted-foreground uppercase"
+        >
           Selected work
         </h2>
       </div>
 
       <div class="grid grid-cols-1 gap-y-14">
         {
-          selectedWork.map((project, index) => (
+          selectedWork.map((project) => (
             <a
               href={`/projects/${project.slug}`}
               aria-label={`View ${project.title}`}
@@ -55,24 +56,23 @@ const selectedWork = [
                   {project.year}
                 </span>
               </div>
-              {project.image && project.imageAlt && (
-                <div class="overflow-hidden rounded-md border bg-muted">
-                  <AspectRatio ratio={4 / 3}>
-                    <Picture
-                      src={project.image}
-                      formats={["avif", "webp"]}
-                      widths={[600, 1000]}
-                      sizes="(min-width: 768px) 768px, 100vw"
-                      alt=""
-                      loading={index === 0 ? "eager" : "lazy"}
-                      class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
-                    />
-                  </AspectRatio>
-                </div>
-              )}
+              <ProjectPreview
+                project={project}
+                widths={[600, 1000]}
+                sizes="(min-width: 768px) 768px, 100vw"
+              />
             </a>
           ))
         }
+      </div>
+
+      <div class="mt-12">
+        <a
+          href="/projects"
+          class="-my-3 inline-block rounded-sm py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+        >
+          All work →
+        </a>
       </div>
     </section>
   </div>
