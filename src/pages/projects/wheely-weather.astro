@@ -18,15 +18,19 @@ const pictureSizes = "(min-width: 640px) 340px, 88vw"
 const pairSizes = "(min-width: 640px) 320px, 88vw"
 
 const numbersAnnotations = [
-  { label: "All forecast signals in one view", position: "numbers-1" },
-  { label: "Limiting conditions flagged inline", position: "numbers-2" },
+  { label: "Raw signals stay visible", position: "numbers-1" },
+  { label: "Scored on the weakest signal", position: "numbers-2" },
 ]
 
 const hourlyAnnotations = [
   {
-    label: "Chart turns the forecast into a ride window",
+    label: "The dip shows the window closing",
     position: "hourly-1",
   },
+]
+
+const weekAheadAnnotations = [
+  { label: "Best ride day, starred", position: "week-1" },
 ]
 
 const snapshotItems = [
@@ -119,7 +123,7 @@ const snapshotItems = [
           formats={pictureFormats}
           widths={[320, 640, 960]}
           sizes={pairSizes}
-          alt="Wheely Weather verdict for San Francisco on a deep green ride-day card."
+          alt="Wheely Weather verdict for Seattle on a deep green ride-day card."
         />
       </div>
       <div class="phone phone--cropped">
@@ -128,7 +132,7 @@ const snapshotItems = [
           formats={pictureFormats}
           widths={[320, 640, 960]}
           sizes={pairSizes}
-          alt="Wheely Weather verdict for Raleigh on an orange rest-day card calling out extreme heat."
+          alt="Wheely Weather verdict for Raleigh on an orange rest-day card calling out heavy humidity."
         />
       </div>
     </div>
@@ -224,15 +228,33 @@ const snapshotItems = [
     </figcaption>
   </figure>
 
-  <figure>
-    <div class="phone phone--centered">
-      <Picture
-        src={weekAheadImg}
-        formats={pictureFormats}
-        widths={pictureWidths}
-        sizes={pictureSizes}
-        alt="The Week Ahead panel showing eight days of ride ratings with the best riding days highlighted."
-      />
+  <figure class="annotated-figure">
+    <div class="annotated-figure__media">
+      <div class="phone">
+        <Picture
+          src={weekAheadImg}
+          formats={pictureFormats}
+          widths={pictureWidths}
+          sizes={pictureSizes}
+          alt="The Week Ahead panel showing eight days of ride ratings with the best riding days highlighted."
+        />
+      </div>
+      <ul class="annotation-list" aria-label="Week Ahead annotations">
+        {
+          weekAheadAnnotations.map((a) => (
+            <li
+              class:list={[
+                "annotation-list__item",
+                `annotation-list__item--${a.position}`,
+              ]}
+            >
+              <Badge variant="outline" className="annotation-badge">
+                {a.label}
+              </Badge>
+            </li>
+          ))
+        }
+      </ul>
     </div>
     <figcaption>
       When today is off the table, the Week Ahead points to the day worth
@@ -270,10 +292,6 @@ const snapshotItems = [
     height: 100%;
     object-fit: cover;
     object-position: top;
-  }
-
-  .phone--centered {
-    /* default already centered; alias for semantics */
   }
 
   /* Cropped variant for the verdict pair: focuses on the verdict card. The
@@ -317,6 +335,7 @@ const snapshotItems = [
   }
 
   .annotation-badge {
+    width: 100%;
     height: auto;
     min-height: 1.75rem;
     justify-content: flex-start;
@@ -344,15 +363,20 @@ const snapshotItems = [
       pointer-events: none;
     }
 
+    /* Fixed width (not max-width) so the connector dot, offset by 100% of the
+       item, lands at a position independent of how long the label text is. The
+       content column is a fixed 45rem at this breakpoint with the 20rem phone
+       centered, so --reach alone determines where each dot sits on the image. */
     .annotation-list__item {
       position: absolute;
-      max-width: 12rem;
+      width: 12rem;
+      --reach: 2.25rem;
     }
 
     .annotation-list__item::before {
       position: absolute;
       top: 50%;
-      width: 2.25rem;
+      width: var(--reach);
       height: 1px;
       background: color-mix(in oklch, var(--foreground) 35%, transparent);
       content: "";
@@ -368,41 +392,55 @@ const snapshotItems = [
       content: "";
     }
 
-    /* The Numbers panel: annotations alternate sides. */
+    /* The Numbers panel: annotations alternate sides. "Raw signals stay
+       visible" gestures at the grid from the right; "Scored on the weakest
+       signal" reaches from the left to the POOR flag on the Dewpoint card. */
     .annotation-list__item--numbers-1 {
-      top: 26%;
-      left: 0;
+      top: 14%;
+      right: 0;
+      --reach: 3.5rem;
     }
 
     .annotation-list__item--numbers-2 {
       top: 42%;
-      right: 0;
+      left: 0;
+      --reach: 6.5rem;
     }
 
-    /* Hour by Hour: single annotation pointing at the chart. */
+    /* Hour by Hour: single annotation pointing at the descending curve. */
     .annotation-list__item--hourly-1 {
-      top: 16%;
+      top: 19%;
       right: 0;
+      --reach: 4.5rem;
+    }
+
+    /* Week Ahead: annotation pointing at the highlighted best ride day. */
+    .annotation-list__item--week-1 {
+      top: 30%;
+      left: 0;
+      --reach: 3rem;
     }
 
     /* Left-side annotations: connector extends to the right. */
-    .annotation-list__item--numbers-1::before {
+    .annotation-list__item--numbers-2::before,
+    .annotation-list__item--week-1::before {
       left: 100%;
     }
 
-    .annotation-list__item--numbers-1::after {
-      left: calc(100% + 2.25rem);
+    .annotation-list__item--numbers-2::after,
+    .annotation-list__item--week-1::after {
+      left: calc(100% + var(--reach));
     }
 
     /* Right-side annotations: connector extends to the left. */
-    .annotation-list__item--numbers-2::before,
+    .annotation-list__item--numbers-1::before,
     .annotation-list__item--hourly-1::before {
       right: 100%;
     }
 
-    .annotation-list__item--numbers-2::after,
+    .annotation-list__item--numbers-1::after,
     .annotation-list__item--hourly-1::after {
-      right: calc(100% + 2.25rem);
+      right: calc(100% + var(--reach));
     }
   }
 </style>

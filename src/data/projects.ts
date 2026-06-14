@@ -49,7 +49,7 @@ export const projects: Project[] = [
     tags: ["UX/UI", "Product strategy", "Astro & React", "Accessibility"],
     image: wheelyHeroImg,
     imageAlt:
-      "Wheely Weather app showing an “IDEAL RIDE CONDITIONS” verdict on a deep green background for San Francisco.",
+      "Wheely Weather app showing an “IDEAL RIDE CONDITIONS” verdict on a deep green background for Seattle.",
     imageObjectPosition: "top",
     liveUrl: "https://wheelyweather.app",
     featured: true,
