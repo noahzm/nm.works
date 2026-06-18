@@ -60,23 +60,41 @@ const metadataItems = [
     }
   </dl>
   {
-    project.liveUrl && (
-      <a
-        href={project.liveUrl}
-        target="_blank"
-        rel="noreferrer"
-        data-slot="button"
-        data-variant="outline"
-        data-size="sm"
-        class={buttonVariants({
-          variant: "outline",
-          size: "sm",
-          className: "mt-5",
-        })}
-      >
-        Visit live app
-        <ExternalArrow />
-      </a>
+    (project.appStoreUrl || project.liveUrl) && (
+      <div class="mt-5 flex flex-wrap gap-3">
+        {
+          project.appStoreUrl && (
+            <a
+              href={project.appStoreUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-slot="button"
+              data-variant="outline"
+              data-size="sm"
+              class={buttonVariants({ variant: "outline", size: "sm" })}
+            >
+              Download on the App Store
+              <ExternalArrow />
+            </a>
+          )
+        }
+        {
+          project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-slot="button"
+              data-variant="outline"
+              data-size="sm"
+              class={buttonVariants({ variant: "outline", size: "sm" })}
+            >
+              View web app
+              <ExternalArrow />
+            </a>
+          )
+        }
+      </div>
     )
   }
   {

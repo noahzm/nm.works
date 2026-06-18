@@ -7,6 +7,7 @@ export type ProjectCategory = "case-study" | "visual-work"
 export type ProjectDiscipline =
   | "product-design"
   | "front-end"
+  | "mobile"
   | "ux-ui"
   | "information-architecture"
   | "brand-apparel"
@@ -28,6 +29,7 @@ export interface Project {
   imageAlt?: string
   imageObjectPosition?: string
   liveUrl?: string
+  appStoreUrl?: string
   featured?: boolean
 }
 
@@ -37,16 +39,16 @@ export const projects: Project[] = [
     title: "Wheely Weather",
     category: "case-study",
     status: "published",
-    disciplines: ["product-design", "front-end"],
-    role: "Solo product design and front-end development",
+    disciplines: ["product-design", "mobile", "front-end"],
+    role: "Solo product design and iOS development",
     year: "2025",
     summary:
-      "A cycling weather app that tells riders whether to go now, why the rating dropped, and which window is better when the answer is no.",
+      "A native cycling weather app that tells riders whether to go now, why the rating dropped, and which window is better when the answer is no.",
     recruiterSignal:
-      "Mobile decision UI, accessible forecast states, and front-end implementation in one shipped app.",
+      "Native iOS decision UI, accessible forecast states, and shared product logic in a shipped app.",
     description:
       "Wheely Weather turns raw forecast data into clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists.",
-    tags: ["UX/UI", "Product strategy", "Astro & React", "Accessibility"],
+    tags: ["Swift & SwiftUI", "UX/UI", "Design systems", "Accessibility"],
     image: wheelyHeroImg,
     imageAlt:
       "Wheely Weather app showing an “IDEAL RIDE CONDITIONS” verdict on a deep green background for Seattle.",
@@ -65,7 +67,7 @@ export const projects: Project[] = [
     summary:
       "A responsive order-entry flow that moved print customers from the homepage into the right service category or intake form.",
     recruiterSignal:
-      "Task-based IA that routes customer intent into the right service path.",
+      "Task-based IA and responsive entry points that route customer intent into the right service path.",
     description:
       "Redesigned Creative Printing’s homepage order path around an icon-grid entry point, routing customers to print, sign, multimedia, website, and service intake options.",
     tags: ["Workflow design", "IA", "Responsive web"],
@@ -96,6 +98,7 @@ export const projects: Project[] = [
 export const disciplineLabels: Record<ProjectDiscipline, string> = {
   "product-design": "Product Design",
   "front-end": "Front-End",
+  mobile: "Mobile",
   "ux-ui": "UX/UI",
   "information-architecture": "Information Architecture",
   "brand-apparel": "Brand & Apparel",

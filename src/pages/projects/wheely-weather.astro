@@ -49,7 +49,7 @@ const snapshotItems = [
   {
     label: "Shipped as",
     value:
-      "A focused Astro and React app on Cloudflare Pages using Open-Meteo and NWS data.",
+      "Native iOS app in Swift and SwiftUI, with a watchOS companion. Earlier version shipped as a web app.",
   },
 ]
 ---
@@ -57,9 +57,9 @@ const snapshotItems = [
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  description="A cycling weather app that turns forecast data into a clear ride recommendation, the best window to go, and weather-based kit guidance."
-  seoTitle="Wheely Weather · Cycling Weather Decision App"
-  seoDescription="Wheely Weather is a cycling weather decision app that turns raw forecast data into clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists."
+  description="A native iOS cycling weather app that turns forecast data into a clear ride recommendation, the best window to go, and weather-based kit guidance."
+  seoTitle="Wheely Weather · Native iOS Cycling Weather App"
+  seoDescription="Wheely Weather is a native iOS cycling weather app that turns raw forecast data into clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists."
 >
   <h2>Overview</h2>
   <p>
@@ -69,8 +69,9 @@ const snapshotItems = [
     wind, rain, temperature, daylight, and air quality into a decision.
   </p>
   <p>
-    I designed and built it as a focused web app: verdict first, evidence close,
-    and a next ride window when the answer is no.
+    I designed and built it as a native iOS app: verdict first, evidence close,
+    and a next ride window when the answer is no. An earlier web version validated
+    the product model before the SwiftUI rewrite.
   </p>
 
   <CaseStudySnapshot items={snapshotItems} />
@@ -262,13 +263,52 @@ const snapshotItems = [
     </figcaption>
   </figure>
 
+  <h2>Shipping on iOS</h2>
+  <p>
+    The product model was proven on the web, but the daily use case lives on a
+    phone. Moving to native iOS gave me on-device location, a faster pre-ride
+    glance, and a watchOS companion that surfaces the verdict over
+    WatchConnectivity — with an App Store release in progress.
+  </p>
+  <p>
+    The information architecture carried over: verdict first, weakest-signal
+    scoring, raw evidence close to the recommendation, and riding windows when
+    the answer is no. Forecast data still comes from Open-Meteo and the National
+    Weather Service.
+  </p>
+  <p>
+    Implementation splits across three layers: <strong>WheelyCore</strong> for
+    shared forecast logic and parsing, <strong>WheelyDesign</strong> for
+    typography and navigation tokens, and SwiftUI views for the dashboard,
+    location gate, and riding-window panels. Preview-driven development with
+    mock scenarios kept the UI testable before live weather data was wired in.
+  </p>
+  <p>
+    I used AI-assisted coding tools — Cursor, Claude Code, Codex, and OpenCode —
+    to move faster from design intent to working UI. Product model, information
+    architecture, and accessibility choices stayed author-led throughout.
+  </p>
+  <p>
+    The earlier web app on Astro and React (still live at <a
+      href="https://wheelyweather.app"
+      target="_blank"
+      rel="noreferrer">wheelyweather.app</a
+    >) validated the verdict-first approach on Cloudflare Pages before the native
+    rewrite.
+  </p>
+
   <h2>Outcome</h2>
   <p>
-    Wheely Weather shipped as a focused web app on Cloudflare Pages, built with
-    Astro, React, Tailwind, Open-Meteo, and NWS forecast data. I use it before every
-    ride now, which is the outcome I was building toward. Next, I want a quick
-    way to log when the verdict feels wrong on a ride, so I can sharpen the
-    thresholds against my own disagreements before opening it up further.
+    Wheely Weather shipped as a native iOS app in Swift and SwiftUI, with a
+    watchOS companion. App Store submission is in progress. I use it before
+    every ride now, which is the outcome I was building toward.
+  </p>
+  <p>
+    The lesson I keep from it is that the hard part was deciding what to leave
+    out, not what to add. Scoring the weakest signal instead of averaging, and
+    leading with a verdict instead of a chart, both came from resisting the
+    instinct to show everything the data offered. Next up: App Store release and
+    refinements to the Watch glance.
   </p>
 </CaseStudy>
 
