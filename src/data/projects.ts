@@ -22,7 +22,6 @@ export interface Project {
   role: string
   year: string
   summary: string
-  recruiterSignal?: string
   description: string
   tags: string[]
   image?: ImageMetadata
@@ -43,11 +42,9 @@ export const projects: Project[] = [
     role: "Solo product design and iOS development",
     year: "2025",
     summary:
-      "A native cycling weather app that tells riders whether to go now, why the rating dropped, and which window is better when the answer is no.",
-    recruiterSignal:
-      "Native iOS decision UI, accessible forecast states, and shared product logic in a shipped app.",
+      "Shipped a native iOS cycling weather app that surfaces dew point, feels-like, and wind next to an accessible ride verdict and shared WheelyCore logic.",
     description:
-      "Wheely Weather turns raw forecast data into clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists.",
+      "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It foregrounds the humidity and wind signals riders actually use instead of burying them in a generic forecast stack.",
     tags: ["Swift & SwiftUI", "UX/UI", "Design systems", "Accessibility"],
     image: wheelyHeroImg,
     imageAlt:
@@ -65,9 +62,7 @@ export const projects: Project[] = [
     role: "UX/UI designer and developer",
     year: "2018–2020",
     summary:
-      "A responsive order-entry flow that moved print customers from the homepage into the right service category or intake form.",
-    recruiterSignal:
-      "Task-based IA and responsive entry points that route customer intent into the right service path.",
+      "Responsive order-entry flow that routes customers to the right service category or intake form. IA validated with the shop owner; the category grid still anchors the live site.",
     description:
       "Redesigned Creative Printing’s homepage order path around an icon-grid entry point, routing customers to print, sign, multimedia, website, and service intake options.",
     tags: ["Workflow design", "IA", "Responsive web"],
@@ -84,9 +79,7 @@ export const projects: Project[] = [
     role: "Brand and apparel design",
     year: "2019",
     summary:
-      "A skate-inspired DIY apparel project with original graphics, screen-printed shirts, and small-run merch.",
-    recruiterSignal:
-      "Visual identity carried through production, materials, and finished objects.",
+      "A skate-inspired DIY apparel project with original graphics and screen-printed shirts. Visual identity carried through production, materials, and finished run.",
     description:
       "Grouch was a limited-run visual identity and apparel experiment built around a simple mark, bold colorways, and hands-on production.",
     tags: ["Brand identity", "Apparel", "Print production"],

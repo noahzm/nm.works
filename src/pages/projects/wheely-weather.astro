@@ -57,16 +57,17 @@ const snapshotItems = [
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  description="A native iOS cycling weather app that turns forecast data into a clear ride recommendation, the best window to go, and weather-based kit guidance."
+  description="A native iOS cycling weather app that surfaces dew point, feels-like temperature, and wind next to a clear ride recommendation, the best window to go, and weather-based kit guidance."
   seoTitle="Wheely Weather · Native iOS Cycling Weather App"
-  seoDescription="Wheely Weather is a native iOS cycling weather app that turns raw forecast data into clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists."
+  seoDescription="Wheely Weather is a native iOS cycling weather app that surfaces dew point, feels-like temperature, and wind next to clear ride-quality verdicts, hourly riding windows, and weather-based kit guidance for cyclists."
 >
   <h2>Overview</h2>
   <p>
     Wheely Weather answers one near-term riding question: <em
       >is it worth going now?</em
-    > General forecasts show the numbers, but they still leave cyclists to translate
-    wind, rain, temperature, daylight, and air quality into a decision.
+    > General forecasts show plenty of numbers, but not always the ones that drive
+    a ride call. In research, dew point, feels-like temperature, and wind mattered
+    most. Dew point was the easiest to miss in the apps cyclists already used.
   </p>
   <p>
     I designed and built it as a native iOS app: verdict first, evidence close,
@@ -80,13 +81,13 @@ const snapshotItems = [
   <p>
     Before a ride, I was checking one weather app and falling back to another
     when the first came up short. The data was available, but the call was not.
-    Six conversations with recreational and commuter cyclists confirmed the same
-    pattern: feels-like temperature mattered more than the actual number, wind
-    canceled more rides than rain, and one bad condition could override an
-    otherwise decent forecast. That last point drove the most important system
-    decision: average the signals and you smooth away the condition that was
-    actually going to cancel the ride. Scoring by the weakest signal instead
-    kept the verdict honest.
+    Six conversations with recreational and commuter cyclists narrowed what
+    actually drove the call: dew point, feels-like temperature, and wind. Dew
+    point was the insight that stuck. It was tucked three taps deep in Apple’s
+    Weather app while the home screen foregrounded numbers that mattered less on
+    the bike. That gap drove the product direction: put the signals riders use
+    next to the verdict, and score by the weakest instead of averaging
+    conditions away.
   </p>
   <p>
     That kept the scope tight. The app had to work at a glance on a phone, state
@@ -148,7 +149,7 @@ const snapshotItems = [
     The screen order follows the rider’s question sequence instead of the shape
     of a forecast API: can I go, why did it get that rating, what should I wear?
     The verdict card uses color and a plain-language label rather than a numeric
-    score — a number would push the threshold decision back onto the rider,
+    score: a number would push the threshold decision back onto the rider,
     which is exactly what the app is trying to resolve. The Numbers panel keeps
     the raw signals close to the verdict, so the recommendation stays
     explainable.
@@ -268,7 +269,7 @@ const snapshotItems = [
     The product model was proven on the web, but the daily use case lives on a
     phone. Moving to native iOS gave me on-device location, a faster pre-ride
     glance, and a watchOS companion that surfaces the verdict over
-    WatchConnectivity — with an App Store release in progress.
+    WatchConnectivity, with an App Store release in progress.
   </p>
   <p>
     The information architecture carried over: verdict first, weakest-signal
@@ -284,7 +285,7 @@ const snapshotItems = [
     mock scenarios kept the UI testable before live weather data was wired in.
   </p>
   <p>
-    I used AI-assisted coding tools — Cursor, Claude Code, Codex, and OpenCode —
+    I used AI-assisted coding tools (Cursor, Claude Code, Codex, and OpenCode)
     to move faster from design intent to working UI. Product model, information
     architecture, and accessibility choices stayed author-led throughout.
   </p>

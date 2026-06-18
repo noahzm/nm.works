@@ -22,3 +22,22 @@ yarn-error.log*
 
 # jetbrains setting folder
 .idea/
+
+# resume generation (PDF in public/ is served; docx is local output)
+NoahMichaelsResume.docx
+
+# python / resume tooling
+.venv/
+.venv-resume/
+__pycache__/
+*.pyc
+
+# screenshot capture scratch
+scripts/.screenshots-tmp/
+
+# local agent/tool settings
+.claude/
+
+# playwright (unused today; safe to ignore if enabled later)
+test-results/
+playwright-report/
