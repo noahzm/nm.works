@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_TAB_ALIGNMENT, WD_LINE_SPACING
@@ -9,6 +11,7 @@ BODY = "Univers Next Pro"
 INK = RGBColor(0x1A, 0x1A, 0x1A)
 GRAY = RGBColor(0x55, 0x55, 0x55)
 RIGHT_EDGE = Inches(7.0)
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 doc = Document()
 
@@ -124,7 +127,7 @@ r = run(p, "Noah Michaels", size=21, bold=True)
 tracking(r, 10)
 
 p = para(after=4)
-r = run(p, "UX & PRODUCT DESIGNER", size=10, color=GRAY)
+r = run(p, "UX ENGINEER", size=10, color=GRAY)
 tracking(r, 40)
 
 p = para(after=2)
@@ -132,6 +135,8 @@ run(p, "Raleigh, NC 27603   ·   919-376-6669   ·   ", size=9.5, color=GRAY)
 hyperlink(p, "mailto:hi@nm.works", "hi@nm.works")
 run(p, "   ·   ", size=9.5, color=GRAY)
 hyperlink(p, "https://nm.works", "nm.works")
+run(p, "   ·   ", size=9.5, color=GRAY)
+hyperlink(p, "https://github.com/noahzm", "github.com/noahzm")
 bottom_rule(p, size=8, space=6)
 
 # ---- Profile ----
@@ -139,11 +144,11 @@ section("Profile", before=12)
 p = para(after=0)
 run(
     p,
-    "UX and product designer with 6+ years of experience making dense "
-    "content easier to use: legislative publications, a print shop’s online "
-    "ordering, and a "
-    "weather app that turns forecasts into a plain answer for cyclists. "
-    "Comfortable in code as well as Figma, so I can build what I design.",
+    "UX engineer who designs in code across iOS and web. Six years making "
+    "legislative template systems, print-shop ordering, and a cycling weather "
+    "app that turns forecasts into a plain ride verdict. Uses AI-assisted "
+    "coding tools daily for faster iteration; product and accessibility "
+    "decisions stay author-led.",
 )
 
 # ---- Projects ----
@@ -151,21 +156,25 @@ section("Selected Product Work")
 
 heading_line(
     "Wheely Weather",
-    " · Cycling weather decision app",
+    " · Native iOS cycling weather app",
     "2025",
     before=2,
 )
 p = para(after=2)
 hyperlink(p, "https://wheelyweather.app", "wheelyweather.app", italic=True)
-run(p, "  ·  Astro, React, Tailwind CSS", size=9.5, italic=True, color=GRAY)
+run(p, "  ·  Swift, SwiftUI · Astro, React, TypeScript", size=9.5, italic=True, color=GRAY)
 bullet(
-    "Designed a dashboard that answers the question cyclists actually have "
-    "(ride now, or wait?), turning forecast data into a verdict, hourly "
-    "windows, best-day picks, and what to wear."
+    "Designed and shipped a native iOS app that answers the question cyclists "
+    "actually have (ride now, or wait?), with verdict-first UI, hourly "
+    "windows, best-day picks, and kit guidance."
 )
 bullet(
-    "Built and deployed the front end on Cloudflare Pages, pulling forecasts "
-    "from Open-Meteo and the National Weather Service."
+    "Validated the product model through informal conversations with cyclists; "
+    "shared forecast logic lives in WheelyCore with accessibility-aware UI."
+)
+bullet(
+    "Earlier web version on Cloudflare Pages; watchOS companion via "
+    "WatchConnectivity. App Store submission in progress."
 )
 
 p = para(before=4)
@@ -183,8 +192,8 @@ heading_line(
 )
 bullet(
     "Built template systems for the cards, postcards, letterhead, and "
-    "envelopes that 170+ legislators order on repeat, so each job starts "
-    "from a standard instead of a blank page."
+    "envelopes that 170+ legislators order on repeat, reducing rework so each "
+    "job starts from a standard instead of a blank page."
 )
 bullet(
     "Replaced a two-step mailing process by data-merging letters directly "
@@ -233,12 +242,17 @@ def skill_line(label, items, before=2):
 skill_line(
     "Product & UX Design",
     "user flows, information architecture, wireframing, prototyping, "
-    "design systems, accessibility (WCAG, Section 508) · Figma",
+    "design systems, accessibility-aware design · Figma",
 )
 skill_line(
     "Front-End Development",
-    "React, Astro, Tailwind CSS, HTML/CSS, WordPress · Git, Claude Code, "
-    "Cloudflare Pages",
+    "Swift, SwiftUI, React, TypeScript, Astro, Tailwind CSS, HTML/CSS · "
+    "Git, GitHub, Cloudflare Pages",
+)
+skill_line(
+    "AI-Assisted Development",
+    "Cursor, Claude Code, Codex, OpenCode — agentic design-to-production "
+    "workflow",
 )
 skill_line(
     "Visual Design",
@@ -246,9 +260,9 @@ skill_line(
 )
 
 props = doc.core_properties
-props.title = "Noah Michaels – Product Designer – Resume"
+props.title = "Noah Michaels – UX Engineer – Resume"
 props.author = "Noah Michaels"
 props.subject = "Resume"
 
-doc.save("/Users/noah/Projects/newpf/nm.works/NoahMichaelsResume.docx")
-print("saved")
+doc.save(REPO_ROOT / "NoahMichaelsResume.docx")
+print("saved", REPO_ROOT / "NoahMichaelsResume.docx")

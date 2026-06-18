@@ -1,3 +1,7 @@
+// Legacy: re-captures the five phone-portrait screenshots from the web app at
+// https://wheelyweather.app. For the native iOS app, use
+// scripts/capture-wheely-ios-screenshots.mjs (when available) instead.
+//
 // Re-captures the five phone-portrait screenshots used by the Wheely Weather
 // case study from the live app at https://wheelyweather.app.
 //

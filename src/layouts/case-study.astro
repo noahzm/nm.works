@@ -2,6 +2,7 @@
 import { ArrowRight } from "lucide-react"
 import Layout from "@/layouts/main.astro"
 import CaseStudyHeader from "@/components/CaseStudyHeader.astro"
+import CTA from "@/components/CTA.astro"
 import { Separator } from "@/components/ui/separator"
 import { publishedProjects, type Project } from "@/data/projects"
 
@@ -46,6 +47,10 @@ const next = hasNextProject
     <article class="case-study">
       <slot />
     </article>
+
+    <CTA
+      description="If your team is working through a problem like this one, I’d like to hear about it."
+    />
 
     {
       next && (

@@ -7,6 +7,10 @@
     "astro": {
       "type": "http",
       "url": "https://mcp.docs.astro.build/mcp"
+    },
+    "xcode-tools": {
+      "command": "xcrun",
+      "args": ["mcpbridge"]
     }
   }
 }
