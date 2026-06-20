@@ -7,21 +7,19 @@ import { getProject } from "@/data/projects"
 
 const selectedWork = [
   getProject("wheely-weather")!,
-  getProject("creative-printing-order-flow")!,
+  getProject("ncga-stationery-templates")!,
 ]
 ---
 
 <Layout>
   <div class="mx-auto max-w-3xl px-6 pt-4 pb-12 sm:pb-16">
     <section class="pb-10 md:pb-14">
-      <h1 class="text-4xl font-bold tracking-tight md:text-5xl">
-        UX engineer
+      <h1 class="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+        I connect design to finished output, from design in Figma and the Adobe suite,
+        build front-ends in HTML, CSS, JavaScript, and Astro, and know how the
+        work gets produced, from variable-data systems to prepress and
+        high-volume print.
       </h1>
-      <p class="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-        I design interfaces people can act on quickly, then prototype and ship
-        them in code. Lately I’ve been working on a cycling weather app that
-        answers the question: is now a good time for a ride?
-      </p>
     </section>
     <Separator />
 
@@ -77,7 +75,7 @@ const selectedWork = [
     </section>
 
     <CTA
-      description="Open to UX engineer roles where product design, front-end implementation, and design systems overlap."
+      description="Open to work spanning design, front-end implementation, and print production."
     />
   </div>
 </Layout>
