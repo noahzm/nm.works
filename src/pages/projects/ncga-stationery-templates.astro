@@ -1,0 +1,278 @@
+---
+import { Picture } from "astro:assets"
+import CaseStudy from "@/layouts/case-study.astro"
+import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
+import { getProject } from "@/data/projects"
+import letterheadImg from "@/assets/projects/ncga-stationery/letterhead-house.png"
+import envelopeImg from "@/assets/projects/ncga-stationery/envelope-editor.png"
+
+const project = getProject("ncga-stationery-templates")!
+
+const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
+const pictureWidths = [640, 960, 1280]
+const pictureSizes = "(min-width: 768px) 960px, 100vw"
+
+const snapshotItems = [
+  {
+    label: "Problem",
+    value:
+      "Repeat NCGA stationery for 170+ members; per-legislator files led to inconsistent spacing, colors, and correction rounds.",
+  },
+  {
+    label: "Primary users",
+    value:
+      "In-house print shop staff producing legislator letterhead and envelopes.",
+  },
+  {
+    label: "Design move",
+    value:
+      "One locked template structure with a governed LegislatorRecord, so staff edit only what production allows.",
+  },
+  {
+    label: "Result",
+    value:
+      "Governed template tool with print-accurate preview and PDF export; fewer mistakes on repeat orders and cleaner handoff into single-pass mail merge.",
+  },
+]
+---
+
+<CaseStudy
+  project={project}
+  title="NCGA Stationery Template System"
+  description="A constrained template engine for North Carolina General Assembly stationery: one locked structure, governed variable data, and print-accurate preview for 170+ legislators."
+  seoTitle="NCGA Stationery Template System · Information Architecture"
+  seoDescription="Designing a constrained template engine for NCGA legislator letterhead and envelopes: LOCKED vs DATA-DRIVEN fields, print-accurate preview, and fewer production mistakes."
+>
+  <h2>Overview</h2>
+  <p>
+    The North Carolina General Assembly print shop produces repeat stationery
+    for more than 170 legislators, including business cards, letterhead, envelopes, and
+    related materials. Each order carries the same formal brand requirements but
+    different contact data, committee lists, and chamber-specific wording.
+  </p>
+  <p>
+    I built a constrained template tool, not a document editor, that keeps seal
+    placement, masthead type, grid, and margins locked while staff edit only the
+    fields production allows. One <strong>LegislatorRecord</strong> is the single
+    source of truth, poured into letterhead and envelope layouts with
+    print-accurate preview and client-side PDF export. Those PDFs feed the same
+    variable-data pipeline I use to merge base stationery with per-recipient
+    address and body content in a single press run across all 170 members, replacing
+    a second trip through the press on personalized mailings.
+  </p>
+
+  <CaseStudySnapshot items={snapshotItems} />
+
+  <h2>The Friction in Production</h2>
+  <p>
+    Before the system, repeat orders relied on separate files per legislator.
+    Small differences in spacing and ink color compounded across 170+ members.
+    When a legislator updated a phone number or committee assignment, staff had
+    to hunt the right file and hope the layout still matched shop standards.
+  </p>
+  <p>The production workflow needed to solve three practical problems:</p>
+  <ul>
+    <li>
+      <strong>Brand compliance.</strong> Seal, masthead, and typography had to stay
+      fixed regardless of who edited the order.
+    </li>
+    <li>
+      <strong>Data variation.</strong> Names, addresses, committee lists, and chamber
+      wording all changed, but the structure could not.
+    </li>
+    <li>
+      <strong>Repeat accuracy.</strong> The same legislator might reorder letterhead
+      multiple times a session; each run had to match the last without reintroducing
+      spacing or color drift.
+    </li>
+  </ul>
+
+  <figure class="case-figure">
+    <Picture
+      src={letterheadImg}
+      alt="Letterhead editor with a form sidebar and print-accurate preview of NCGA stationery."
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+    />
+    <figcaption>
+      Split-pane editor: governed fields on the left, locked template preview on
+      the right. Sample data uses fictional legislator names.
+    </figcaption>
+  </figure>
+
+  <h2>LOCKED vs DATA-DRIVEN</h2>
+  <p>
+    The core information architecture decision was explicit: everything the print
+    shop is allowed to vary lives in a typed record; everything else is hardcoded
+    into the template and never exposed in the form.
+  </p>
+  <p>
+    <strong>LOCKED</strong> elements include the state seal, “North Carolina
+    General Assembly” masthead, licensed typefaces, page grid, margins, and
+    recycle mark geometry. <strong>DATA-DRIVEN</strong> fields include member
+    name, chamber, office address, phone, committees, and ink color, with
+    visibility toggles that hide sections on the letterhead without deleting the
+    underlying data.
+  </p>
+  <p>
+    My first instinct was to hand staff a Word or InDesign template they could
+    edit freely. That approach failed quickly: font substitutions, nudged seal
+    placement, and off-brand ink colors showed up on every correction round. A
+    full WYSIWYG editor would have invited the same drift. The constrained form
+    won because it maps one-to-one to what production actually allows.
+  </p>
+
+  <div class="template-flow" aria-label="Legislator record to output">
+    <div class="template-flow__node">
+      <span>Input</span>
+      <strong>LegislatorRecord</strong>
+    </div>
+    <div class="template-flow__connector" aria-hidden="true"></div>
+    <div class="template-flow__node template-flow__node--wide">
+      <span>Locked template</span>
+      <strong>Seal, masthead, grid, type</strong>
+    </div>
+    <div class="template-flow__connector" aria-hidden="true"></div>
+    <div class="template-flow__node">
+      <span>Output</span>
+      <strong>Letterhead or envelope PDF</strong>
+    </div>
+  </div>
+
+  <h2>Same Record, Different Surfaces</h2>
+  <p>
+    Letterhead and envelopes share one data model but not one form. The
+    letterhead editor exposes the full record plus visibility toggles for
+    address, phone, and committees. The envelope editor uses a field subset: no
+    phone or committees, and return addresses constrained to two NCGA buildings
+    (Legislative Building or Legislative Office Building) with fixed ZIP codes
+    rather than free text.
+  </p>
+  <p>
+    Envelopes also omit the state seal, matching real production artwork, and
+    explicitly defer recipient addresses to a downstream mail-merge pipeline.
+    That boundary keeps the tool focused on return-address stationery staff
+    produce in bulk, not one-off mailing lists.
+  </p>
+
+  <figure class="case-figure">
+    <Picture
+      src={envelopeImg}
+      alt="Envelope editor with building picker and print-accurate envelope preview."
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+    />
+    <figcaption>
+      Envelope surface: building picker instead of free-text address, no seal,
+      recipients added later by mail merge.
+    </figcaption>
+  </figure>
+
+  <h2>Print Fidelity as UX</h2>
+  <p>
+    The on-screen preview is sized in real inches and points so staff see what
+    print will look like before exporting. Screen rendering uses DOM and Tailwind;
+    PDF output uses a second renderer sharing the same business logic for
+    chamber copy, ink colors, and visible committees. That split was deliberate:
+    a screenshot export would not survive Acrobat; DOM alone cannot produce
+    reliable print PDFs.
+  </p>
+  <p>
+    Chamber selection drives both the masthead line and honorific automatically,
+    so staff cannot accidentally pair “Senator” with House wording. Committee
+    rows filter blank entries before preview and export, and long committee lists
+    stress-test layout without breaking the locked grid.
+  </p>
+
+  <h2>Outcomes</h2>
+  <p>
+    Standardizing on one structure with governed variable data reduced mistakes
+    on repeat stationery orders. Staff no longer maintain parallel files that
+    drift in spacing and color; edits stay inside the template rules production
+    already enforces.
+  </p>
+  <p>
+    This case study covers the letterhead and envelope editor slice of broader
+    NCGA work. Related projects on my resume include a press-split calculator
+    for job planning, the America 250 committee seal and branding, and
+    high-volume production workflows, not shown here. What stuck with me is the
+    same lesson as other workflow design: the hard part was deciding what staff
+    are <em>not</em> allowed to change, not polishing what they can.
+  </p>
+</CaseStudy>
+
+<style>
+  .case-figure {
+    margin: 1.75rem 0;
+  }
+
+  .case-figure :global(img) {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+  }
+
+  .case-figure figcaption {
+    margin-top: 0.75rem;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .template-flow {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.75rem 0;
+  }
+
+  .template-flow__node {
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background: color-mix(in oklch, var(--background) 96%, var(--muted));
+  }
+
+  .template-flow__node span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .template-flow__node strong {
+    display: block;
+    font-size: 0.9375rem;
+    line-height: 1.35;
+  }
+
+  .template-flow__connector {
+    width: 1px;
+    height: 1.25rem;
+    margin-left: 1.25rem;
+    background: var(--border);
+  }
+
+  @media (min-width: 640px) {
+    .template-flow {
+      grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1.2fr) 2rem minmax(
+          0,
+          1fr
+        );
+      align-items: center;
+      gap: 0;
+    }
+
+    .template-flow__connector {
+      width: 100%;
+      height: 1px;
+      margin-left: 0;
+    }
+  }
+</style>

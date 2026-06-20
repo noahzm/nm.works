@@ -47,9 +47,9 @@ const snapshotItems = [
     value: "Score the weakest weather signal instead of averaging risk away.",
   },
   {
-    label: "Shipped as",
+    label: "Built as",
     value:
-      "Native iOS app in Swift and SwiftUI, with a watchOS companion. Earlier version shipped as a web app.",
+      "Native iOS app in Swift and SwiftUI with a watchOS companion, in development. Earlier version shipped as a web app.",
   },
 ]
 ---
@@ -268,14 +268,14 @@ const snapshotItems = [
   <p>
     The product model was proven on the web, but the daily use case lives on a
     phone. Moving to native iOS gave me on-device location, a faster pre-ride
-    glance, and a watchOS companion that surfaces the verdict over
-    WatchConnectivity, with an App Store release in progress.
+    glance, and a watchOS companion over WatchConnectivity.
   </p>
   <p>
     The information architecture carried over: verdict first, weakest-signal
     scoring, raw evidence close to the recommendation, and riding windows when
-    the answer is no. Forecast data still comes from Open-Meteo and the National
-    Weather Service.
+    the answer is no. Forecast data comes from Open-Meteo and the National
+    Weather Service, with air-quality and alert signals where they affect the
+    ride verdict.
   </p>
   <p>
     Implementation splits across three layers: <strong>WheelyCore</strong> for
@@ -300,16 +300,15 @@ const snapshotItems = [
 
   <h2>Outcome</h2>
   <p>
-    Wheely Weather shipped as a native iOS app in Swift and SwiftUI, with a
-    watchOS companion. App Store submission is in progress. I use it before
-    every ride now, which is the outcome I was building toward.
+    Wheely Weather is a native iOS app in Swift and SwiftUI with a watchOS
+    companion, still in development. I use the web app and early native builds
+    before rides now, which is the outcome I was building toward.
   </p>
   <p>
     The lesson I keep from it is that the hard part was deciding what to leave
     out, not what to add. Scoring the weakest signal instead of averaging, and
     leading with a verdict instead of a chart, both came from resisting the
-    instinct to show everything the data offered. Next up: App Store release and
-    refinements to the Watch glance.
+    instinct to show everything the data offered.
   </p>
 </CaseStudy>
 

@@ -1,6 +1,7 @@
 import type { ImageMetadata } from "astro"
 import creativePrintingImg from "@/assets/projects/creative-printing/order-grid-current.png"
 import grouchImg from "@/assets/projects/grouch/grouchorange.png"
+import ncgaLetterheadImg from "@/assets/projects/ncga-stationery/letterhead-house.png"
 import wheelyHeroImg from "@/assets/projects/wheely-weather/verdict-sf.png"
 
 export type ProjectCategory = "case-study" | "visual-work"
@@ -42,7 +43,7 @@ export const projects: Project[] = [
     role: "Solo product design and iOS development",
     year: "2025",
     summary:
-      "Shipped a native iOS cycling weather app that surfaces dew point, feels-like, and wind next to an accessible ride verdict and shared WheelyCore logic.",
+      "Native iOS and watchOS cycling weather app in development, with a verdict-first UI, shared WheelyCore logic, and Open-Meteo and National Weather Service data.",
     description:
       "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It foregrounds the humidity and wind signals riders actually use instead of burying them in a generic forecast stack.",
     tags: ["Swift & SwiftUI", "UX/UI", "Design systems", "Accessibility"],
@@ -51,6 +52,24 @@ export const projects: Project[] = [
       "Wheely Weather app showing an “IDEAL RIDE CONDITIONS” verdict on a deep green background for Seattle.",
     imageObjectPosition: "top",
     liveUrl: "https://wheelyweather.app",
+    featured: true,
+  },
+  {
+    slug: "ncga-stationery-templates",
+    title: "NCGA Stationery Template System",
+    category: "case-study",
+    status: "published",
+    disciplines: ["information-architecture", "ux-ui", "front-end"],
+    role: "Print & Digital Production (Printing Clerk II)",
+    year: "2021–present",
+    summary:
+      "Variable-data template system for 170+ General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into single-pass mail merge.",
+    description:
+      "A constrained template tool for the North Carolina General Assembly print shop, not a document editor. One LegislatorRecord pours into locked letterhead and envelope layouts staff can edit only within production rules.",
+    tags: ["Information architecture", "Variable data", "Print production"],
+    image: ncgaLetterheadImg,
+    imageAlt:
+      "NCGA letterhead editor with a form sidebar and print-accurate preview of legislator stationery.",
     featured: true,
   },
   {
