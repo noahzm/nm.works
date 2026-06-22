@@ -26,7 +26,7 @@ const snapshotItems = [
   {
     label: "Design move",
     value:
-      "One locked template structure with a governed LegislatorRecord, so staff edit only what production allows.",
+      "One locked internal template structure with a governed LegislatorRecord, so staff edit only what production allows.",
   },
   {
     label: "Result",
@@ -52,14 +52,12 @@ const snapshotItems = [
     chamber-specific wording.
   </p>
   <p>
-    I built a constrained template tool, not a document editor, that keeps seal
-    placement, masthead type, grid, and margins locked while staff edit only the
-    fields production allows. One <strong>LegislatorRecord</strong> is the single
-    source of truth, poured into letterhead and envelope layouts with print-accurate
-    preview and client-side PDF export. Those PDFs feed the same variable-data pipeline
-    I use to merge base stationery with per-recipient address and body content in
-    a single press run across all 170 members, replacing a second trip through the
-    press on personalized mailings.
+    I built an internal constrained template tool, not a document editor, that
+    keeps seal placement, masthead type, grid, and margins locked while staff
+    edit only the fields production allows. One <strong>LegislatorRecord</strong
+    > feeds letterhead and envelope layouts with print-accurate preview and PDF export.
+    Those PDFs support the variable-data workflows I use for personalized mailings,
+    proofing, and production handoff.
   </p>
 
   <CaseStudySnapshot items={snapshotItems} />
@@ -116,11 +114,9 @@ const snapshotItems = [
     the letterhead without deleting the underlying data.
   </p>
   <p>
-    My first instinct was to hand staff a Word or InDesign template they could
-    edit freely. That approach failed quickly: font substitutions, nudged seal
-    placement, and off-brand ink colors showed up on every correction round. A
-    full WYSIWYG editor would have invited the same drift. The constrained form
-    won because it maps one-to-one to what production actually allows.
+    A free-edit Word or InDesign template would have made the same drift easier
+    to repeat. The constrained form works because it maps to what production
+    actually allows.
   </p>
 
   <div class="template-flow" aria-label="Legislator record to output">
@@ -172,8 +168,8 @@ const snapshotItems = [
 
   <h2>Print Fidelity as UX</h2>
   <p>
-    The on-screen preview is sized in real inches and points so staff see what
-    print will look like before exporting. Screen rendering uses DOM and
+    The on-screen preview is sized in real inches and points so staff can check
+    what print will look like before exporting. Screen rendering uses DOM and
     Tailwind; PDF output uses a second renderer sharing the same business logic
     for chamber copy, ink colors, and visible committees. That split was
     deliberate: a screenshot export would not survive Acrobat; DOM alone cannot
@@ -196,11 +192,8 @@ const snapshotItems = [
   <p>
     This case study covers the letterhead and envelope editor slice of broader
     NCGA work. Related NCGA work includes a press-split calculator for job
-    planning, the America 250 committee seal and branding, and high-volume
-    production workflows, not shown here. What stuck with me is the same lesson
-    as other workflow design: the hard part was deciding what staff are <em
-      >not</em
-    > allowed to change, not polishing what they can.
+    planning, identity work, troubleshooting, job tickets, proofing, and
+    high-volume production workflows, not shown here.
   </p>
 </CaseStudy>
 

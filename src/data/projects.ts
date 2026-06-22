@@ -55,12 +55,12 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Solo product design and iOS development",
+    role: "Solo product design and iOS development, in development",
     year: "2025",
     summary:
-      "Native iOS and watchOS cycling weather app in development, with a verdict-first UI, shared WheelyCore logic, and Open-Meteo and National Weather Service data.",
+      "Independent iOS and watchOS learning project for cycling weather, with a verdict-first UI, shared forecast logic, and Open-Meteo and National Weather Service data.",
     description:
-      "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It foregrounds the humidity and wind signals riders actually use instead of burying them in a generic forecast stack.",
+      "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It foregrounds humidity and wind signals instead of burying them in a generic forecast stack.",
     tags: ["Swift & SwiftUI", "UX/UI", "Design systems", "Accessibility"],
     image: wheelyHeroImg,
     imageAlt:
@@ -80,10 +80,10 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Print & Digital Production (Printing Clerk II)",
+    role: "Print & digital production / internal workflow tools",
     year: "2021–present",
     summary:
-      "Variable-data template system for 170+ General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into single-pass mail merge.",
+      "Internal variable-data print workflow for 170+ General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
     description:
       "A constrained template tool for the North Carolina General Assembly print shop, not a document editor. One LegislatorRecord pours into locked letterhead and envelope layouts staff can edit only within production rules.",
     tags: ["Information architecture", "Variable data", "Print production"],
@@ -105,10 +105,10 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
-    role: "UX/UI designer and developer",
+    role: "Web developer / graphic design and print production generalist",
     year: "2018–2020",
     summary:
-      "Responsive order-entry flow that routes customers to the right service category or intake form. IA validated with the shop owner; the category grid still anchors the live site.",
+      "Responsive homepage order-entry flow for a print shop website, routing customers to the right service category or intake form. Structure reviewed with the shop owner; the category grid still anchors the live site.",
     description:
       "Redesigned Creative Printing’s homepage order path around an icon-grid entry point, routing customers to print, sign, multimedia, website, and service intake options.",
     tags: ["Workflow design", "IA", "Responsive web"],
@@ -121,7 +121,7 @@ export const projects: Project[] = [
       { label: "Shipped", value: "Live homepage order-entry flow" },
       {
         label: "Scope",
-        value: "IA, responsive UI, front-end implementation, client validation",
+        value: "IA, responsive UI, front-end implementation, shop owner review",
       },
     ],
   },
