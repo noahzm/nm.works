@@ -4,12 +4,18 @@ import { ArrowLeft } from "lucide-react"
 import ExternalArrow from "@/components/ExternalArrow.astro"
 import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
 import { buttonVariants } from "@/components/ui/button-variants"
-import type { Project } from "@/data/projects"
+import type { Project, ProjectHeaderLink } from "@/data/projects"
 
 interface Props {
   project: Project
   title?: string
   description?: string
+}
+
+interface MetadataItem {
+  label: string
+  value: string
+  fullWidth?: boolean
 }
 
 const {
@@ -18,13 +24,27 @@ const {
   description = project.description,
 } = Astro.props
 
-const metadataItems = [
+const metadataItems: MetadataItem[] = [
   { label: "Role", value: project.role },
   { label: "Year", value: project.year },
   ...(project.status === "coming-soon"
     ? [{ label: "Status", value: "In progress" }]
     : []),
+  ...(project.headerDetails?.map((item, _, items) => ({
+    ...item,
+    fullWidth: items.length === 1,
+  })) ?? []),
 ]
+
+const hasHeaderLinks =
+  project.appStoreUrl ||
+  project.liveUrl ||
+  project.githubUrl ||
+  (project.headerLinks && project.headerLinks.length > 0)
+
+function isExternalLink(link: ProjectHeaderLink) {
+  return link.external !== false && !link.href.startsWith("#")
+}
 ---
 
 <header class="mb-10 sm:mb-12">
@@ -48,20 +68,34 @@ const metadataItems = [
     {description}
   </p>
   <dl
-    class="mt-7 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-3 border-y border-border py-4 text-sm sm:grid-cols-[minmax(0,1fr)_auto_auto]"
+    class="mt-7 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-4 border-y border-border py-4 text-sm"
   >
     {
       metadataItems.map((item, index) => (
-        <div class:list={[index === 0 && "col-span-2 sm:col-span-1"]}>
+        <div
+          class:list={[
+            index === 0 && "col-span-2 sm:col-span-1",
+            item.fullWidth && "col-span-2",
+          ]}
+        >
           <dt class="text-muted-foreground">{item.label}</dt>
-          <dd class="mt-1 font-medium">{item.value}</dd>
+          <dd
+            class:list={[
+              "mt-1",
+              item.fullWidth
+                ? "font-normal leading-relaxed"
+                : "font-medium",
+            ]}
+          >
+            {item.value}
+          </dd>
         </div>
       ))
     }
   </dl>
   {
-    (project.appStoreUrl || project.liveUrl) && (
-      <div class="mt-5 flex flex-wrap gap-3">
+    hasHeaderLinks && (
+      <div class="mt-5 flex max-w-2xl flex-wrap gap-2">
         {
           project.appStoreUrl && (
             <a
@@ -89,10 +123,43 @@ const metadataItems = [
               data-size="sm"
               class={buttonVariants({ variant: "default", size: "sm" })}
             >
-              View web app
+              {project.liveUrlLabel ?? "View web app"}
               <ExternalArrow />
             </a>
           )
+        }
+        {
+          project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-slot="button"
+              data-variant="outline"
+              data-size="sm"
+              class={buttonVariants({ variant: "outline", size: "sm" })}
+            >
+              View on GitHub
+              <ExternalArrow />
+            </a>
+          )
+        }
+        {
+          project.headerLinks?.map((link) => (
+            <a
+              href={link.href}
+              {...(isExternalLink(link)
+                ? { target: "_blank", rel: "noreferrer" }
+                : {})}
+              data-slot="button"
+              data-variant="outline"
+              data-size="sm"
+              class={buttonVariants({ variant: "outline", size: "sm" })}
+            >
+              {link.label}
+              {isExternalLink(link) && <ExternalArrow />}
+            </a>
+          ))
         }
       </div>
     )

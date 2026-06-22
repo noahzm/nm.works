@@ -14,6 +14,17 @@ export type ProjectDiscipline =
   | "brand-apparel"
 export type ProjectStatus = "published" | "coming-soon"
 
+export interface ProjectHeaderLink {
+  label: string
+  href: string
+  external?: boolean
+}
+
+export interface ProjectHeaderDetail {
+  label: string
+  value: string
+}
+
 export interface Project {
   slug: string
   title: string
@@ -29,7 +40,11 @@ export interface Project {
   imageAlt?: string
   imageObjectPosition?: string
   liveUrl?: string
+  liveUrlLabel?: string
   appStoreUrl?: string
+  githubUrl?: string
+  headerLinks?: ProjectHeaderLink[]
+  headerDetails?: ProjectHeaderDetail[]
   featured?: boolean
 }
 
@@ -52,6 +67,11 @@ export const projects: Project[] = [
       "Wheely Weather app showing an “IDEAL RIDE CONDITIONS” verdict on a deep green background for Seattle.",
     imageObjectPosition: "top",
     liveUrl: "https://wheelyweather.app",
+    liveUrlLabel: "View live web app",
+    githubUrl: "https://github.com/noahzm/wheely-weather",
+    headerLinks: [
+      { label: "Design notes", href: "#system-design", external: false },
+    ],
     featured: true,
   },
   {
@@ -70,6 +90,13 @@ export const projects: Project[] = [
     image: ncgaLetterheadImg,
     imageAlt:
       "NCGA letterhead editor with a form sidebar and print-accurate preview of legislator stationery.",
+    headerDetails: [
+      {
+        label: "Built with",
+        value:
+          "HTML/CSS/JS, PDF generation, governed data model, print-ready output, variable-data workflow",
+      },
+    ],
     featured: true,
   },
   {
@@ -88,6 +115,16 @@ export const projects: Project[] = [
     image: creativePrintingImg,
     imageAlt:
       "Creative Printing order-entry grid with eight service categories for online requests.",
+    liveUrl: "https://creative-printing.com",
+    liveUrlLabel: "View live site",
+    headerDetails: [
+      { label: "Shipped", value: "Live homepage order-entry flow" },
+      {
+        label: "Scope",
+        value:
+          "IA, responsive UI, front-end implementation, client validation",
+      },
+    ],
   },
   {
     slug: "grouch",
