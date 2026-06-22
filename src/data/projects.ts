@@ -121,8 +121,7 @@ export const projects: Project[] = [
       { label: "Shipped", value: "Live homepage order-entry flow" },
       {
         label: "Scope",
-        value:
-          "IA, responsive UI, front-end implementation, client validation",
+        value: "IA, responsive UI, front-end implementation, client validation",
       },
     ],
   },

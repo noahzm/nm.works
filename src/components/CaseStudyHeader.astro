@@ -82,9 +82,7 @@ function isExternalLink(link: ProjectHeaderLink) {
           <dd
             class:list={[
               "mt-1",
-              item.fullWidth
-                ? "font-normal leading-relaxed"
-                : "font-medium",
+              item.fullWidth ? "leading-relaxed font-normal" : "font-medium",
             ]}
           >
             {item.value}
@@ -96,71 +94,63 @@ function isExternalLink(link: ProjectHeaderLink) {
   {
     hasHeaderLinks && (
       <div class="mt-5 flex max-w-2xl flex-wrap gap-2">
-        {
-          project.appStoreUrl && (
-            <a
-              href={project.appStoreUrl}
-              target="_blank"
-              rel="noreferrer"
-              data-slot="button"
-              data-variant="default"
-              data-size="sm"
-              class={buttonVariants({ variant: "default", size: "sm" })}
-            >
-              Download on the App Store
-              <ExternalArrow />
-            </a>
-          )
-        }
-        {
-          project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              data-slot="button"
-              data-variant="default"
-              data-size="sm"
-              class={buttonVariants({ variant: "default", size: "sm" })}
-            >
-              {project.liveUrlLabel ?? "View web app"}
-              <ExternalArrow />
-            </a>
-          )
-        }
-        {
-          project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              data-slot="button"
-              data-variant="outline"
-              data-size="sm"
-              class={buttonVariants({ variant: "outline", size: "sm" })}
-            >
-              View on GitHub
-              <ExternalArrow />
-            </a>
-          )
-        }
-        {
-          project.headerLinks?.map((link) => (
-            <a
-              href={link.href}
-              {...(isExternalLink(link)
-                ? { target: "_blank", rel: "noreferrer" }
-                : {})}
-              data-slot="button"
-              data-variant="outline"
-              data-size="sm"
-              class={buttonVariants({ variant: "outline", size: "sm" })}
-            >
-              {link.label}
-              {isExternalLink(link) && <ExternalArrow />}
-            </a>
-          ))
-        }
+        {project.appStoreUrl && (
+          <a
+            href={project.appStoreUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-slot="button"
+            data-variant="default"
+            data-size="sm"
+            class={buttonVariants({ variant: "default", size: "sm" })}
+          >
+            Download on the App Store
+            <ExternalArrow />
+          </a>
+        )}
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-slot="button"
+            data-variant="default"
+            data-size="sm"
+            class={buttonVariants({ variant: "default", size: "sm" })}
+          >
+            {project.liveUrlLabel ?? "View web app"}
+            <ExternalArrow />
+          </a>
+        )}
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-slot="button"
+            data-variant="outline"
+            data-size="sm"
+            class={buttonVariants({ variant: "outline", size: "sm" })}
+          >
+            View on GitHub
+            <ExternalArrow />
+          </a>
+        )}
+        {project.headerLinks?.map((link) => (
+          <a
+            href={link.href}
+            {...(isExternalLink(link)
+              ? { target: "_blank", rel: "noreferrer" }
+              : {})}
+            data-slot="button"
+            data-variant="outline"
+            data-size="sm"
+            class={buttonVariants({ variant: "outline", size: "sm" })}
+          >
+            {link.label}
+            {isExternalLink(link) && <ExternalArrow />}
+          </a>
+        ))}
       </div>
     )
   }
@@ -173,6 +163,8 @@ function isExternalLink(link: ProjectHeaderLink) {
           widths={[720, 1200, 1600]}
           sizes="(min-width: 768px) 768px, 100vw"
           alt={project.imageAlt}
+          loading="eager"
+          fetchpriority="high"
           style={
             project.imageObjectPosition
               ? `object-position: ${project.imageObjectPosition}`

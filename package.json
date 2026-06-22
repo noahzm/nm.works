@@ -5,11 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run check:site && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint .",
+    "check:site": "node scripts/check-site-invariants.mjs",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
     "format": "prettier --write \"**/*.{ts,tsx,astro}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,astro}\"",
     "typecheck": "astro check"
   },
   "dependencies": {
