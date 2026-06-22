@@ -5,17 +5,19 @@ Guidance for coding agents (Cursor, Claude Code, Codex, OpenCode, etc.) working 
 ## Commands
 
 - `npm run dev` — start the Astro dev server
-- `npm run build` — production build
+- `npm run build` — run `check:site`, then production build
 - `npm run preview` — serve the production build locally
+- `npm run check:site` — verify project/page parity and static asset hygiene
 - `npm run typecheck` — run `astro check`; use this after edits to `.astro`, `.ts`, `.tsx`
 - `npm run lint` — ESLint over `**/*.{ts,tsx}` only (`.astro` files are typechecked, not linted)
-- `npm run format` — Prettier over `**/*.{ts,tsx,astro}`
+- `npm run format` — Prettier write over `**/*.{ts,tsx,astro}`
+- `npm run format:check` — non-mutating Prettier check over `**/*.{ts,tsx,astro}`
 
 No test runner is configured. `playwright` is in devDependencies but unused — `npm test` does not exist.
 
 The site builds to static output (`dist/`) and is served by the Cloudflare **Pages** project **`nm-works`** (custom domain `nm.works`; `site` is set in `astro.config.mjs`). That project is **direct-upload with no Git provider**, and the repo has **no git remote** — so pushing does not trigger a deploy. Publish manually with `npx wrangler pages deploy dist --project-name=nm-works` (wrangler is not a project dependency; run via `npx`). Deploying from `main` lands on Production. Deploy state lives in the gitignored `.wrangler/`.
 
-MCP servers in `.mcp.json`: `shadcn` (component registry), `astro` (hosted Astro docs), and `xcode-tools` (`xcrun mcpbridge` — requires Xcode open).
+MCP servers in `.mcp.json`: `shadcn` (component registry), `astro` (hosted Astro docs), and `xcode-tools` (`xcrun mcpbridge` — requires Xcode open). Treat `.mcp.json` as the cross-agent source of truth; `.codex/config.toml` mirrors that set for Codex.
 
 ## Architecture
 
