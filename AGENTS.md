@@ -15,7 +15,7 @@ Guidance for coding agents (Cursor, Claude Code, Codex, OpenCode, etc.) working 
 
 No test runner is configured. `playwright` is in devDependencies but unused — `npm test` does not exist.
 
-The site builds to static output (`dist/`) and is served by the Cloudflare **Pages** project **`nm-works`** (custom domain `nm.works`; `site` is set in `astro.config.mjs`). That project is **direct-upload with no Git provider**, and the repo has **no git remote** — so pushing does not trigger a deploy. Publish manually with `npx wrangler pages deploy dist --project-name=nm-works` (wrangler is not a project dependency; run via `npx`). Deploying from `main` lands on Production. Deploy state lives in the gitignored `.wrangler/`.
+The site builds to static output (`dist/`) and is served by the Cloudflare **Pages** project **`nm-works`** (custom domain `nm.works`; `site` is set in `astro.config.mjs`). The Cloudflare Pages project is connected to GitHub repo `noahzm/nm.works`; pushes to `main` trigger Production deploys with build command `npm run build` and output directory `dist`. You can also publish manually with `npx wrangler pages deploy dist --project-name=nm-works` (wrangler is not a project dependency; run via `npx`). Deploy state lives in the gitignored `.wrangler/`.
 
 MCP servers in `.mcp.json`: `shadcn` (component registry), `astro` (hosted Astro docs), and `xcode-tools` (`xcrun mcpbridge` — requires Xcode open). Treat `.mcp.json` as the cross-agent source of truth; `.codex/config.toml` mirrors that set for Codex.
 
