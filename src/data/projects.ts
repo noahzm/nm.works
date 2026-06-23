@@ -59,9 +59,9 @@ export const projects: Project[] = [
     role: "Solo product design and iOS development",
     year: "2025",
     summary:
-      "Independent iOS and watchOS learning project for cycling weather, with a verdict-first UI, shared forecast logic, and Open-Meteo and National Weather Service data.",
+      "Independent cycling-weather product for iOS, watchOS, and web, with a verdict-first UI, shared forecast logic, and Open-Meteo and National Weather Service data.",
     description:
-      "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It foregrounds humidity and wind signals instead of burying them in a generic forecast stack.",
+      "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It keeps humidity and wind visible instead of burying them in a generic forecast stack.",
     tags: ["Swift & SwiftUI", "UX/UI", "Design systems", "Accessibility"],
     image: wheelyHeroImg,
     imageAlt:
@@ -90,9 +90,9 @@ export const projects: Project[] = [
     role: "Print & digital production / internal workflow tools",
     year: "2021–present",
     summary:
-      "Internal variable-data print workflow for 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
+      "Internal variable-data print workflow for all 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
     description:
-      "A constrained template tool for the North Carolina General Assembly print shop, not a document editor. One LegislatorRecord pours into locked letterhead and envelope layouts staff can edit only within production rules.",
+      "A constrained template tool for the North Carolina General Assembly print shop, not a document editor. One LegislatorRecord feeds locked letterhead and envelope layouts that staff can edit only within production rules.",
     tags: ["Information architecture", "Variable data", "Print production"],
     image: ncgaLetterheadImg,
     imageAlt:
@@ -117,9 +117,9 @@ export const projects: Project[] = [
     role: "Web developer / graphic design and print production generalist",
     year: "2018–2020",
     summary:
-      "Responsive homepage order-entry flow for a print shop website, routing customers to the right service category or intake form. Structure reviewed with the shop owner; the category grid still anchors the live site.",
+      "Responsive homepage order-entry flow for a print shop website, routing customers from job intent to the right service category or intake form.",
     description:
-      "Redesigned Creative Printing’s homepage order path around an icon-grid entry point, routing customers to print, sign, multimedia, website, and service intake options.",
+      "Redesigned Creative Printing’s homepage order path around an icon-grid entry point for print, sign, multimedia, website, and service requests.",
     tags: ["Workflow design", "IA", "Responsive web"],
     image: creativePrintingImg,
     imageAlt:

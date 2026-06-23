@@ -16,7 +16,7 @@ const snapshotItems = [
   {
     label: "Problem",
     value:
-      "Repeat NCGA stationery for all 170 members; per-legislator files led to inconsistent spacing, colors, and correction rounds.",
+      "Repeat stationery for all 170 NCGA members depended on files that could drift in spacing, color, and content.",
   },
   {
     label: "Primary users",
@@ -26,12 +26,12 @@ const snapshotItems = [
   {
     label: "Design move",
     value:
-      "One locked internal template structure with a governed LegislatorRecord, so staff edit only what production allows.",
+      "One locked template structure fed by a governed LegislatorRecord, so staff edit only what production allows.",
   },
   {
     label: "Result",
     value:
-      "One governed template structure replaced per-legislator files, so personalized mailings to all 170 members run in a single press pass instead of two, with print-accurate preview, PDF export, and a cleaner handoff into mail merge.",
+      "Personalized mailings to all 170 members now run in one press pass instead of two, with print-accurate preview, PDF export, and cleaner mail-merge handoff.",
   },
 ]
 ---
@@ -39,25 +39,22 @@ const snapshotItems = [
 <CaseStudy
   project={project}
   title="NCGA Stationery Template System"
-  description="A constrained template engine for North Carolina General Assembly stationery: one locked structure, governed variable data, and print-accurate preview for all 170 legislators."
+  description="A constrained template engine for North Carolina General Assembly stationery: one locked structure, governed variable data, and print-accurate preview for all 170 members."
   seoTitle="NCGA Stationery Template System · Information Architecture"
   seoDescription="Designing a constrained template engine for NCGA legislator letterhead and envelopes: LOCKED vs DATA-DRIVEN fields, print-accurate preview, and fewer production mistakes."
 >
   <h2>Overview</h2>
   <p>
     The North Carolina General Assembly print shop produces repeat stationery
-    for all 170 legislators, including business cards, letterhead,
-    envelopes, and related materials. Each order carries the same formal brand
-    requirements but different contact data, committee lists, and
-    chamber-specific wording.
+    for all 170 legislators, including business cards, letterhead, envelopes,
+    and related materials. Each order carries the same formal brand requirements
+    but different contact data, committee lists, and chamber-specific wording.
   </p>
   <p>
-    I built an internal constrained template tool, not a document editor, that
-    keeps seal placement, masthead type, grid, and margins locked while staff
-    edit only the fields production allows. One <strong>LegislatorRecord</strong
-    > feeds letterhead and envelope layouts with print-accurate preview and PDF export.
-    Those PDFs support the variable-data workflows I use for personalized mailings,
-    proofing, and production handoff.
+    I built a constrained internal template tool, not a document editor. Seal
+    placement, masthead type, grid, and margins stay locked; staff edit only the
+    fields production allows. One <strong>LegislatorRecord</strong> feeds letterhead
+    and envelope layouts with print-accurate preview and PDF export.
   </p>
 
   <CaseStudySnapshot items={snapshotItems} />
@@ -65,11 +62,11 @@ const snapshotItems = [
   <h2>The Friction in Production</h2>
   <p>
     Before the system, repeat orders relied on separate files per legislator.
-    Small differences in spacing and ink color compounded across all 170 members.
-    When a legislator updated a phone number or committee assignment, staff had
-    to hunt the right file and hope the layout still matched shop standards.
+    Small differences in spacing, ink color, and committee data compounded
+    across all 170 members. A simple phone number update could turn into file
+    hunting and another chance for the layout to drift.
   </p>
-  <p>The production workflow needed to solve three practical problems:</p>
+  <p>I designed the workflow around three production constraints:</p>
   <ul>
     <li>
       <strong>Brand compliance.</strong> Seal, masthead, and typography had to stay
@@ -102,9 +99,9 @@ const snapshotItems = [
 
   <h2>LOCKED vs DATA-DRIVEN</h2>
   <p>
-    The core information architecture decision was explicit: everything the
-    print shop is allowed to vary lives in a typed record; everything else is
-    hardcoded into the template and never exposed in the form.
+    The core information architecture decision was simple: production-approved
+    variation lives in a typed record; everything else stays hardcoded and out
+    of reach.
   </p>
   <p>
     <strong>LOCKED</strong> elements include the state seal, “North Carolina General
@@ -115,8 +112,8 @@ const snapshotItems = [
   </p>
   <p>
     A free-edit Word or InDesign template would have made the same drift easier
-    to repeat. The constrained form works because it maps to what production
-    actually allows.
+    to repeat. The constrained form works because it matches the real production
+    boundary.
   </p>
 
   <div class="template-flow" aria-label="Legislator record to output">
@@ -148,8 +145,8 @@ const snapshotItems = [
   <p>
     Envelopes also omit the state seal, matching real production artwork, and
     explicitly defer recipient addresses to a downstream mail-merge pipeline.
-    That boundary keeps the tool focused on return-address stationery staff
-    produce in bulk, not one-off mailing lists.
+    That boundary keeps the tool focused on bulk return-address stationery, not
+    one-off mailing lists.
   </p>
 
   <figure class="case-figure">
@@ -169,11 +166,11 @@ const snapshotItems = [
   <h2>Print Fidelity as UX</h2>
   <p>
     The on-screen preview is sized in real inches and points so staff can check
-    what print will look like before exporting. Screen rendering uses DOM and
-    Tailwind; PDF output uses a second renderer sharing the same business logic
-    for chamber copy, ink colors, and visible committees. That split was
-    deliberate: a screenshot export would not survive Acrobat; DOM alone cannot
-    produce reliable print PDFs.
+    print before exporting. Screen rendering uses DOM and Tailwind; PDF output
+    uses a second renderer that shares the same business logic for chamber copy,
+    ink colors, and visible committees. That split was deliberate: a screenshot
+    export would not survive Acrobat, and DOM alone cannot produce reliable
+    print PDFs.
   </p>
   <p>
     Chamber selection drives both the masthead line and honorific automatically,
@@ -184,15 +181,15 @@ const snapshotItems = [
 
   <h2>Outcomes</h2>
   <p>
-    With one governed template structure in place, personalized mailings to all
-    170 members now go out in a single press pass instead of two, because the
-    templates produce mail-merge-ready PDFs the production line accepts as is.
+    Personalized mailings to all 170 members now go out in a single press pass
+    instead of two because the templates produce mail-merge-ready PDFs the
+    production line accepts as is.
   </p>
   <p>
-    Standardizing on one structure with governed variable data reduced mistakes
-    on repeat stationery orders. Staff no longer maintain parallel files that
-    drift in spacing and color; edits stay inside the template rules production
-    already enforces.
+    Standardizing on governed variable data also reduced mistakes on repeat
+    stationery orders. Staff no longer maintain parallel files that drift in
+    spacing and color; edits stay inside the template rules production already
+    enforces.
   </p>
   <p>
     This case study covers the letterhead and envelope editor slice of broader
