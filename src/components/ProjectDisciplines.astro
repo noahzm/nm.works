@@ -1,5 +1,5 @@
 ---
-import { Badge } from "@/components/ui/badge"
+import Badge from "@/components/ui/badge.astro"
 import { disciplineLabels, type ProjectDiscipline } from "@/data/projects"
 
 interface Props {
@@ -15,7 +15,7 @@ const { disciplines, label, class: className } = Astro.props
   {
     disciplines.map((discipline) => (
       <li>
-        <Badge variant="outline" className="text-muted-foreground">
+        <Badge variant="outline" class="text-muted-foreground">
           {disciplineLabels[discipline]}
         </Badge>
       </li>

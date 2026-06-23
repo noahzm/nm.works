@@ -2,7 +2,7 @@
 import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
 import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
-import { Badge } from "@/components/ui/badge"
+import Badge from "@/components/ui/badge.astro"
 import { getProject } from "@/data/projects"
 import verdictSfImg from "@/assets/projects/wheely-weather/verdict-sf.png"
 import verdictRaleighImg from "@/assets/projects/wheely-weather/verdict-raleigh.png"
@@ -49,7 +49,7 @@ const snapshotItems = [
   {
     label: "Built as",
     value:
-      "Independent iOS learning project in Swift and SwiftUI, with a watchOS companion in progress. Earlier version shipped as a web app.",
+      "Independent iOS learning project in Swift and SwiftUI, with a watchOS companion. Earlier version shipped as a web app.",
   },
 ]
 ---
@@ -172,7 +172,7 @@ const snapshotItems = [
                 `annotation-list__item--${a.position}`,
               ]}
             >
-              <Badge variant="outline" className="annotation-badge">
+              <Badge variant="outline" class="annotation-badge">
                 {a.label}
               </Badge>
             </li>
@@ -213,7 +213,7 @@ const snapshotItems = [
                 `annotation-list__item--${a.position}`,
               ]}
             >
-              <Badge variant="outline" className="annotation-badge">
+              <Badge variant="outline" class="annotation-badge">
                 {a.label}
               </Badge>
             </li>
@@ -247,7 +247,7 @@ const snapshotItems = [
                 `annotation-list__item--${a.position}`,
               ]}
             >
-              <Badge variant="outline" className="annotation-badge">
+              <Badge variant="outline" class="annotation-badge">
                 {a.label}
               </Badge>
             </li>
@@ -294,8 +294,8 @@ const snapshotItems = [
 
   <h2>Outcome</h2>
   <p>
-    Wheely Weather is still in development. I use the web app and early native
-    builds before rides now, which is enough proof to keep building.
+    I use the web app and early native builds before rides now, which is enough
+    proof to keep building.
   </p>
   <p>
     The useful pattern was restraint: score the weakest signal, lead with a

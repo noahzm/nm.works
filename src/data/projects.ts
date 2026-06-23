@@ -45,6 +45,7 @@ export interface Project {
   githubUrl?: string
   headerLinks?: ProjectHeaderLink[]
   headerDetails?: ProjectHeaderDetail[]
+  whatICanShow?: string
   featured?: boolean
 }
 
@@ -55,7 +56,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Solo product design and iOS development, in development",
+    role: "Solo product design and iOS development",
     year: "2025",
     summary:
       "Independent iOS and watchOS learning project for cycling weather, with a verdict-first UI, shared forecast logic, and Open-Meteo and National Weather Service data.",
@@ -72,6 +73,12 @@ export const projects: Project[] = [
     headerLinks: [
       { label: "Design notes", href: "#system-design", external: false },
     ],
+    headerDetails: [
+      {
+        label: "Status",
+        value: "In development. Web app live at wheelyweather.app.",
+      },
+    ],
     featured: true,
   },
   {
@@ -83,7 +90,7 @@ export const projects: Project[] = [
     role: "Print & digital production / internal workflow tools",
     year: "2021–present",
     summary:
-      "Internal variable-data print workflow for 170+ General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
+      "Internal variable-data print workflow for 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
     description:
       "A constrained template tool for the North Carolina General Assembly print shop, not a document editor. One LegislatorRecord pours into locked letterhead and envelope layouts staff can edit only within production rules.",
     tags: ["Information architecture", "Variable data", "Print production"],
@@ -97,6 +104,8 @@ export const projects: Project[] = [
           "HTML/CSS/JS, PDF generation, governed data model, print-ready output, variable-data workflow",
       },
     ],
+    whatICanShow:
+      "This is an internal print-shop tool, so it isn’t publicly hosted. The screenshots use fictional legislator data; I can demo the live tool or walk through the code on request.",
     featured: true,
   },
   {
@@ -140,6 +149,8 @@ export const projects: Project[] = [
     tags: ["Brand identity", "Apparel", "Print production"],
     image: grouchImg,
     imageAlt: "Orange Grouch T-shirt with a large black typographic mark.",
+    whatICanShow:
+      "Grouch was a small physical apparel run, so there’s no app or repo to open. The photos below document the identity and the printed pieces.",
   },
 ]
 

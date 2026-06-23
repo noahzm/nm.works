@@ -1,8 +1,8 @@
 ---
 import { Picture } from "astro:assets"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
+import AspectRatio from "@/components/ui/aspect-ratio.astro"
 import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
-import { Badge } from "@/components/ui/badge"
+import Badge from "@/components/ui/badge.astro"
 import type { Project } from "@/data/projects"
 
 interface Props {
@@ -52,7 +52,7 @@ const imageSizes = featured
       />
       {
         project.status === "coming-soon" && (
-          <Badge variant="outline" className="text-muted-foreground">
+          <Badge variant="outline" class="text-muted-foreground">
             Coming soon
           </Badge>
         )

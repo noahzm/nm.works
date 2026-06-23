@@ -1,9 +1,9 @@
 ---
-import { ArrowRight } from "lucide-react"
+import { Icon } from "astro-icon/components"
 import Layout from "@/layouts/main.astro"
 import CaseStudyHeader from "@/components/CaseStudyHeader.astro"
 import CTA from "@/components/CTA.astro"
-import { Separator } from "@/components/ui/separator"
+import Separator from "@/components/ui/separator.astro"
 import { publishedProjects, type Project } from "@/data/projects"
 
 interface Props {
@@ -55,7 +55,7 @@ const next = hasNextProject
     {
       next && (
         <footer class="mt-16 pt-7 sm:mt-20">
-          <Separator className="-mt-7 mb-7" />
+          <Separator class="-mt-7 mb-7" />
           <a
             href={`/projects/${next.slug}`}
             class="group flex items-center justify-between gap-6 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none [&_svg]:size-4 [&_svg]:shrink-0"
@@ -68,7 +68,11 @@ const next = hasNextProject
                 View {next.title}
               </span>
             </span>
-            <ArrowRight aria-hidden="true" data-icon="inline-end" />
+            <Icon
+              name="lucide:arrow-right"
+              aria-hidden="true"
+              data-affix="inline-end"
+            />
           </a>
         </footer>
       )
