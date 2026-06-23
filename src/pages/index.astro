@@ -10,16 +10,50 @@ const selectedWork = [
   getProject("wheely-weather")!,
   getProject("creative-printing-order-flow")!,
 ]
+
+const proofPoints = [
+  "Workflow UX",
+  "Code prototypes",
+  "Internal tools",
+  "Production systems",
+  "Design systems",
+]
+
+const projectImpacts: Record<string, string> = {
+  "ncga-stationery-templates":
+    "Replaced fragile per-legislator files with one governed workflow for all 170 members.",
+  "wheely-weather":
+    "Turned scattered forecast signals into a verdict-first product across web, iOS, and watchOS.",
+  "creative-printing-order-flow":
+    "Moved order entry from service browsing to a direct customer-intent grid.",
+}
 ---
 
 <Layout>
   <div class="mx-auto max-w-3xl px-6 pt-4 pb-12 sm:pb-16">
     <section class="pb-10 md:pb-14">
       <h1 class="max-w-3xl text-xl leading-relaxed text-foreground">
-        I’m a design engineer, equal parts designer and front-end developer,
-        with roots in print production. My work spans product interfaces,
-        workflow tools, and print systems.
+        I’m a product designer who builds in code, shaping workflow interfaces,
+        internal tools, and production systems where accuracy matters.
       </h1>
+      <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+        My work combines product UI, information architecture, visual design,
+        and front-end implementation across digital tools and print production
+        workflows.
+      </p>
+      <ul
+        class="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground"
+        aria-label="Portfolio focus areas"
+      >
+        {
+          proofPoints.map((point) => (
+            <li class="flex items-center gap-2">
+              <span class="h-1.5 w-1.5 rounded-full bg-foreground/70" />
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
     </section>
     <Separator />
 
@@ -29,8 +63,8 @@ const selectedWork = [
           Selected work
         </h2>
         <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Selected work across internal workflow tools, independent product
-          builds, and production-heavy web projects.
+          Internal workflow tools, independent product builds, and web projects
+          shaped around production realities.
         </p>
       </div>
 
@@ -49,6 +83,10 @@ const selectedWork = [
                   </h3>
                   <p class="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
                     {project.summary}
+                  </p>
+                  <p class="mt-3 max-w-prose text-sm leading-relaxed text-foreground">
+                    <span class="font-bold">Impact:</span>{" "}
+                    {projectImpacts[project.slug]}
                   </p>
                 </div>
                 <span class="shrink-0 text-sm text-muted-foreground tabular-nums">
@@ -84,7 +122,7 @@ const selectedWork = [
     </section>
 
     <CTA
-      description="Open to roles involving front-end implementation, design production, workflow tools, or print/digital production systems."
+      description="Open to product design, UX/UI, and design systems roles where front-end fluency turns product decisions into working interfaces."
     />
   </div>
 </Layout>

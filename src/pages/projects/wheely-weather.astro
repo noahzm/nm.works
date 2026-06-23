@@ -44,12 +44,12 @@ const snapshotItems = [
   },
   {
     label: "Core decision",
-    value: "Score the weakest weather signal instead of averaging risk away.",
+    value: "Let the weakest weather signal set the ride verdict.",
   },
   {
     label: "Built as",
     value:
-      "Independent iOS learning project in Swift and SwiftUI, with a watchOS companion. Earlier version shipped as a web app.",
+      "Independent SwiftUI product with a watchOS companion. Earlier version shipped as a web app.",
   },
 ]
 ---
@@ -65,32 +65,29 @@ const snapshotItems = [
   <p>
     Wheely Weather answers one near-term riding question: <em
       >is it worth going now?</em
-    > General forecasts show plenty of numbers, but not always the ones that help
-    with that call. In conversations with riders, dew point, feels-like temperature,
-    and wind came up most often.
+    > General forecasts show plenty of numbers, but riders kept coming back to three
+    signals: dew point, feels-like temperature, and wind.
   </p>
   <p>
-    I am using it as an independent iOS build: verdict first, evidence close,
-    and a next ride window when the answer is no. An earlier web version helped
-    me test the model before the SwiftUI rewrite.
+    I designed the product around a clear verdict, visible evidence, and the
+    next usable ride window when the answer is no. A web version tested the
+    model before I rebuilt it in SwiftUI.
   </p>
 
   <CaseStudySnapshot items={snapshotItems} />
 
   <h2>The Decision Moment</h2>
   <p>
-    Before a ride, I was checking one weather app and falling back to another
-    when the first came up short. The data was available, but the call was not.
-    Six conversations with recreational and commuter cyclists narrowed the
-    signals to dew point, feels-like temperature, and wind. Dew point was the
-    easiest to miss in the apps people already used. That gap set the direction:
-    put the useful signals next to the verdict, and score by the weakest signal
-    instead of averaging conditions away.
+    Before a ride, I was checking one weather app and falling back to another.
+    The data was available; the decision was not. Six conversations with
+    recreational and commuter cyclists pointed to the same gap: dew point,
+    feels-like temperature, and wind mattered, but dew point was easy to miss in
+    the apps people already used.
   </p>
   <p>
-    That kept the scope tight. The app had to work at a glance on a phone, state
-    the recommendation clearly, and still show enough evidence for riders who
-    wanted to check the call.
+    That set the product direction: put the useful signals beside the verdict,
+    score by the weakest signal, and keep the whole experience glanceable on a
+    phone.
   </p>
 
   <h2>Product Direction</h2>
@@ -98,9 +95,7 @@ const snapshotItems = [
     <li>
       Lead with a five-level ride rating: Great, Good, Fair, Poor, or Bad.
     </li>
-    <li>
-      Score the weakest riding signal instead of averaging bad conditions away.
-    </li>
+    <li>Let the weakest riding signal set the rating.</li>
     <li>Name the limiting condition when the ride rating drops.</li>
     <li>
       Keep the raw weather signals visible for riders who disagree with the
@@ -147,9 +142,9 @@ const snapshotItems = [
     The screen order follows the rider’s question sequence instead of the shape
     of a forecast API: can I go, why did it get that rating, what should I wear?
     The verdict card uses color and a plain-language label rather than a numeric
-    score: a number would push the threshold decision back onto the rider, which
-    is exactly what the app is trying to resolve. The Numbers panel keeps the
-    raw signals close to the verdict, so the recommendation stays explainable.
+    score, so the app makes the threshold call instead of handing it back to the
+    rider. The Numbers panel keeps the raw signals close enough to audit the
+    recommendation.
   </p>
 
   <figure class="annotated-figure">
@@ -188,9 +183,9 @@ const snapshotItems = [
 
   <h2>Riding Windows</h2>
   <p>
-    A bad current rating shouldn’t end the session. Hour by Hour turns a “not
-    now” into a specific window, while the Week Ahead surfaces the best day to
-    ride when today isn’t promising.
+    A bad current rating should still answer the next question. Hour by Hour
+    turns “not now” into a specific window, while the Week Ahead points to the
+    best day when today is not promising.
   </p>
 
   <figure class="annotated-figure">
@@ -263,21 +258,20 @@ const snapshotItems = [
 
   <h2>Rebuilding for iOS</h2>
   <p>
-    The idea started on the web, but the daily use case belongs on a phone.
-    Moving to native iOS gave me on-device location, a faster pre-ride glance,
-    and a watchOS companion over WatchConnectivity.
+    The idea started on the web, but the daily use case belongs on a phone. I
+    moved it to native iOS for on-device location, a faster pre-ride glance, and
+    a watchOS companion over WatchConnectivity.
   </p>
   <p>
-    The information architecture carried over: verdict first, weakest-signal
-    scoring, raw evidence close to the recommendation, and riding windows when
-    the answer is no. Forecast data comes from Open-Meteo and the National
-    Weather Service, with air-quality and alert signals where they affect the
-    ride verdict.
+    The information architecture carried over: verdict first, raw evidence close
+    to the recommendation, and riding windows when conditions fall short.
+    Forecast data comes from Open-Meteo and the National Weather Service, with
+    air-quality and alert signals where they affect the ride verdict.
   </p>
   <p>
-    Implementation splits across shared forecast logic, design tokens, and
-    SwiftUI views for the dashboard, location gate, and riding-window panels.
-    Mock scenarios help test the UI before live weather data is wired in.
+    I split the build across shared forecast logic, design tokens, and SwiftUI
+    views for the dashboard, location gate, and riding-window panels. Mock
+    scenarios let me test the UI before live weather data is wired in.
   </p>
   <p>
     AI-assisted coding tools (Cursor, Claude Code, Codex, and OpenCode) helped
@@ -294,8 +288,8 @@ const snapshotItems = [
 
   <h2>Outcome</h2>
   <p>
-    I use the web app and early native builds before rides now, which is enough
-    proof to keep building.
+    I use the web app and early native builds before rides now. That is enough
+    proof to keep refining the model and pushing the native version forward.
   </p>
   <p>
     The useful pattern was restraint: score the weakest signal, lead with a
