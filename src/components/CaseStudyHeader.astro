@@ -1,6 +1,6 @@
 ---
 import { Picture } from "astro:assets"
-import { ArrowLeft } from "lucide-react"
+import { Icon } from "astro-icon/components"
 import ExternalArrow from "@/components/ExternalArrow.astro"
 import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
 import { buttonVariants } from "@/components/ui/button-variants"
@@ -52,7 +52,11 @@ function isExternalLink(link: ProjectHeaderLink) {
     href="/projects"
     class="-my-3 mb-4 inline-flex items-center gap-1 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none [&_svg]:size-3.5 [&_svg]:shrink-0"
   >
-    <ArrowLeft aria-hidden="true" data-icon="inline-start" strokeWidth={2} />
+    <Icon
+      name="lucide:arrow-left"
+      aria-hidden="true"
+      data-affix="inline-start"
+    />
     Back to projects
   </a>
   <div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -82,7 +86,7 @@ function isExternalLink(link: ProjectHeaderLink) {
           <dd
             class:list={[
               "mt-1",
-              item.fullWidth ? "leading-relaxed font-normal" : "font-medium",
+              item.fullWidth ? "leading-relaxed font-normal" : "font-normal",
             ]}
           >
             {item.value}
@@ -151,6 +155,18 @@ function isExternalLink(link: ProjectHeaderLink) {
             {isExternalLink(link) && <ExternalArrow />}
           </a>
         ))}
+      </div>
+    )
+  }
+  {
+    project.whatICanShow && (
+      <div class="mt-5 max-w-2xl rounded-md border border-border bg-muted/30 p-4">
+        <p class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+          What I can show
+        </p>
+        <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+          {project.whatICanShow}
+        </p>
       </div>
     )
   }

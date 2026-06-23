@@ -1,0 +1,16 @@
+---
+interface Props {
+  ratio?: number
+  class?: string
+}
+
+const { ratio = 1, class: className } = Astro.props
+---
+
+<div
+  data-slot="aspect-ratio"
+  style={`aspect-ratio: ${ratio};`}
+  class={className}
+>
+  <slot />
+</div>

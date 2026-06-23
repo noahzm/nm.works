@@ -2,12 +2,13 @@
 import Layout from "@/layouts/main.astro"
 import ProjectPreview from "@/components/ProjectPreview.astro"
 import CTA from "@/components/CTA.astro"
-import { Separator } from "@/components/ui/separator"
+import Separator from "@/components/ui/separator.astro"
 import { getProject } from "@/data/projects"
 
 const selectedWork = [
   getProject("ncga-stationery-templates")!,
   getProject("wheely-weather")!,
+  getProject("creative-printing-order-flow")!,
 ]
 ---
 
@@ -15,9 +16,9 @@ const selectedWork = [
   <div class="mx-auto max-w-3xl px-6 pt-4 pb-12 sm:pb-16">
     <section class="pb-10 md:pb-14">
       <h1 class="max-w-3xl text-xl leading-relaxed text-foreground">
-        I’m a designer and front-end builder with a production background. I’m
-        comfortable turning unclear requirements into usable websites, workflow
-        tools, print systems, and carefully finished files.
+        I’m a design engineer, equal parts designer and front-end developer,
+        with roots in print production. My work spans product interfaces,
+        workflow tools, and print systems.
       </h1>
     </section>
     <Separator />
@@ -64,12 +65,20 @@ const selectedWork = [
         }
       </div>
 
-      <div class="mt-12">
+      <div class="mt-12 flex flex-wrap items-baseline gap-x-6 gap-y-3">
         <a
           href="/projects"
-          class="-my-3 inline-block rounded-sm py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          class="-my-3 inline-block rounded-sm py-3 text-sm font-normal text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
         >
           All work →
+        </a>
+        <a
+          href="https://github.com/noahzm/nm.works"
+          target="_blank"
+          rel="noreferrer"
+          class="-my-3 inline-block rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+        >
+          View this site’s source on GitHub
         </a>
       </div>
     </section>

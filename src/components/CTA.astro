@@ -1,7 +1,7 @@
 ---
-import { MessageCircle } from "lucide-react"
+import { Icon } from "astro-icon/components"
 import { buttonVariants } from "@/components/ui/button-variants"
-import { Separator } from "@/components/ui/separator"
+import Separator from "@/components/ui/separator.astro"
 
 interface Props {
   title?: string
@@ -36,11 +36,11 @@ const {
       data-size="default"
       class={buttonVariants({ variant: "default", className: "w-fit" })}
     >
-      <MessageCircle
+      <Icon
+        name="lucide:message-circle"
         aria-hidden="true"
-        data-icon="inline-start"
-        fill="currentColor"
-        strokeWidth={1.5}
+        data-affix="inline-start"
+        class="[&_path]:fill-current [&_path]:[stroke-width:1.5]"
       />
       {label}
     </a>
