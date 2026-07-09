@@ -2,7 +2,7 @@ import type { ImageMetadata } from "astro"
 import creativePrintingImg from "@/assets/projects/creative-printing/order-grid-current.png"
 import grouchImg from "@/assets/projects/grouch/grouchorange.png"
 import ncgaLetterheadImg from "@/assets/projects/ncga-stationery/letterhead-house.png"
-import wheelyHeroImg from "@/assets/projects/wheely-weather/verdict-sf.png"
+import wheelyHeroImg from "@/assets/projects/wheely-weather/home-verdict.png"
 
 export type ProjectCategory = "case-study" | "visual-work"
 export type ProjectDiscipline =
@@ -56,17 +56,16 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Solo design technologist — design and iOS/web build",
+    role: "Solo design technologist — design and cross-platform (Expo) build",
     year: "2025",
     summary:
-      "Independent cycling-weather product for iOS, watchOS, and web, with a verdict-first UI, shared forecast logic, and Open-Meteo and National Weather Service data.",
+      "Independent cycling-weather app for iOS, Android, and web, built from one Expo Router codebase — a verdict-first UI, a shared TypeScript scoring domain, and Open-Meteo plus Apple WeatherKit data.",
     description:
       "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It keeps humidity and wind visible instead of burying them in a generic forecast stack.",
-    tags: ["Swift & SwiftUI", "UX/UI", "Design systems", "Accessibility"],
+    tags: ["Expo & React Native", "TypeScript", "Design systems", "UX/UI"],
     image: wheelyHeroImg,
     imageAlt:
-      "Wheely Weather app showing an “IDEAL RIDE CONDITIONS” verdict on a deep green background for Seattle.",
-    imageObjectPosition: "top",
+      "Wheely Weather showing a green 'CLEAR FOR RIDING' ideal-conditions verdict for Portland.",
     liveUrl: "https://wheelyweather.app",
     liveUrlLabel: "View live web app",
     githubUrl: "https://github.com/noahzm/wheely-weather",
@@ -76,7 +75,8 @@ export const projects: Project[] = [
     headerDetails: [
       {
         label: "Status",
-        value: "In development. Web app live at wheelyweather.app.",
+        value:
+          "Actively developed. iOS, Android, and web from one Expo codebase; web app live at wheelyweather.app.",
       },
     ],
     featured: true,

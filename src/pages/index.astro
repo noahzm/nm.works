@@ -6,8 +6,8 @@ import Separator from "@/components/ui/separator.astro"
 import { getProject } from "@/data/projects"
 
 const selectedWork = [
-  getProject("ncga-stationery-templates")!,
   getProject("wheely-weather")!,
+  getProject("ncga-stationery-templates")!,
   getProject("creative-printing-order-flow")!,
 ]
 
@@ -23,7 +23,7 @@ const projectImpacts: Record<string, string> = {
   "ncga-stationery-templates":
     "Replaced fragile per-legislator files with one controlled workflow covering all 170 members.",
   "wheely-weather":
-    "Turned raw forecast data into clear ride-quality verdicts across web, iOS, and watchOS.",
+    "Turned raw forecast data into clear ride-quality verdicts across iOS, Android, and web from one Expo codebase.",
   "creative-printing-order-flow":
     "Replaced open-ended service browsing with a grid that routes customers straight to the right order form.",
 }

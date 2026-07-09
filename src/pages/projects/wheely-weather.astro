@@ -1,37 +1,11 @@
 ---
-import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
 import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
-import Badge from "@/components/ui/badge.astro"
 import { getProject } from "@/data/projects"
-import verdictSfImg from "@/assets/projects/wheely-weather/verdict-sf.png"
-import verdictRaleighImg from "@/assets/projects/wheely-weather/verdict-raleigh.png"
-import theNumbersImg from "@/assets/projects/wheely-weather/the-numbers.png"
-import hourByHourImg from "@/assets/projects/wheely-weather/hour-by-hour.png"
-import weekAheadImg from "@/assets/projects/wheely-weather/week-ahead.png"
+import homeVerdictImg from "@/assets/projects/wheely-weather/home-verdict.png"
+import hourlyKitNumbersImg from "@/assets/projects/wheely-weather/hourly-kit-numbers.png"
 
 const project = getProject("wheely-weather")!
-
-const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
-const pictureWidths = [340, 680, 1020]
-const pictureSizes = "(min-width: 640px) 340px, 88vw"
-const pairSizes = "(min-width: 640px) 320px, 88vw"
-
-const numbersAnnotations = [
-  { label: "Raw signals stay visible", position: "numbers-1" },
-  { label: "Scored on the weakest signal", position: "numbers-2" },
-]
-
-const hourlyAnnotations = [
-  {
-    label: "The dip shows the window closing",
-    position: "hourly-1",
-  },
-]
-
-const weekAheadAnnotations = [
-  { label: "Best ride day, starred", position: "week-1" },
-]
 
 const snapshotItems = [
   {
@@ -49,7 +23,7 @@ const snapshotItems = [
   {
     label: "Built as",
     value:
-      "Independent SwiftUI product with a watchOS companion. Earlier version shipped as a web app.",
+      "Cross-platform Expo Router + React Native app (iOS, Android, web) from one codebase. Started as a web app; briefly explored native SwiftUI before consolidating on Expo.",
   },
 ]
 ---
@@ -57,9 +31,9 @@ const snapshotItems = [
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  description="An independent iOS cycling weather project that puts dew point, feels-like temperature, and wind next to a clear ride recommendation."
-  seoTitle="Wheely Weather · Independent iOS Cycling Weather Project"
-  seoDescription="Wheely Weather is an independent iOS cycling weather project with ride-quality verdicts, hourly riding windows, and weather-based kit guidance."
+  description="An independent cross-platform cycling-weather app — built with Expo for iOS, Android, and web — that puts dewpoint, feels-like temperature, and wind next to a clear ride verdict."
+  seoTitle="Wheely Weather · Cross-Platform Cycling Weather App (Expo)"
+  seoDescription="Wheely Weather is a cross-platform cycling weather app built with Expo for iOS, Android, and web, with ride-quality verdicts, hourly riding windows, and weather-based kit guidance."
 >
   <h2>Overview</h2>
   <p>
@@ -70,8 +44,8 @@ const snapshotItems = [
   </p>
   <p>
     I designed the product around a clear verdict, visible evidence, and the
-    next usable ride window when the answer is no. A web version tested the
-    model before I rebuilt it in SwiftUI.
+    next usable ride window when the answer is no. A web prototype validated the
+    model before the cross-platform Expo build.
   </p>
 
   <CaseStudySnapshot items={snapshotItems} />
@@ -110,362 +84,102 @@ const snapshotItems = [
     </li>
   </ul>
 
-  <figure class="verdict-pair">
-    <div class="verdict-pair__grid">
-      <div class="phone phone--cropped">
-        <Picture
-          src={verdictSfImg}
-          formats={pictureFormats}
-          widths={[320, 640, 960]}
-          sizes={pairSizes}
-          alt="Wheely Weather verdict for Seattle on a deep green ride-day card."
-        />
-      </div>
-      <div class="phone phone--cropped">
-        <Picture
-          src={verdictRaleighImg}
-          formats={pictureFormats}
-          widths={[320, 640, 960]}
-          sizes={pairSizes}
-          alt="Wheely Weather verdict for Raleigh on an orange rest-day card calling out heavy humidity."
-        />
-      </div>
-    </div>
+  <figure>
+    <img
+      src={homeVerdictImg.src}
+      alt="Wheely Weather showing a green 'CLEAR FOR RIDING' ideal-conditions verdict for Portland, with the start of the hourly ride-quality chart below."
+    />
     <figcaption>
-      The verdict adapts to conditions, green when it’s worth going and orange
-      when it isn’t, and names the limiting factor when the answer is no.
+      The verdict leads with color and plain language — green when it's worth
+      going, orange when it isn't — and names the limiting factor when the
+      answer is no.
     </figcaption>
   </figure>
 
   <h2 id="system-design">System Design</h2>
   <p>
-    The screen order follows the rider’s question sequence instead of the shape
+    The screen order follows the rider's question sequence instead of the shape
     of a forecast API: can I go, why did it get that rating, what should I wear?
     The verdict card uses color and a plain-language label rather than a numeric
     score, so the app makes the threshold call instead of handing it back to the
     rider. The Numbers panel keeps the raw signals close enough to audit the
     recommendation.
   </p>
-
-  <figure class="annotated-figure">
-    <div class="annotated-figure__media">
-      <div class="phone">
-        <Picture
-          src={theNumbersImg}
-          formats={pictureFormats}
-          widths={pictureWidths}
-          sizes={pictureSizes}
-          alt="The Numbers panel showing rain chance, feels-like temperature, wind, air quality, dewpoint, UV index, sunrise, and sunset on individual cards."
-        />
-      </div>
-      <ul class="annotation-list" aria-label="The Numbers annotations">
-        {
-          numbersAnnotations.map((a) => (
-            <li
-              class:list={[
-                "annotation-list__item",
-                `annotation-list__item--${a.position}`,
-              ]}
-            >
-              <Badge variant="outline" class="annotation-badge">
-                {a.label}
-              </Badge>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-    <figcaption>
-      Each signal gets its own card, and the one dragging the rating down is
-      flagged inline.
-    </figcaption>
-  </figure>
+  <p>
+    The design system carries this across platforms: a flat theme background,
+    liquid-glass chrome for navigation and overlays, neobrutalist{" "}
+    <code>BrutalCard</code> surfaces for content, and the National Park
+    typeface. Light and dark theming are theme-aware throughout — no hardcoded
+    colors — so the same component tree renders correctly on iOS, Android, and
+    web.
+  </p>
 
   <h2>Riding Windows</h2>
   <p>
-    A bad current rating should still answer the next question. Hour by Hour
-    turns “not now” into a specific window, while the Week Ahead points to the
-    best day when today is not promising.
+    A bad current rating should still answer the next question. The hour-by-hour
+    view turns "not now" into a specific window, showing ride quality tinted by
+    temperature with a Now marker and POOR stickers on bad stretches. Below it,
+    "Today's kit" translates the same data into clothing guidance, and "The
+    numbers" keeps every raw signal visible for riders who want to audit the
+    verdict.
   </p>
 
-  <figure class="annotated-figure">
-    <div class="annotated-figure__media">
-      <div class="phone">
-        <Picture
-          src={hourByHourImg}
-          formats={pictureFormats}
-          widths={pictureWidths}
-          sizes={pictureSizes}
-          alt="Hour-by-Hour panel with a ride-quality chart, a Now marker on the current hour, and Today’s Kit below."
-        />
-      </div>
-      <ul class="annotation-list" aria-label="Hour by Hour annotations">
-        {
-          hourlyAnnotations.map((a) => (
-            <li
-              class:list={[
-                "annotation-list__item",
-                `annotation-list__item--${a.position}`,
-              ]}
-            >
-              <Badge variant="outline" class="annotation-badge">
-                {a.label}
-              </Badge>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+  <figure>
+    <img
+      src={hourlyKitNumbersImg.src}
+      alt="Wheely Weather hour-by-hour ride-quality chart with a POOR sticker, Today's kit guidance, and The numbers cards showing raw weather signals."
+    />
     <figcaption>
-      The chart reads as a window, not a forecast: ride quality by hour, a Now
-      marker, and kit guidance below.
+      The hour-by-hour chart reads as a window, not a forecast: ride quality by
+      hour, a Now marker, and kit guidance below.
     </figcaption>
   </figure>
 
-  <figure class="annotated-figure">
-    <div class="annotated-figure__media">
-      <div class="phone">
-        <Picture
-          src={weekAheadImg}
-          formats={pictureFormats}
-          widths={pictureWidths}
-          sizes={pictureSizes}
-          alt="The Week Ahead panel showing eight days of ride ratings with the best riding days highlighted."
-        />
-      </div>
-      <ul class="annotation-list" aria-label="Week Ahead annotations">
-        {
-          weekAheadAnnotations.map((a) => (
-            <li
-              class:list={[
-                "annotation-list__item",
-                `annotation-list__item--${a.position}`,
-              ]}
-            >
-              <Badge variant="outline" class="annotation-badge">
-                {a.label}
-              </Badge>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-    <figcaption>
-      When today is off the table, the Week Ahead points to the day worth
-      watching.
-    </figcaption>
-  </figure>
-
-  <h2>Rebuilding for iOS</h2>
+  <h2>Building Cross-Platform with Expo</h2>
   <p>
-    The idea started on the web, but the daily use case belongs on a phone. I
-    moved it to native iOS for on-device location, a faster pre-ride glance, and
-    a watchOS companion over WatchConnectivity.
+    One Expo Router + React Native codebase ships iOS, Android, and web. The web
+    build is live at{" "}
+    <a href="https://wheelyweather.app" target="_blank" rel="noreferrer">
+      wheelyweather.app
+    </a>{" "}
+    on Cloudflare Workers.
   </p>
   <p>
-    The information architecture carried over: verdict first, raw evidence close
-    to the recommendation, and riding windows when conditions fall short.
-    Forecast data comes from Open-Meteo and the National Weather Service, with
-    air-quality and alert signals where they affect the ride verdict.
+    A shared, framework-agnostic TypeScript scoring domain in{" "}
+    <code>src/domain/</code> holds the ride-quality logic and plain-language
+    copy, feeding every platform from the same source. Theme-aware components
+    drive the light/dark design system without hardcoded colors.
   </p>
   <p>
-    I split the build across shared forecast logic, design tokens, and SwiftUI
-    views for the dashboard, location gate, and riding-window panels. Mock
-    scenarios let me test the UI before live weather data is wired in.
+    Data comes from Open-Meteo by default, with Apple WeatherKit on iOS through
+    a custom Expo native module (<code>modules/apple-weatherkit</code>).
+    Geocoding uses Nominatim on web and Apple MapKit on iOS; AQI stays on
+    Open-Meteo across all platforms. Acclimatization baselines come from 30 days
+    of Open-Meteo temperatures.
   </p>
   <p>
-    AI-assisted coding tools (Cursor, Claude Code, Codex, and OpenCode) helped
-    me move faster from product sketches to working UI.
+    The idea started as an Astro/React web app that validated the verdict-first
+    model, then a short native SwiftUI experiment. Consolidating on Expo gave
+    one codebase across platforms without giving up native capabilities where
+    they matter.
   </p>
   <p>
-    The earlier web app on Astro and React (still live at <a
-      href="https://wheelyweather.app"
-      target="_blank"
-      rel="noreferrer">wheelyweather.app</a
-    >) tested the verdict-first approach on Cloudflare Pages before the native
-    rewrite.
+    Tooling maturity keeps the build honest: Prettier, ESLint with{" "}
+    <code>--max-warnings 0</code>, strict TypeScript, Vitest unit tests, a
+    Storybook component workshop, Playwright end-to-end tests, and GitHub
+    Actions CI. AI-assisted coding tools (Cursor, Claude Code, Codex, and
+    OpenCode) helped move faster from product sketches to working UI.
   </p>
 
   <h2>Outcome</h2>
   <p>
-    I use the web app and early native builds before rides now. That is enough
-    proof to keep refining the model and pushing the native version forward.
+    I use the app across iOS and web before rides now. The single-codebase
+    approach means a fix or feature lands everywhere at once, and the shared
+    scoring domain keeps the verdict consistent whether I'm on my phone or
+    checking the web app at my desk.
   </p>
   <p>
     The useful pattern was restraint: score the weakest signal, lead with a
     verdict, and keep the rest of the forecast in supporting roles.
   </p>
 </CaseStudy>
-
-<style>
-  /* Phone-shaped display wrapper around portrait screenshots. */
-  .phone {
-    width: 100%;
-    max-width: 20rem;
-    margin: 0 auto;
-    aspect-ratio: 9 / 19.5;
-    overflow: hidden;
-    border-radius: 1.125rem;
-    border: 1px solid var(--border);
-    background: var(--background);
-  }
-
-  .phone :global(picture),
-  .phone :global(img) {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-  }
-
-  /* Cropped variant for the verdict pair: focuses on the verdict card. The
-     two screenshots differ in height, so a fade keeps either crop from
-     slicing through content. */
-  .phone--cropped {
-    aspect-ratio: 4 / 4.6;
-    max-width: 22rem;
-  }
-
-  .phone--cropped :global(img) {
-    mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
-  }
-
-  .verdict-pair__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    justify-items: center;
-  }
-
-  @media (min-width: 640px) {
-    .verdict-pair__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
-  }
-
-  /* Annotated figure: image + side annotations on desktop. */
-  .annotated-figure__media {
-    position: relative;
-  }
-
-  /* Annotations need their connector lines to mean anything; below md the
-     figcaption carries the information instead. */
-  .annotation-list {
-    display: none;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .annotation-badge {
-    width: 100%;
-    height: auto;
-    min-height: 1.75rem;
-    justify-content: flex-start;
-    border-color: var(--border);
-    background: color-mix(in oklch, var(--background) 92%, transparent);
-    padding: 0.3125rem 0.625rem;
-    text-align: left;
-    white-space: normal;
-    font-size: 0.75rem;
-    line-height: 1.25;
-    color: var(--foreground);
-    backdrop-filter: blur(10px);
-  }
-
-  @media (min-width: 768px) {
-    .annotated-figure__media {
-      /* Carve out side gutters by constraining the inner phone column. */
-    }
-
-    .annotation-list {
-      position: absolute;
-      inset: 0;
-      display: block;
-      margin: 0;
-      pointer-events: none;
-    }
-
-    /* Fixed width (not max-width) so the connector dot, offset by 100% of the
-       item, lands at a position independent of how long the label text is. The
-       content column is a fixed 45rem at this breakpoint with the 20rem phone
-       centered, so --reach alone determines where each dot sits on the image. */
-    .annotation-list__item {
-      position: absolute;
-      width: 12rem;
-      --reach: 2.25rem;
-    }
-
-    .annotation-list__item::before {
-      position: absolute;
-      top: 50%;
-      width: var(--reach);
-      height: 1px;
-      background: color-mix(in oklch, var(--foreground) 35%, transparent);
-      content: "";
-    }
-
-    .annotation-list__item::after {
-      position: absolute;
-      top: calc(50% - 0.1875rem);
-      width: 0.375rem;
-      height: 0.375rem;
-      border-radius: 999px;
-      background: var(--foreground);
-      content: "";
-    }
-
-    /* The Numbers panel: annotations alternate sides. "Raw signals stay
-       visible" gestures at the grid from the right; "Scored on the weakest
-       signal" reaches from the left to the POOR flag on the Dewpoint card. */
-    .annotation-list__item--numbers-1 {
-      top: 14%;
-      right: 0;
-      --reach: 3.5rem;
-    }
-
-    .annotation-list__item--numbers-2 {
-      top: 42%;
-      left: 0;
-      --reach: 6.5rem;
-    }
-
-    /* Hour by Hour: single annotation pointing at the descending curve. */
-    .annotation-list__item--hourly-1 {
-      top: 19%;
-      right: 0;
-      --reach: 4.5rem;
-    }
-
-    /* Week Ahead: annotation pointing at the highlighted best ride day. */
-    .annotation-list__item--week-1 {
-      top: 30%;
-      left: 0;
-      --reach: 3rem;
-    }
-
-    /* Left-side annotations: connector extends to the right. */
-    .annotation-list__item--numbers-2::before,
-    .annotation-list__item--week-1::before {
-      left: 100%;
-    }
-
-    .annotation-list__item--numbers-2::after,
-    .annotation-list__item--week-1::after {
-      left: calc(100% + var(--reach));
-    }
-
-    /* Right-side annotations: connector extends to the left. */
-    .annotation-list__item--numbers-1::before,
-    .annotation-list__item--hourly-1::before {
-      right: 100%;
-    }
-
-    .annotation-list__item--numbers-1::after,
-    .annotation-list__item--hourly-1::after {
-      right: calc(100% + var(--reach));
-    }
-  }
-</style>
