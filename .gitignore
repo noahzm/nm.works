@@ -28,6 +28,7 @@ scripts/.screenshots-tmp/
 
 # local agent/tool settings
 .claude/
+.kilo/
 
 # playwright (unused today; safe to ignore if enabled later)
 test-results/
