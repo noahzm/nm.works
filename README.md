@@ -3,17 +3,21 @@
 Portfolio site for Noah Michaels, a design technologist working across product UI,
 front-end development, mobile, information architecture, and visual systems.
 
-Built as a static Astro site with React components where needed, TypeScript,
-Tailwind CSS v4, and Cloudflare Pages deployment.
+Built as a static Astro site with TypeScript and Tailwind CSS v4, and Cloudflare Pages deployment.
 
 ## Stack
 
-- Astro 6 static output
-- React 19 for interactive components
+- Astro 7 static output
 - TypeScript
 - Tailwind CSS v4 through the Vite plugin
-- Radix UI primitives with custom CVA-based components
+- CVA-based styling with tailwind-merge
 - Cloudflare Pages project `nm-works`
+
+## SEO & Performance
+
+- Sitemap auto-generated via `@astrojs/sitemap` integration
+- Dynamic `robots.txt` generated from `astro.config.mjs` site value
+- Prefetch enabled for faster client-side navigation
 
 ## Commands
 
@@ -23,13 +27,12 @@ npm run build         # run site checks, then build to dist/
 npm run preview       # serve the production build locally
 npm run check:site    # verify project/page parity and asset hygiene
 npm run typecheck     # run astro check
-npm run lint          # lint TypeScript and TSX files
-npm run format        # format TS, TSX, and Astro files
+npm run lint          # lint TypeScript and Astro files
+npm run format        # format TypeScript and Astro files
+npm run format:check  # verify formatting without writing
 ```
 
-No test runner is configured. Use `npm run typecheck` after edits to `.astro`,
-`.ts`, or `.tsx` files, and `npm run build` before shipping broader content or
-asset changes.
+No test runner is configured. Use `npm run typecheck` and `npm run format:check` to validate `.astro` and `.ts` files, and `npm run build` before shipping broader content or asset changes.
 
 ## Project Content
 
