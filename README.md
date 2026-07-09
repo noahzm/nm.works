@@ -1,7 +1,7 @@
 # nm.works
 
-Portfolio site for Noah Michaels, focused on product design, front-end
-development, mobile work, information architecture, and visual systems.
+Portfolio site for Noah Michaels, a design technologist working across product UI,
+front-end development, mobile, information architecture, and visual systems.
 
 Built as a static Astro site with React components where needed, TypeScript,
 Tailwind CSS v4, and Cloudflare Pages deployment.
