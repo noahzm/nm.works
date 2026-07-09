@@ -70,7 +70,7 @@ const projectImpacts: Record<string, string> = {
 
       <div class="grid grid-cols-1 gap-y-14">
         {
-          selectedWork.map((project) => (
+          selectedWork.map((project, index) => (
             <a
               href={`/projects/${project.slug}`}
               aria-label={`View ${project.title}`}
@@ -97,6 +97,7 @@ const projectImpacts: Record<string, string> = {
                 project={project}
                 widths={[600, 1000]}
                 sizes="(min-width: 768px) 768px, 100vw"
+                priority={index === 0}
               />
             </a>
           ))
