@@ -6,15 +6,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "npm run check:site && astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "check:site": "node scripts/check-site-invariants.mjs",
     "lint": "eslint \"**/*.{ts,astro}\"",
     "format": "prettier --write \"**/*.{ts,astro}\"",
     "format:check": "prettier --check \"**/*.{ts,astro}\"",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "generate-types": "wrangler types",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^14.1.2",
     "@fontsource-variable/archivo": "^5.2.8",
     "@iconify-json/lucide": "^1.2.114",
     "@tailwindcss/vite": "^4.3.0",
@@ -39,7 +42,8 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4",
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "wrangler": "^4.109.0"
   },
   "overrides": {
     "yaml": "^2.9.0"
