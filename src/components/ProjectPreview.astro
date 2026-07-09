@@ -8,6 +8,7 @@ interface Props {
   widths?: number[]
   sizes?: string
   class?: string
+  priority?: boolean
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   widths = [600, 1000],
   sizes = "(min-width: 768px) 768px, 100vw",
   class: className,
+  priority,
 } = Astro.props
 
 const hasImage = project.image && project.imageAlt
@@ -29,7 +31,8 @@ const hasImage = project.image && project.imageAlt
           formats={["avif", "webp"]}
           widths={widths}
           sizes={sizes}
-          alt=""
+          alt={project.imageAlt ?? ""}
+          priority={priority ? true : undefined}
           style={
             project.imageObjectPosition
               ? `object-position: ${project.imageObjectPosition}`
