@@ -56,10 +56,10 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Solo design technologist — design and cross-platform (Expo) build",
+    role: "Solo design technologist. Design and cross-platform (Expo) build",
     year: "2025",
     summary:
-      "Independent cycling-weather app for iOS, Android, and web, built from one Expo Router codebase — a verdict-first UI, a shared TypeScript scoring domain, and Open-Meteo plus Apple WeatherKit data.",
+      "A cycling-weather app that gives riders a clear go/no-go verdict instead of raw forecasts. Built cross-platform with Expo for iOS, Android, and web from one codebase.",
     description:
       "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It keeps humidity and wind visible instead of burying them in a generic forecast stack.",
     tags: ["Expo & React Native", "TypeScript", "Design systems", "UX/UI"],
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Design technologist — internal workflow and variable-data tooling",
+    role: "Design technologist. Internal workflow and variable-data tooling",
     year: "2021–present",
     summary:
       "Internal variable-data print workflow for all 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
@@ -114,7 +114,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
-    role: "Design technologist — web build and print production",
+    role: "Design technologist. Web build and print production",
     year: "2018–2020",
     summary:
       "Responsive homepage order-entry flow for a print shop website, routing customers from job intent to the right service category or intake form.",
