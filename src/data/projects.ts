@@ -56,7 +56,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Solo product design and iOS development",
+    role: "Solo design technologist — design and iOS/web build",
     year: "2025",
     summary:
       "Independent cycling-weather product for iOS, watchOS, and web, with a verdict-first UI, shared forecast logic, and Open-Meteo and National Weather Service data.",
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Print & digital production / internal workflow tools",
+    role: "Design technologist — internal workflow and variable-data tooling",
     year: "2021–present",
     summary:
       "Internal variable-data print workflow for all 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
@@ -114,7 +114,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
-    role: "Web developer / graphic design and print production generalist",
+    role: "Design technologist — web build and print production",
     year: "2018–2020",
     summary:
       "Responsive homepage order-entry flow for a print shop website, routing customers from job intent to the right service category or intake form.",

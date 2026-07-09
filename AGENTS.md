@@ -16,7 +16,7 @@ This is a static Astro portfolio site. Route files live in `src/pages/`, with ca
 
 ## Coding Style & Naming Conventions
 
-Use Astro components for UI and TypeScript for shared data and helpers. Follow the existing two-space indentation and double-quoted import/string style enforced by Prettier. Prefer the `@/` alias for imports from `src/`. Name Astro components in PascalCase, utility files in camel or kebab case, and project slugs in lowercase kebab case. Keep Tailwind classes readable and let `prettier-plugin-tailwindcss` sort them.
+Use Astro components for UI and TypeScript for shared data and helpers. Follow the existing two-space indentation, no-semicolon, double-quoted style enforced by Prettier (see `.prettierrc`). Prefer the `@/` alias for imports from `src/`. Name Astro components in PascalCase, utility files in camel or kebab case, and project slugs in lowercase kebab case. Keep Tailwind classes readable and let `prettier-plugin-tailwindcss` sort them.
 
 ## Testing Guidelines
 
