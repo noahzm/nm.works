@@ -58,7 +58,7 @@ export const projects: Project[] = [
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
     role: "Design Engineer (solo). Product design and cross-platform (Expo) implementation",
-    year: "2025",
+    year: "2026",
     teaser:
       "Cross-platform cycling weather app that turns forecast noise into a clear ride/no-ride decision.",
     summary:
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
     role: "Design Engineer for internal operations. Workflow architecture and variable-data tooling",
-    year: "2021–present",
+    year: "2026",
     teaser:
       "Governed stationery templates for all 170 NCGA members with print-accurate output and repeatable production quality.",
     summary:
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
     role: "Design Engineer. Information architecture, responsive UI, and implementation",
-    year: "2018–2020",
+    year: "2019",
     teaser:
       "Order-entry redesign that routes customers to the right print intake path with less guesswork.",
     summary:
