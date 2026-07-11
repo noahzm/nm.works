@@ -65,10 +65,10 @@ function isExternalLink(link: ProjectHeaderLink) {
       label={`${project.title} disciplines`}
     />
   </div>
-  <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-5xl">
+  <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
     {title}
   </h1>
-  <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+  <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
     {description}
   </p>
   <dl
@@ -86,7 +86,7 @@ function isExternalLink(link: ProjectHeaderLink) {
           <dd
             class:list={[
               "mt-1",
-              item.fullWidth ? "leading-relaxed font-normal" : "font-normal",
+              "font-normal",
             ]}
           >
             {item.value}
@@ -161,10 +161,10 @@ function isExternalLink(link: ProjectHeaderLink) {
   {
     project.whatICanShow && (
       <div class="mt-5 max-w-2xl rounded-md border border-border bg-muted/30 p-4">
-        <p class="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+        <p class="text-xs font-bold text-muted-foreground uppercase">
           What I can show
         </p>
-        <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+        <p class="mt-1.5 text-sm text-muted-foreground">
           {project.whatICanShow}
         </p>
       </div>

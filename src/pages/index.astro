@@ -2,6 +2,7 @@
 import Layout from "@/layouts/main.astro"
 import ProjectPreview from "@/components/ProjectPreview.astro"
 import CTA from "@/components/CTA.astro"
+import SectionHeader from "@/components/SectionHeader.astro"
 import Separator from "@/components/ui/separator.astro"
 import { getProject } from "@/data/projects"
 
@@ -9,14 +10,6 @@ const selectedWork = [
   getProject("wheely-weather")!,
   getProject("ncga-stationery-templates")!,
   getProject("creative-printing-order-flow")!,
-]
-
-const proofPoints = [
-  "Workflow UX",
-  "Code prototypes",
-  "Internal tools",
-  "Production systems",
-  "Design systems",
 ]
 
 const projectImpacts: Record<string, string> = {
@@ -30,44 +23,29 @@ const projectImpacts: Record<string, string> = {
 ---
 
 <Layout>
-  <div class="mx-auto max-w-3xl px-6 pt-4 pb-12 sm:pb-16">
+  <div class="content-shell pt-4 pb-12 sm:pb-16">
     <section class="pb-10 md:pb-14">
       <h1 class="max-w-3xl text-xl leading-relaxed text-foreground">
-        I’m a design technologist who works in code. I make internal tools,
-        production systems, and interfaces where the details have to be right.
+        I’m a Design Engineer who works in code. I ship product interfaces,
+        internal tools, and production systems where decision clarity and detail
+        both matter.
       </h1>
       <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        I take a project from interface design through front-end code, across
-        digital products and print production.
+        I take projects from product and interaction direction through front-end
+        implementation, with a focus on usable systems that hold up in
+        production.
       </p>
-      <ul
-        class="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground"
-        aria-label="Portfolio focus areas"
-      >
-        {
-          proofPoints.map((point) => (
-            <li class="flex items-center gap-2">
-              <span class="h-1.5 w-1.5 rounded-full bg-foreground/70" />
-              <span>{point}</span>
-            </li>
-          ))
-        }
-      </ul>
     </section>
     <Separator />
 
     <section class="py-12" aria-labelledby="work-title">
-      <div class="mb-10">
-        <h2 id="work-title" class="text-2xl font-bold tracking-tight">
-          Selected work
-        </h2>
-        <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Case studies and shipped projects across product UI, information
-          architecture, and variable-data systems.
-        </p>
-      </div>
+      <SectionHeader
+        titleId="work-title"
+        title="Selected work"
+        description="Case studies and shipped work across product UI, internal tooling, information architecture, and variable-data systems."
+      />
 
-      <div class="grid grid-cols-1 gap-y-14">
+      <div class="mt-10 grid grid-cols-1 gap-y-14">
         {
           selectedWork.map((project, index) => (
             <a
@@ -77,14 +55,14 @@ const projectImpacts: Record<string, string> = {
             >
               <div class="mb-5 flex items-start justify-between gap-4">
                 <div>
-                  <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                  <h3 class="text-xl font-bold group-hover:underline">
                     {project.title}
                   </h3>
-                  <p class="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-                    {project.summary}
+                  <p class="mt-2 max-w-prose text-sm text-muted-foreground">
+                    {project.teaser ?? project.summary}
                   </p>
-                  <p class="mt-3 max-w-prose text-sm leading-relaxed text-foreground">
-                    <span class="font-bold">Impact:</span>{" "}
+                  <p class="mt-2 max-w-prose text-sm text-foreground">
+                    <span class="font-bold">Outcome:</span>{" "}
                     {projectImpacts[project.slug]}
                   </p>
                 </div>
@@ -106,7 +84,7 @@ const projectImpacts: Record<string, string> = {
       <div class="mt-12 flex flex-wrap items-baseline gap-x-6 gap-y-3">
         <a
           href="/projects"
-          class="-my-3 inline-block rounded-sm py-3 text-sm font-normal text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          class="subtle-link font-normal"
         >
           All work →
         </a>
@@ -114,7 +92,7 @@ const projectImpacts: Record<string, string> = {
           href="https://github.com/noahzm/nm.works"
           target="_blank"
           rel="noreferrer"
-          class="-my-3 inline-block rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          class="subtle-link"
         >
           View this site’s source on GitHub
         </a>
@@ -122,7 +100,7 @@ const projectImpacts: Record<string, string> = {
     </section>
 
     <CTA
-      description="Open to design technologist and design engineering roles where I can take an idea from concept through to working front-end code."
+      description="Open to Design Engineer roles where I can take an idea from product concept to working front-end software."
     />
   </div>
 </Layout>

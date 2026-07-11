@@ -186,10 +186,10 @@ const snapshotItems = [
     production line accepts as is.
   </p>
   <p>
-    Governing the variable data through the template also reduced mistakes on
-    repeat stationery orders. Staff no longer maintain parallel files that drift
-    in spacing and color; edits stay inside the template rules production
-    already enforces.
+    Governing variable data through the template also reduced repeat-order
+    mistakes. Staff no longer maintain parallel files that drift in spacing and
+    color; edits stay inside explicit production rules and output stays
+    consistent run to run.
   </p>
   <p>
     This case study covers the letterhead and envelope editor slice of broader
@@ -215,7 +215,6 @@ const snapshotItems = [
     margin-top: 0.75rem;
     color: var(--muted-foreground);
     font-size: 0.875rem;
-    line-height: 1.5;
   }
 
   .template-flow {
@@ -237,15 +236,12 @@ const snapshotItems = [
     color: var(--muted-foreground);
     font-size: 0.6875rem;
     font-weight: 700;
-    letter-spacing: 0.16em;
-    line-height: 1.2;
     text-transform: uppercase;
   }
 
   .template-flow__node strong {
     display: block;
     font-size: 0.9375rem;
-    line-height: 1.35;
   }
 
   .template-flow__connector {

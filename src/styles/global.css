@@ -1,12 +1,42 @@
 @import "tailwindcss";
-@import "@fontsource-variable/archivo/wght.css";
-@import "@fontsource-variable/archivo/wght-italic.css";
+
+@font-face {
+    font-family: "GT America";
+    src: url("/fonts/gt-america-regular.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GT America";
+    src: url("/fonts/gt-america-regular-italic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GT America";
+    src: url("/fonts/gt-america-bold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GT America";
+    src: url("/fonts/gt-america-bold-italic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "GT America", ui-sans-serif, system-ui, sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -121,9 +151,31 @@
     @apply border-border outline-ring/50;
     }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     }
   html {
     @apply font-sans;
     }
+}
+
+@layer components {
+  .content-shell {
+    @apply mx-auto max-w-3xl px-6;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold tracking-tight;
+  }
+
+  .section-description {
+    @apply mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground;
+  }
+
+  .subtle-link {
+    @apply -my-3 inline-block rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none;
+  }
+
+  .project-listing-link {
+    @apply grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr];
+  }
 }

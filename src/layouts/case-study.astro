@@ -61,10 +61,10 @@ const next = hasNextProject
             class="group flex items-center justify-between gap-6 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none [&_svg]:size-4 [&_svg]:shrink-0"
           >
             <span>
-              <span class="block text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+              <span class="block text-xs font-bold text-muted-foreground uppercase">
                 Next project
               </span>
-              <span class="mt-1 block text-base font-bold tracking-tight transition-colors group-hover:text-muted-foreground">
+              <span class="mt-1 block text-base font-bold transition-colors group-hover:text-muted-foreground">
                 View {next.title}
               </span>
             </span>
@@ -86,36 +86,46 @@ const next = hasNextProject
     line-height: 1.7;
   }
   .case-study > * + * {
-    margin-top: 0.875rem;
+    margin-top: 1.125rem;
   }
   .case-study p {
-    max-width: 65ch;
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+  .case-study h2 + p,
+  .case-study h3 + p {
+    margin-top: 0.5rem;
+  }
+  .case-study p + p {
+    margin-top: 0.875rem;
   }
   .case-study h2 {
-    margin-top: 3.25rem;
-    margin-bottom: 1.125rem;
+    margin-top: clamp(2.5rem, 5vw, 3.25rem);
+    margin-bottom: 1rem;
     font-size: 0.875rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted-foreground);
+    scroll-margin-top: 6rem;
   }
   .case-study h2:first-child {
     margin-top: 0;
   }
   .case-study h3 {
-    margin-top: 2.25rem;
+    margin-top: clamp(1.875rem, 3.5vw, 2.25rem);
     margin-bottom: 0.75rem;
     font-size: 1.125rem;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    line-height: 1.4;
   }
   .case-study ul {
     list-style: disc;
+    max-width: 62ch;
     padding-left: 1.25rem;
   }
   .case-study ul li + li {
-    margin-top: 0.375rem;
+    margin-top: 0.45rem;
   }
   .case-study figure {
     margin-top: 1.75rem;

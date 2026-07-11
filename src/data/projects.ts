@@ -33,6 +33,7 @@ export interface Project {
   disciplines: ProjectDiscipline[]
   role: string
   year: string
+  teaser?: string
   summary: string
   description: string
   tags: string[]
@@ -56,16 +57,18 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Solo design technologist. Design and cross-platform (Expo) build",
+    role: "Design Engineer (solo). Product design and cross-platform (Expo) implementation",
     year: "2025",
+    teaser:
+      "Cross-platform cycling weather app that turns forecast noise into a clear ride/no-ride decision.",
     summary:
-      "A cycling-weather app that gives riders a clear go/no-go verdict instead of raw forecasts. Built cross-platform with Expo for iOS, Android, and web from one codebase.",
+      "A cycling weather app that gives riders a clear go/no-go verdict instead of forcing raw forecast parsing. Built cross-platform with Expo for iOS, Android, and web from one codebase.",
     description:
-      "Wheely Weather turns forecast data into ride-quality verdicts, hourly windows, and kit guidance. It keeps humidity and wind visible instead of burying them in a generic forecast stack.",
+      "Wheely Weather turns forecast data into ride-quality decisions, hourly windows, and kit guidance. It keeps key signals visible while reducing decision friction before rides.",
     tags: ["Expo & React Native", "TypeScript", "Design systems", "UX/UI"],
     image: wheelyHeroImg,
     imageAlt:
-      "Wheely Weather showing a green 'CLEAR FOR RIDING' ideal-conditions verdict for Portland.",
+      "Wheely Weather showing a green ‘CLEAR FOR RIDING’ ideal-conditions verdict for Portland.",
     liveUrl: "https://wheelyweather.app",
     liveUrlLabel: "View live web app",
     githubUrl: "https://github.com/noahzm/wheely-weather",
@@ -87,12 +90,14 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Design technologist. Internal workflow and variable-data tooling",
+    role: "Design Engineer for internal operations. Workflow architecture and variable-data tooling",
     year: "2021–present",
+    teaser:
+      "Governed stationery templates for all 170 NCGA members with print-accurate output and repeatable production quality.",
     summary:
-      "Internal variable-data print workflow for all 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and PDF handoff into mail merge.",
+      "Internal variable-data print workflow for all 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and reliable PDF handoff into mail merge.",
     description:
-      "A constrained template tool for the North Carolina General Assembly print shop, not a document editor. One LegislatorRecord feeds locked letterhead and envelope layouts that staff can edit only within production rules.",
+      "A constrained template system for the North Carolina General Assembly print shop, not a freeform document editor. One LegislatorRecord feeds locked letterhead and envelope layouts that staff can edit only within production rules.",
     tags: ["Information architecture", "Variable data", "Print production"],
     image: ncgaLetterheadImg,
     imageAlt:
@@ -114,12 +119,14 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
-    role: "Design technologist. Web build and print production",
+    role: "Design Engineer. Information architecture, responsive UI, and implementation",
     year: "2018–2020",
+    teaser:
+      "Order-entry redesign that routes customers to the right print intake path with less guesswork.",
     summary:
-      "Responsive homepage order-entry flow for a print shop website, routing customers from job intent to the right service category or intake form.",
+      "Responsive homepage order-entry flow for a print shop website, routing customers from job intent to the correct service category or intake form.",
     description:
-      "Redesigned Creative Printing’s homepage order path around an icon-grid entry point for print, sign, multimedia, website, and service requests.",
+      "Redesigned Creative Printing’s homepage order path around an icon-grid entry point for print, sign, multimedia, website, and service requests to reduce decision friction.",
     tags: ["Workflow design", "IA", "Responsive web"],
     image: creativePrintingImg,
     imageAlt:
@@ -142,6 +149,8 @@ export const projects: Project[] = [
     disciplines: ["brand-apparel"],
     role: "Brand and apparel design",
     year: "2019",
+    teaser:
+      "DIY skate-inspired apparel identity spanning graphics, print, and production.",
     summary:
       "A skate-inspired DIY apparel project with original graphics and screen-printed shirts. Visual identity carried through production, materials, and finished run.",
     description:
