@@ -2,6 +2,7 @@
 import Layout from "@/layouts/main.astro"
 import ProjectPreview from "@/components/ProjectPreview.astro"
 import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
+import SectionHeader from "@/components/SectionHeader.astro"
 import Badge from "@/components/ui/badge.astro"
 import Separator from "@/components/ui/separator.astro"
 import {
@@ -13,11 +14,11 @@ import {
 
 <Layout
   title="Projects · Noah Michaels"
-  description="Design technologist case studies spanning product UI, information architecture, print and variable-data systems, and shipped front-end code by Noah Michaels."
+  description="Design Engineer case studies spanning product UI, information architecture, print and variable-data systems, and shipped front-end code by Noah Michaels."
 >
-  <div class="mx-auto max-w-3xl px-6 pt-4 pb-14">
+  <div class="content-shell pt-4 pb-14">
     <section aria-labelledby="case-studies-title">
-      <h1 id="case-studies-title" class="text-2xl font-bold tracking-tight">
+      <h1 id="case-studies-title" class="section-title">
         Case studies
       </h1>
       <div class="mt-8 divide-y">
@@ -26,7 +27,7 @@ import {
             <a
               href={`/projects/${project.slug}`}
               aria-label={`View ${project.title}`}
-              class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
+              class="group project-listing-link"
             >
               <ProjectPreview
                 project={project}
@@ -40,11 +41,11 @@ import {
                     label={`${project.title} disciplines`}
                   />
                 </div>
-                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                <h3 class="text-xl font-bold group-hover:underline">
                   {project.title}
                 </h3>
-                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                  {project.summary}
+                <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
+                  {project.teaser ?? project.summary}
                 </p>
               </div>
             </a>
@@ -57,13 +58,11 @@ import {
       upcomingCaseStudies.length > 0 && (
         <section class="mt-14 pt-12" aria-labelledby="upcoming-title">
           <Separator class="-mt-12 mb-12" />
-          <h2 id="upcoming-title" class="text-2xl font-bold tracking-tight">
-            In progress
-          </h2>
-          <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Additional case studies are in progress. Published entries cover
-            shipped work.
-          </p>
+          <SectionHeader
+            titleId="upcoming-title"
+            title="In progress"
+            description="Additional case studies are in progress. Published entries focus on shipped product and systems work."
+          />
           <div class="mt-8 divide-y">
             {upcomingCaseStudies.map((project) => (
               <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
@@ -82,11 +81,11 @@ import {
                       Coming soon
                     </Badge>
                   </div>
-                  <h3 class="text-xl font-bold tracking-tight">
+                  <h3 class="text-xl font-bold">
                     {project.title}
                   </h3>
-                  <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                    {project.summary}
+                  <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
+                    {project.teaser ?? project.summary}
                   </p>
                 </div>
               </article>
@@ -98,16 +97,14 @@ import {
 
     <section class="mt-14 pt-12" aria-labelledby="visual-work-title">
       <Separator class="-mt-12 mb-12" />
-      <h2 id="visual-work-title" class="text-2xl font-bold tracking-tight">
-        Selected visual work
-      </h2>
+      <SectionHeader titleId="visual-work-title" title="Selected visual work" />
       <div class="mt-8 divide-y">
         {
           visualWork.map((project) => (
             <a
               href={`/projects/${project.slug}`}
               aria-label={`View ${project.title}`}
-              class="group grid gap-6 rounded-sm py-8 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none md:grid-cols-[14rem_1fr]"
+              class="group project-listing-link"
             >
               <ProjectPreview
                 project={project}
@@ -121,11 +118,11 @@ import {
                     label={`${project.title} disciplines`}
                   />
                 </div>
-                <h3 class="text-xl font-bold tracking-tight group-hover:underline">
+                <h3 class="text-xl font-bold group-hover:underline">
                   {project.title}
                 </h3>
-                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                  {project.summary}
+                <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
+                  {project.teaser ?? project.summary}
                 </p>
               </div>
             </a>

@@ -1,4 +1,5 @@
 ---
+import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
 import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
 import { getProject } from "@/data/projects"
@@ -6,6 +7,9 @@ import homeVerdictImg from "@/assets/projects/wheely-weather/home-verdict.png"
 import hourlyKitNumbersImg from "@/assets/projects/wheely-weather/hourly-kit-numbers.png"
 
 const project = getProject("wheely-weather")!
+const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
+const pictureWidths = [640, 960, 1280]
+const pictureSizes = "(min-width: 768px) 960px, 100vw"
 
 const snapshotItems = [
   {
@@ -37,7 +41,7 @@ const snapshotItems = [
 >
   <h2>Overview</h2>
   <p>
-    Wheely Weather answers one near-term riding question: <em
+    Wheely Weather solves one near-term product decision: <em
       >is it worth going now?</em
     > General forecasts show plenty of numbers, but riders kept coming back to three
     signals: dew point, feels-like temperature, and wind.
@@ -85,20 +89,23 @@ const snapshotItems = [
   </ul>
 
   <figure>
-    <img
-      src={homeVerdictImg.src}
-      alt="Wheely Weather showing a green 'CLEAR FOR RIDING' ideal-conditions verdict for Portland, with the start of the hourly ride-quality chart below."
+    <Picture
+      src={homeVerdictImg}
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+      alt="Wheely Weather showing a green ‘CLEAR FOR RIDING’ ideal-conditions verdict for Portland, with the start of the hourly ride-quality chart below."
     />
     <figcaption>
-      The verdict leads with color and plain language (green when it's worth
-      going, orange when it isn't) and names the limiting factor when the answer
+      The verdict leads with color and plain language (green when it’s worth
+      going, orange when it isn’t) and names the limiting factor when the answer
       is no.
     </figcaption>
   </figure>
 
   <h2 id="system-design">System Design</h2>
   <p>
-    The screen order follows the rider's question sequence instead of the shape
+    The screen order follows the rider’s question sequence instead of the shape
     of a forecast API: can I go, why did it get that rating, what should I wear?
     The verdict card uses color and a plain-language label rather than a numeric
     score, so the app makes the threshold call instead of handing it back to the
@@ -116,17 +123,20 @@ const snapshotItems = [
   <h2>Riding Windows</h2>
   <p>
     A bad current rating should still answer the next question. The hour-by-hour
-    view turns "not now" into a specific window, showing ride quality tinted by
+    view turns “not now” into a specific window, showing ride quality tinted by
     temperature with a Now marker and POOR stickers on bad stretches. Below it,
-    "Today's kit" translates the same data into clothing guidance, and "The
-    numbers" keeps every raw signal visible for riders who want to audit the
+    “Today’s kit” translates the same data into clothing guidance, and “The
+    numbers” keeps every raw signal visible for riders who want to audit the
     verdict.
   </p>
 
   <figure>
-    <img
-      src={hourlyKitNumbersImg.src}
-      alt="Wheely Weather hour-by-hour ride-quality chart with a POOR sticker, Today's kit guidance, and The numbers cards showing raw weather signals."
+    <Picture
+      src={hourlyKitNumbersImg}
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+      alt="Wheely Weather hour-by-hour ride-quality chart with a POOR sticker, Today’s kit guidance, and The numbers cards showing raw weather signals."
     />
     <figcaption>
       The hour-by-hour chart reads as a window, not a forecast: ride quality by
@@ -173,9 +183,8 @@ const snapshotItems = [
   <h2>Outcome</h2>
   <p>
     I use the app across iOS and web before rides now. The single-codebase
-    approach means a fix or feature lands everywhere at once, and the shared
-    scoring domain keeps the verdict consistent whether I'm on my phone or
-    checking the web app at my desk.
+    approach means a fix or feature ships across platforms at once, and the
+    shared scoring domain keeps verdict behavior consistent on phone and web.
   </p>
   <p>
     The useful pattern was restraint: score the weakest signal, lead with a

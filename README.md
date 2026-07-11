@@ -34,6 +34,11 @@ npm run format:check  # verify formatting without writing
 
 No test runner is configured. Use `npm run typecheck` and `npm run format:check` to validate `.astro` and `.ts` files, and `npm run build` before shipping broader content or asset changes.
 
+## Copilot Workflow
+
+This repository is set up to use GitHub Copilot CLI for AI-assisted development.
+Local project settings for other AI coding tools are intentionally excluded.
+
 ## Project Content
 
 Project metadata lives in `src/data/projects.ts`. Add or update portfolio items
