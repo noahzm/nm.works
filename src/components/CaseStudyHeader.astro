@@ -65,10 +65,14 @@ function isExternalLink(link: ProjectHeaderLink) {
       label={`${project.title} disciplines`}
     />
   </div>
-  <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+  <h1
+    class="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl"
+  >
     {title}
   </h1>
-  <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+  <p
+    class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+  >
     {description}
   </p>
   <dl
@@ -83,14 +87,7 @@ function isExternalLink(link: ProjectHeaderLink) {
           ]}
         >
           <dt class="text-muted-foreground">{item.label}</dt>
-          <dd
-            class:list={[
-              "mt-1",
-              "font-normal",
-            ]}
-          >
-            {item.value}
-          </dd>
+          <dd class:list={["mt-1", "font-normal"]}>{item.value}</dd>
         </div>
       ))
     }
