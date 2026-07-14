@@ -60,7 +60,7 @@ export const projects: Project[] = [
     role: "Product Designer (solo). End-to-end design and cross-platform (Expo) implementation",
     year: "2026",
     teaser:
-      "Cross-platform cycling weather app that turns forecast noise into a clear ride/no-ride decision.",
+      "Cross-platform cycling weather app that transforms complex meteorological data into personalized ride recommendations.",
     summary:
       "A cycling weather app that gives riders a clear go/no-go verdict instead of forcing raw forecast parsing. Built cross-platform with Expo for iOS, Android, and web from one codebase.",
     description:
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     role: "Product Designer for internal operations. Workflow architecture and variable-data tooling",
     year: "2026",
     teaser:
-      "Governed stationery templates for all 170 NCGA members with print-accurate output and repeatable production quality.",
+      "A scalable design and layout system governing official assets for all 170 members of the state legislature with rigid production quality.",
     summary:
       "Internal variable-data print workflow for all 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and reliable PDF handoff into mail merge.",
     description:
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     role: "Product Designer. Information architecture, responsive UI, and implementation",
     year: "2019",
     teaser:
-      "Order-entry redesign that routes customers to the right print intake path with less guesswork.",
+      "End-to-end interface redesign that guides commercial customers through complex print production specifications with zero guesswork.",
     summary:
       "Responsive homepage order-entry flow for a print shop website, routing customers from job intent to the correct service category or intake form.",
     description:
