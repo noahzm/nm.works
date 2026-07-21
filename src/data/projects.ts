@@ -57,14 +57,14 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Product Designer (solo). End-to-end design and cross-platform (Expo) implementation",
+    role: "Solo product designer and developer, from first sketch to shipped app (Expo)",
     year: "2026",
     teaser:
-      "Cross-platform cycling weather app that transforms complex meteorological data into personalized ride recommendations.",
+      "A cycling weather app that answers one question: should I ride right now?",
     summary:
-      "A cycling weather app that gives riders a clear go/no-go verdict instead of forcing raw forecast parsing. Built cross-platform with Expo for iOS, Android, and web from one codebase.",
+      "A cycling weather app that gives riders a clear go/no-go verdict instead of a wall of forecast data. Designed and built with Expo for iOS, Android, and web from one codebase.",
     description:
-      "Wheely Weather turns forecast data into ride-quality decisions, hourly windows, and kit guidance. It keeps key signals visible while reducing decision friction before rides.",
+      "Wheely Weather turns forecast data into a simple ride verdict, the best hourly windows, and what to wear. The key numbers stay visible; the app just does the interpreting first.",
     tags: ["Expo & React Native", "TypeScript", "Design systems", "UX/UI"],
     image: wheelyHeroImg,
     imageAlt:
@@ -90,14 +90,14 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Product Designer for internal operations. Workflow architecture and variable-data tooling",
+    role: "Product designer for the print shop. Designed the workflow and built the tool",
     year: "2026",
     teaser:
-      "A scalable design and layout system governing official assets for all 170 members of the state legislature with rigid production quality.",
+      "A template system that keeps official stationery consistent and print-ready for all 170 members of the NC legislature.",
     summary:
-      "Internal variable-data print workflow for all 170 General Assembly members: governed letterhead and envelope layouts, print-accurate preview, and reliable PDF handoff into mail merge.",
+      "An internal print tool for all 170 General Assembly members: locked letterhead and envelope layouts, a print-accurate preview, and clean PDF handoff into mail merge.",
     description:
-      "A constrained template system for the North Carolina General Assembly print shop, not a freeform document editor. One LegislatorRecord feeds locked letterhead and envelope layouts that staff can edit only within production rules.",
+      "A constrained template system for the North Carolina General Assembly print shop, not a freeform editor. One record per legislator feeds locked letterhead and envelope layouts, so staff can update details without breaking the design.",
     tags: ["Information architecture", "Variable data", "Print production"],
     image: ncgaLetterheadImg,
     imageAlt:
@@ -119,14 +119,14 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
-    role: "Product Designer. Information architecture, responsive UI, and implementation",
+    role: "Product designer. Information architecture, responsive UI, and front-end build",
     year: "2019",
     teaser:
-      "End-to-end interface redesign that guides commercial customers through complex print production specifications with zero guesswork.",
+      "A homepage redesign that gets print customers from “I need a thing” to the right order form without guesswork.",
     summary:
-      "Responsive homepage order-entry flow for a print shop website, routing customers from job intent to the correct service category or intake form.",
+      "A responsive order-entry flow for a print shop’s website that routes customers from what they need to the right service category or intake form.",
     description:
-      "Redesigned Creative Printing’s homepage order path around an icon-grid entry point for print, sign, multimedia, website, and service requests to reduce decision friction.",
+      "I redesigned Creative Printing’s homepage around a simple icon grid of print, sign, multimedia, website, and service requests, so customers pick a path instead of hunting through pages.",
     tags: ["Workflow design", "IA", "Responsive web"],
     image: creativePrintingImg,
     imageAlt:
@@ -150,11 +150,11 @@ export const projects: Project[] = [
     role: "Brand and apparel design",
     year: "2019",
     teaser:
-      "DIY skate-inspired apparel identity spanning graphics, print, and production.",
+      "A DIY skate-inspired apparel brand: original graphics, screen printing, and a small production run.",
     summary:
-      "A skate-inspired DIY apparel project with original graphics and screen-printed shirts. Visual identity carried through production, materials, and finished run.",
+      "A skate-inspired DIY apparel project: original graphics, screen-printed shirts, and a visual identity carried all the way through production.",
     description:
-      "Grouch was a limited-run visual identity and apparel experiment built around a simple mark, bold colorways, and hands-on production.",
+      "Grouch was a limited-run identity and apparel experiment built around a simple mark, bold colorways, and hands-on production.",
     tags: ["Brand identity", "Apparel", "Print production"],
     image: grouchImg,
     imageAlt: "Orange Grouch T-shirt with a large black typographic mark.",

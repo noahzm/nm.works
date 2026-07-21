@@ -14,23 +14,33 @@ const selectedWork = [
 
 const projectImpacts: Record<string, string> = {
   "ncga-stationery-templates":
-    "Engineered a centralized, component-based template system that replaced fragmented files with a unified cross-functional workflow, maintaining strict compliance and print-accurate output for all 170 members.",
+    "Replaced a folder of fragmented files with one template system that produces compliant, print-accurate stationery for all 170 members of the NC legislature.",
   "wheely-weather":
-    "Architected a logic-driven, verdict-first experience that automates ride decisions, so cyclists can assess multi-variable conditions instantly instead of parsing raw forecast streams.",
+    "Turned raw forecast data into a clear go/no-go ride verdict, so cyclists get an answer at a glance instead of a wall of numbers.",
   "creative-printing-order-flow":
-    "Optimized the information architecture by replacing open-ended service browsing with an intuitive grid-based intake path, reducing ordering friction for commercial customers.",
+    "Replaced open-ended service browsing with a simple grid of entry points, so customers reach the right order form faster.",
 }
 ---
 
 <Layout>
   <div class="content-shell pt-4 pb-12 sm:pb-16">
-    <section class="pb-10 md:pb-14">
+    <section class="pb-10 md:pb-14" aria-label="About">
       <h1 class="max-w-3xl text-xl leading-relaxed text-foreground">
-        I’m a Technical Product Designer who bridges the gap between complex
-        interface design and functional code. I architect intuitive user
-        experiences, scalable design systems, and automated internal tools where
-        decision clarity and visual craft both matter.
+        I’m a product designer who also writes production code.
       </h1>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        I design interfaces, information architecture, and internal tools, then
+        build them, so what ships looks and works the way it was designed.
+      </p>
+      <p class="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        Right now that means a stationery template system for the North
+        Carolina General Assembly print shop and Wheely Weather, a cycling
+        weather app I designed and built for iOS, Android, and web.
+      </p>
+      <p class="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        I’m based in Raleigh, NC, with a degree in Graphic Arts &amp; Imaging
+        Technology from Appalachian State University.
+      </p>
     </section>
     <Separator />
 
@@ -38,7 +48,7 @@ const projectImpacts: Record<string, string> = {
       <SectionHeader
         titleId="work-title"
         title="Selected work"
-        description="Case studies and shipped work across product UI, internal tooling, information architecture, and variable-data systems."
+        description="Case studies across product UI, internal tools, and print systems. All of it shipped."
       />
 
       <div class="mt-10 grid grid-cols-1 gap-y-14">
@@ -91,7 +101,7 @@ const projectImpacts: Record<string, string> = {
     </section>
 
     <CTA
-      description="Open to Technical Product Design and Design Engineering roles where I can take an ambiguous idea from concept to polished, production-ready software."
+      description="Open to product design, UX, and design engineering roles. I’m at my best taking a rough idea all the way to polished, shipped software."
     />
   </div>
 </Layout>
