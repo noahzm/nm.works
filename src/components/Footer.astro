@@ -1,0 +1,44 @@
+---
+import Separator from "@/components/ui/separator.astro"
+
+const year = new Date().getFullYear()
+
+const links = [
+  { label: "Projects", href: "/projects", external: false },
+  {
+    label: "hi@nm.works",
+    href: "mailto:hi@nm.works?subject=Hi%20from%20nm.works",
+    external: false,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/noahzm/",
+    external: true,
+  },
+  { label: "GitHub", href: "https://github.com/noahzm", external: true },
+]
+---
+
+<footer class="content-shell pb-14">
+  <Separator />
+  <div
+    class="flex flex-col gap-4 pt-8 sm:flex-row sm:items-baseline sm:justify-between"
+  >
+    <p class="text-sm text-muted-foreground">
+      Noah Michaels. Raleigh, NC. &copy;{" "}{year}
+    </p>
+    <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            {...(link.external ? { target: "_blank", rel: "noreferrer" } : {})}
+            class="subtle-link"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>

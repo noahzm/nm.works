@@ -3,6 +3,7 @@ import Layout from "@/layouts/main.astro"
 import ProjectPreview from "@/components/ProjectPreview.astro"
 import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
 import SectionHeader from "@/components/SectionHeader.astro"
+import CTA from "@/components/CTA.astro"
 import Badge from "@/components/ui/badge.astro"
 import Separator from "@/components/ui/separator.astro"
 import {
@@ -17,8 +18,16 @@ import {
   description="Product design case studies by Noah Michaels: product UX, information architecture, print systems, and shipped front-end work."
 >
   <div class="content-shell pt-4 pb-14">
+    <header class="max-w-2xl pb-10">
+      <h1 class="section-title sm:text-3xl">Work</h1>
+      <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+        Product UX, internal tools, and print production. Each case study covers
+        one decision and what it changed downstream.
+      </p>
+    </header>
+
     <section aria-labelledby="case-studies-title">
-      <h1 id="case-studies-title" class="section-title">Case studies</h1>
+      <SectionHeader titleId="case-studies-title" title="Case studies" />
       <div class="mt-8 divide-y">
         {
           publishedCaseStudies.map((project) => (
@@ -126,5 +135,9 @@ import {
         }
       </div>
     </section>
+
+    <CTA
+      description="Open to UX, product, graphic design, and prepress roles. If something here lines up with what your team needs, I’d like to hear about it."
+    />
   </div>
 </Layout>

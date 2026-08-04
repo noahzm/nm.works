@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css"
 import { ClientRouter } from "astro:transitions"
+import Footer from "@/components/Footer.astro"
 
 interface Props {
   title?: string
@@ -11,8 +12,8 @@ interface Props {
 }
 
 const {
-  title = "Noah Michaels · Product Designer",
-  description = "Noah Michaels is a product designer who designs interfaces, internal tools, and design systems, and writes the front-end code to ship them.",
+  title = "Noah Michaels · Product Designer & Print Production, Raleigh NC",
+  description = "Noah Michaels designs interfaces, internal tools, and print systems in Raleigh, NC. Product UX and information architecture backed by hands-on prepress and press production.",
   image = "/og.png",
   ogType = "website",
   noindex = false,
@@ -38,6 +39,7 @@ const headerWidthClass = "max-w-3xl"
     <link rel="canonical" href={canonicalURL} />
     <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Noah Michaels" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -73,12 +75,20 @@ const headerWidthClass = "max-w-3xl"
         >
           Noah Michaels
         </a>
-        <div class="flex items-baseline gap-5">
+        <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
           <a
             href="/projects"
             class="-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
           >
             Projects
+          </a>
+          <a
+            href="https://www.linkedin.com/in/noahzm/"
+            target="_blank"
+            rel="noreferrer"
+            class="-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          >
+            LinkedIn
           </a>
           <a
             href="https://github.com/noahzm"
@@ -100,5 +110,6 @@ const headerWidthClass = "max-w-3xl"
     <main id="main">
       <slot />
     </main>
+    <Footer />
   </body>
 </html>

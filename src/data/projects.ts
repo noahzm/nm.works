@@ -102,6 +102,7 @@ export const projects: Project[] = [
     image: ncgaLetterheadImg,
     imageAlt:
       "NCGA letterhead editor with a form sidebar and print-accurate preview of legislator stationery.",
+    imageObjectPosition: "left center",
     headerDetails: [
       {
         label: "Built with",
@@ -150,14 +151,15 @@ export const projects: Project[] = [
     role: "Brand and apparel design",
     year: "2019",
     teaser:
-      "A DIY skate-inspired apparel brand: original graphics, screen printing, and a small production run.",
+      "A DIY skate-inspired apparel brand: screen-printed shirts in two colorways, and a small production run.",
     summary:
-      "A skate-inspired DIY apparel project: original graphics, screen-printed shirts, and a visual identity carried all the way through production.",
+      "A skate-inspired DIY apparel project: one artwork run in two colorways, screen-printed shirts, and a visual identity carried all the way through production.",
     description:
-      "Grouch was a limited-run identity and apparel experiment built around a simple mark, bold colorways, and hands-on production.",
+      "Grouch was a limited-run identity and apparel experiment built around a rough-edged wordmark, a reworked public-domain cartoon, and hands-on production.",
     tags: ["Brand identity", "Apparel", "Print production"],
     image: grouchImg,
-    imageAlt: "Orange Grouch T-shirt with a large black typographic mark.",
+    imageAlt:
+      "White Grouch T-shirt screen printed with a red-orange Grouch wordmark above a black cartoon-cat graphic.",
     whatICanShow:
       "Grouch was a small physical apparel run, so there’s no app or repo to open. The photos below document the identity and the printed pieces.",
   },

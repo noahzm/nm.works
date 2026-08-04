@@ -1,9 +1,16 @@
 ---
+import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
 import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
 import { getProject } from "@/data/projects"
+import orderGridImg from "@/assets/projects/creative-printing/order-grid-current.png"
+import homepageImg from "@/assets/projects/creative-printing/creative-printing.png"
 
 const project = getProject("creative-printing-order-flow")!
+
+const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
+const pictureWidths = [640, 960, 1280]
+const pictureSizes = "(min-width: 768px) 960px, 100vw"
 
 const snapshotItems = [
   {
@@ -91,6 +98,20 @@ const snapshotItems = [
     were visible at once.
   </p>
 
+  <figure class="case-figure">
+    <Picture
+      src={orderGridImg}
+      alt="Creative Printing order-entry grid: eight labeled icon tiles for copy and print, business cards, envelopes, wide format, signage, multimedia conversions, website design, and service questions."
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+    />
+    <figcaption>
+      The category grid: eight entry points, each labeled in the words customers
+      use for the job rather than the shop’s internal service names.
+    </figcaption>
+  </figure>
+
   <div class="order-flow" aria-label="Creative Printing order flow">
     <div class="order-flow__node">
       <span>Homepage</span>
@@ -119,6 +140,21 @@ const snapshotItems = [
     to a form, so picking the wrong category costs one step back rather than a
     restart.
   </p>
+
+  <figure class="case-figure">
+    <Picture
+      src={homepageImg}
+      alt="Full Creative Printing homepage: logo and phone number, main navigation, an illustrated storefront hero with an Order Now button, the eight-tile order grid, and a location map."
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+    />
+    <figcaption>
+      The full page. The hero carries a single “Order Now” button, and the grid
+      directly below it repeats that choice as eight labeled entry points, so
+      the order path is the first thing on the page that is not navigation.
+    </figcaption>
+  </figure>
 
   <p>
     Before launch, the shop owner reviewed the category grid and intake paths.
