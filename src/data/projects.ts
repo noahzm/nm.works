@@ -90,7 +90,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Product designer for the print shop. Designed the workflow and built the tool",
+    role: "Print production and graphic design at the NCGA print shop since 2021. Designed the workflow and built the tool",
     year: "2026",
     teaser:
       "A template system that keeps official stationery consistent and print-ready for all 170 members of the NC legislature.",

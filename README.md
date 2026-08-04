@@ -1,12 +1,12 @@
 # nm.works
 
-Portfolio site for Noah Michaels — a Product Designer working across product UX, UI, front-end development, mobile, information architecture, and visual systems.
+Portfolio site for Noah Michaels, a designer working across product UX, information architecture, front-end development, and print production.
 
 Built as a static Astro site with TypeScript and Tailwind CSS v4, and deployed on Cloudflare Pages.
 
 ## What this site showcases
 
-- Case studies from shipped product and design systems work
+- Case studies from shipped product, internal tool, and print production work
 - Visual and UI craft across web, product, and brand surfaces
 - Ongoing work-in-progress projects
 
@@ -17,6 +17,7 @@ Built as a static Astro site with TypeScript and Tailwind CSS v4, and deployed o
 - Tailwind CSS v4 via Vite
 - CVA-based styling with `tailwind-merge`
 - Cloudflare Pages project `nm-works`
+- Geist (SIL OFL 1.1), self-hosted from `public/fonts/`
 
 ## SEO & performance
 
