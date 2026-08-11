@@ -1,9 +1,7 @@
 ---
 import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
-import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
 import { getProject } from "@/data/projects"
-import orderGridImg from "@/assets/projects/creative-printing/order-grid-current.png"
 import homepageImg from "@/assets/projects/creative-printing/creative-printing.png"
 
 const project = getProject("creative-printing-order-flow")!
@@ -11,35 +9,11 @@ const project = getProject("creative-printing-order-flow")!
 const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
 const pictureWidths = [640, 960, 1280]
 const pictureSizes = "(min-width: 768px) 960px, 100vw"
-
-const snapshotItems = [
-  {
-    label: "Problem",
-    value:
-      "Customers needed to move from job intent to the right order path faster.",
-  },
-  {
-    label: "Primary users",
-    value:
-      "Local customers ordering print, signs, multimedia, or website services.",
-  },
-  {
-    label: "Design move",
-    value:
-      "Put the main order categories directly on the homepage as large icon-grid entry points.",
-  },
-  {
-    label: "Result",
-    value:
-      "Category grid shipped as the homepage entry point, reviewed with the shop owner, and still anchors the live site.",
-  },
-]
 ---
 
 <CaseStudy
   project={project}
   title="Creative Printing Order Flow"
-  description="Redesigned the homepage order path around a responsive icon grid, helping customers choose the right print, sign, multimedia, website, or service intake route."
   seoTitle="Creative Printing Order Flow · UX Redesign"
   seoDescription="Redesigning Creative Printing’s homepage order path with responsive icon-grid navigation, clearer information architecture, and direct routes into service intake."
 >
@@ -47,70 +21,19 @@ const snapshotItems = [
   <p>
     Creative Printing’s homepage needed to help customers start the right kind
     of order: copy and print, business cards, envelopes, wide format, signage,
-    multimedia conversions, website work, or general service questions.
-  </p>
-  <p>
-    I redesigned and built the order entry experience around a simple question:
-    what are you trying to make? That moved the homepage from broad service
-    browsing to a direct category grid.
+    multimedia conversions, website work, or general service questions. A
+    business card order, a sign request, and a website refresh do not need the
+    same questions or the same next step.
   </p>
 
-  <CaseStudySnapshot items={snapshotItems} />
-
-  <h2>The Friction in the Flow</h2>
+  <h2>The Grid</h2>
   <p>
-    Customers often arrived with a specific job in mind, but print work spans
-    different mental models. A business card order, a sign request, and a
-    website refresh do not need the same questions or the same next step.
+    I restructured the homepage around the “Order Now” moment. The main job
+    categories sit in a large icon grid, labeled in the words customers use
+    rather than the shop’s internal service names, and each tile routes to the
+    relevant service page or intake form. Cleaning up the navigation instead
+    would still have hidden the categories one level down.
   </p>
-  <p>I shaped the order path around three practical needs:</p>
-  <ul>
-    <li>
-      <strong>Different service types.</strong> Printing, signs, multimedia, and websites
-      each needed a distinct entry point.
-    </li>
-    <li>
-      <strong>Fast recognition.</strong> Customers needed to see their job type before
-      reading through service pages.
-    </li>
-    <li>
-      <strong>Mobile access.</strong> The order entry points had to be usable from
-      small screens, not only from the desktop navigation.
-    </li>
-  </ul>
-
-  <h2>Refactoring the Information Architecture</h2>
-  <p>
-    I restructured the homepage around the “Order Now” moment. Instead of making
-    customers dig through navigation first, the page puts the main job
-    categories in a large icon grid.
-  </p>
-  <p>
-    The categories use plain service names customers already understand: “Copy &
-    Print,” “Business Cards,” “Envelopes,” “Wide Format,” “Signage,” “Multimedia
-    Conversions,” “Website Design and Hosting,” and “Questions About Services.”
-    Each tile acts as a decision point, moving customers toward the relevant
-    service page or intake form.
-  </p>
-  <p>
-    Cleaning up the existing navigation would still have hidden the order
-    categories one level down. The icon grid worked because the common job types
-    were visible at once.
-  </p>
-
-  <figure class="case-figure">
-    <Picture
-      src={orderGridImg}
-      alt="Creative Printing order-entry grid: eight labeled icon tiles for copy and print, business cards, envelopes, wide format, signage, multimedia conversions, website design, and service questions."
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-    />
-    <figcaption>
-      The category grid: eight entry points, each labeled in the words customers
-      use for the job rather than the shop’s internal service names.
-    </figcaption>
-  </figure>
 
   <div class="order-flow" aria-label="Creative Printing order flow">
     <div class="order-flow__node">
@@ -129,18 +52,6 @@ const snapshotItems = [
     </div>
   </div>
 
-  <h2>Responsive Design and Implementation</h2>
-  <p>
-    I built the homepage and order grid to work across screen sizes, with large
-    visual targets and clear labels. The interaction stayed simple: find the
-    closest category, select it, and continue into the appropriate service path.
-  </p>
-  <p>
-    The interface keeps the main service paths visible before customers commit
-    to a form, so picking the wrong category costs one step back rather than a
-    restart.
-  </p>
-
   <figure class="case-figure">
     <Picture
       src={homepageImg}
@@ -156,21 +67,10 @@ const snapshotItems = [
     </figcaption>
   </figure>
 
+  <h2>Outcome</h2>
   <p>
-    Before launch, the shop owner reviewed the category grid and intake paths.
-    That review kept the structure tied to how customers described their jobs,
-    not only how the shop organized services internally.
-  </p>
-
-  <h2>Outcomes</h2>
-  <p>
-    The redesigned order path shipped on Creative Printing’s homepage, giving
-    customers a direct route from job type to intake form. Years later, the
-    category grid still anchors the live site.
-  </p>
-  <p>
-    This project was part of a broader engagement covering the shop’s full web
-    presence and print production pipeline.
+    The shop owner reviewed the grid and intake paths before launch. Seven years
+    later the category grid still anchors the live site.
   </p>
 </CaseStudy>
 

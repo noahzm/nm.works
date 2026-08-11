@@ -1,9 +1,7 @@
 ---
 import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
-import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
 import { getProject } from "@/data/projects"
-import letterheadImg from "@/assets/projects/ncga-stationery/letterhead-house.png"
 import envelopeImg from "@/assets/projects/ncga-stationery/envelope-editor.png"
 
 const project = getProject("ncga-stationery-templates")!
@@ -11,109 +9,33 @@ const project = getProject("ncga-stationery-templates")!
 const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
 const pictureWidths = [640, 960, 1280]
 const pictureSizes = "(min-width: 768px) 960px, 100vw"
-
-const snapshotItems = [
-  {
-    label: "Problem",
-    value:
-      "Repeat stationery for all 170 NCGA members depended on files that could drift in spacing, color, and content.",
-  },
-  {
-    label: "Primary users",
-    value:
-      "In-house print shop staff producing legislator letterhead and envelopes.",
-  },
-  {
-    label: "Design move",
-    value:
-      "One locked template structure fed by a governed LegislatorRecord, so staff edit only what production allows.",
-  },
-  {
-    label: "Result",
-    value:
-      "Personalized mailings to all 170 members now run in one press pass instead of two, with print-accurate preview, PDF export, and cleaner mail-merge handoff.",
-  },
-]
 ---
 
 <CaseStudy
   project={project}
   title="NCGA Stationery Template System"
-  description="A constrained template engine for North Carolina General Assembly stationery: one locked structure, governed variable data, and print-accurate preview for all 170 members."
   seoTitle="NCGA Stationery Template System · Information Architecture"
   seoDescription="Designing a constrained template engine for NCGA legislator letterhead and envelopes: LOCKED vs DATA-DRIVEN fields, print-accurate preview, and fewer production mistakes."
 >
   <h2>Overview</h2>
   <p>
     The North Carolina General Assembly print shop produces repeat stationery
-    for all 170 legislators, including business cards, letterhead, envelopes,
-    and related materials. Each order carries the same formal brand requirements
-    but different contact data, committee lists, and chamber-specific wording.
+    for all 170 legislators. Same formal brand requirements every time,
+    different contact data, committee lists, and chamber wording. Before the
+    system, repeat orders relied on separate files per legislator, and small
+    differences in spacing, ink color, and committee data compounded across all
+    170.
   </p>
-  <p>
-    I built a constrained internal template tool. Seal placement, masthead type,
-    grid, and margins stay locked; staff edit only the fields production allows.
-    One <strong>LegislatorRecord</strong> feeds letterhead and envelope layouts with
-    print-accurate preview and PDF export.
-  </p>
-
-  <CaseStudySnapshot items={snapshotItems} />
-
-  <h2>The Friction in Production</h2>
-  <p>
-    Before the system, repeat orders relied on separate files per legislator.
-    Small differences in spacing, ink color, and committee data compounded
-    across all 170 members. A simple phone number update could turn into file
-    hunting and another chance for the layout to drift.
-  </p>
-  <p>I designed the workflow around three production constraints:</p>
-  <ul>
-    <li>
-      <strong>Brand compliance.</strong> Seal, masthead, and typography had to stay
-      fixed regardless of who edited the order.
-    </li>
-    <li>
-      <strong>Data variation.</strong> Names, addresses, committee lists, and chamber
-      wording all changed, but the structure could not.
-    </li>
-    <li>
-      <strong>Repeat accuracy.</strong> The same legislator might reorder letterhead
-      multiple times a session; each run had to match the last without reintroducing
-      spacing or color drift.
-    </li>
-  </ul>
-
-  <figure class="case-figure">
-    <Picture
-      src={letterheadImg}
-      alt="Letterhead editor with a form sidebar and print-accurate preview of NCGA stationery."
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-    />
-    <figcaption>
-      Split-pane editor: governed fields on the left, locked template preview on
-      the right. Sample data uses fictional legislator names.
-    </figcaption>
-  </figure>
 
   <h2>LOCKED vs DATA-DRIVEN</h2>
   <p>
-    The core information architecture decision was simple: production-approved
-    variation lives in a typed record; everything else stays hardcoded and out
-    of reach.
-  </p>
-  <p>
-    <strong>LOCKED</strong> elements include the state seal, “North Carolina General
-    Assembly” masthead, licensed typefaces, page grid, margins, and recycle mark geometry.
-    <strong>DATA-DRIVEN</strong> fields include member name, chamber, office address,
-    phone, committees, and ink color, with visibility toggles that hide sections on
-    the letterhead without deleting the underlying data.
-  </p>
-  <p>
-    A free-edit Word or InDesign template would have made the same drift easier
-    to repeat. The constrained form works because it matches the real production
-    boundary.
+    Production-approved variation lives in a typed <strong
+      >LegislatorRecord</strong
+    >; everything else stays out of reach. <strong>LOCKED</strong>: the state
+    seal, the “North Carolina General Assembly” masthead, licensed typefaces,
+    page grid, margins, recycle mark geometry. <strong>DATA-DRIVEN</strong>:
+    member name, chamber, office address, phone, committees, and ink color, with
+    visibility toggles that hide sections without deleting the data.
   </p>
 
   <div class="template-flow" aria-label="Legislator record to output">
@@ -135,18 +57,10 @@ const snapshotItems = [
 
   <h2>Same Record, Different Surfaces</h2>
   <p>
-    Letterhead and envelopes share one data model but not one form. The
-    letterhead editor exposes the full record plus visibility toggles for
-    address, phone, and committees. The envelope editor uses a field subset: no
-    phone or committees, and return addresses constrained to two NCGA buildings
-    (Legislative Building or Legislative Office Building) with fixed ZIP codes
-    rather than free text.
-  </p>
-  <p>
-    Envelopes also omit the state seal, matching real production artwork, and
-    explicitly defer recipient addresses to a downstream mail-merge pipeline.
-    That boundary keeps the tool focused on bulk return-address stationery, not
-    one-off mailing lists.
+    Letterhead and envelopes share one data model but not one form. The envelope
+    editor drops phone and committees, omits the seal to match production
+    artwork, and constrains return addresses to two NCGA buildings with fixed
+    ZIP codes. Recipient addresses defer to a downstream mail merge.
   </p>
 
   <figure class="case-figure">
@@ -163,39 +77,16 @@ const snapshotItems = [
     </figcaption>
   </figure>
 
-  <h2>Print Fidelity as UX</h2>
+  <h2>Outcome</h2>
   <p>
-    The on-screen preview is sized in real inches and points so staff can check
-    print before exporting. Screen rendering uses DOM and Tailwind; PDF output
-    uses a second renderer that shares the same business logic for chamber copy,
-    ink colors, and visible committees. That split was deliberate: a screenshot
-    export would not survive Acrobat, and DOM alone cannot produce reliable
-    print PDFs.
+    Preview is sized in real inches and points, and PDF output uses a second
+    renderer that shares the same logic for chamber copy, ink colors, and
+    visible committees. Personalized mailings to all 170 members now go out in
+    one press pass instead of two.
   </p>
   <p>
-    Chamber selection drives both the masthead line and honorific automatically,
-    so staff cannot accidentally pair “Senator” with House wording. Committee
-    rows filter blank entries before preview and export, and long committee
-    lists stress-test layout without breaking the locked grid.
-  </p>
-
-  <h2>Outcomes</h2>
-  <p>
-    Personalized mailings to all 170 members now go out in a single press pass
-    instead of two because the templates produce mail-merge-ready PDFs the
-    production line accepts as is.
-  </p>
-  <p>
-    Governing variable data through the template also reduced repeat-order
-    mistakes. Staff no longer maintain parallel files that drift in spacing and
-    color; edits stay inside explicit production rules and output stays
-    consistent run to run.
-  </p>
-  <p>
-    This case study covers the letterhead and envelope editor slice of broader
-    NCGA work. Related NCGA work includes a press-split calculator for job
-    planning, identity work, troubleshooting, job tickets, proofing, and
-    high-volume production workflows, not shown here.
+    Related NCGA work not shown here includes a press-split calculator, identity
+    work, job tickets, proofing, and high-volume production workflows.
   </p>
 </CaseStudy>
 

@@ -19,11 +19,7 @@ import {
 >
   <div class="content-shell pt-4 pb-14">
     <header class="max-w-2xl pb-10">
-      <h1 class="section-title sm:text-3xl">Work</h1>
-      <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-        Product UX, internal tools, and print production. Each case study covers
-        one decision and what it changed downstream.
-      </p>
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Projects</h1>
     </header>
 
     <section aria-labelledby="case-studies-title">
@@ -52,7 +48,7 @@ import {
                   {project.title}
                 </h3>
                 <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                  {project.teaser ?? project.summary}
+                  {project.teaser}
                 </p>
               </div>
             </a>
@@ -65,11 +61,7 @@ import {
       upcomingCaseStudies.length > 0 && (
         <section class="mt-14 pt-12" aria-labelledby="upcoming-title">
           <Separator class="-mt-12 mb-12" />
-          <SectionHeader
-            titleId="upcoming-title"
-            title="In progress"
-            description="More case studies are on the way. Everything published here shipped."
-          />
+          <SectionHeader titleId="upcoming-title" title="In progress" />
           <div class="mt-8 divide-y">
             {upcomingCaseStudies.map((project) => (
               <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
@@ -90,7 +82,7 @@ import {
                   </div>
                   <h3 class="text-xl font-bold">{project.title}</h3>
                   <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                    {project.teaser ?? project.summary}
+                    {project.teaser}
                   </p>
                 </div>
               </article>
@@ -102,7 +94,10 @@ import {
 
     <section class="mt-14 pt-12" aria-labelledby="visual-work-title">
       <Separator class="-mt-12 mb-12" />
-      <SectionHeader titleId="visual-work-title" title="Selected visual work" />
+      <SectionHeader
+        titleId="visual-work-title"
+        title="Selected visual projects"
+      />
       <div class="mt-8 divide-y">
         {
           visualWork.map((project) => (
@@ -127,7 +122,7 @@ import {
                   {project.title}
                 </h3>
                 <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                  {project.teaser ?? project.summary}
+                  {project.teaser}
                 </p>
               </div>
             </a>
@@ -136,8 +131,6 @@ import {
       </div>
     </section>
 
-    <CTA
-      description="Open to UX, product, graphic design, and prepress roles. If something here lines up with what your team needs, I’d like to hear about it."
-    />
+    <CTA />
   </div>
 </Layout>

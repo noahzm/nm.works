@@ -1,41 +1,18 @@
 ---
 import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
-import CaseStudySnapshot from "@/components/CaseStudySnapshot.astro"
 import { getProject } from "@/data/projects"
-import homeVerdictImg from "@/assets/projects/wheely-weather/home-verdict.png"
 import hourlyKitNumbersImg from "@/assets/projects/wheely-weather/hourly-kit-numbers.png"
 
 const project = getProject("wheely-weather")!
 const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
 const pictureWidths = [640, 960, 1280]
 const pictureSizes = "(min-width: 768px) 960px, 100vw"
-
-const snapshotItems = [
-  {
-    label: "Question",
-    value: "Is it worth riding right now?",
-  },
-  {
-    label: "Audience",
-    value: "Recreational and commuter cyclists planning short-term rides.",
-  },
-  {
-    label: "Core decision",
-    value: "Let the weakest weather signal set the ride verdict.",
-  },
-  {
-    label: "Built as",
-    value:
-      "Cross-platform Expo Router + React Native app (iOS, Android, web) from one codebase. Started as a web app; briefly explored native SwiftUI before consolidating on Expo.",
-  },
-]
 ---
 
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  description="An independent cross-platform cycling-weather app, built with Expo for iOS, Android, and web, that puts dewpoint, feels-like temperature, and wind next to a clear ride verdict."
   seoTitle="Wheely Weather · Cross-Platform Cycling Weather App (Expo)"
   seoDescription="Wheely Weather is a cross-platform cycling weather app built with Expo for iOS, Android, and web, with ride-quality verdicts, hourly riding windows, and weather-based kit guidance."
 >
@@ -43,91 +20,17 @@ const snapshotItems = [
   <p>
     Wheely Weather answers one question before a ride: <em
       >is it worth going now?</em
-    > General forecasts show plenty of numbers, but riders kept coming back to three
-    signals: dew point, feels-like temperature, and wind.
-  </p>
-  <p>
-    I designed the app around a clear verdict, the evidence behind it, and the
-    next usable ride window when the answer is no. A web prototype proved the
-    idea before the cross-platform Expo build.
+    > Six conversations with recreational and commuter cyclists pointed to the same
+    three signals, dew point, feels-like temperature, and wind, with dew point the
+    easiest to miss in the apps they already used.
   </p>
 
-  <CaseStudySnapshot items={snapshotItems} />
-
-  <h2>The Decision Moment</h2>
+  <h2>How It Works</h2>
   <p>
-    Before a ride, I was checking one weather app and falling back to another.
-    The data was available; the decision was not. Six conversations with
-    recreational and commuter cyclists pointed to the same gap: dew point,
-    feels-like temperature, and wind mattered, but dew point was easy to miss in
-    the apps people already used.
-  </p>
-  <p>
-    That set the product direction: put the useful signals beside the verdict,
-    score by the weakest signal, and keep the whole experience glanceable on a
-    phone.
-  </p>
-
-  <h2>Product Direction</h2>
-  <ul>
-    <li>
-      Lead with a five-level ride rating: Great, Good, Fair, Poor, or Bad.
-    </li>
-    <li>Let the weakest riding signal set the rating.</li>
-    <li>Name the limiting condition when the ride rating drops.</li>
-    <li>
-      Keep the raw weather signals visible for riders who disagree with the
-      recommendation.
-    </li>
-    <li>
-      Point to the next usable window before asking anyone to study a chart.
-    </li>
-    <li>
-      Guide kit selection from the same data, so no separate clothing app is
-      needed.
-    </li>
-  </ul>
-
-  <figure>
-    <Picture
-      src={homeVerdictImg}
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-      alt="Wheely Weather showing a green ‘CLEAR FOR RIDING’ ideal-conditions verdict for Portland, with the start of the hourly ride-quality chart below."
-    />
-    <figcaption>
-      The verdict leads with color and plain language (green when it’s worth
-      going, orange when it isn’t) and names the limiting factor when the answer
-      is no.
-    </figcaption>
-  </figure>
-
-  <h2 id="system-design">System Design</h2>
-  <p>
-    The screen order follows the rider’s question sequence instead of the shape
-    of a forecast API: can I go, why did it get that rating, what should I wear?
-    The verdict card uses color and a plain-language label rather than a numeric
-    score, so the app makes the threshold call instead of handing it back to the
-    rider. The Numbers panel keeps the raw signals close enough to audit the
-    recommendation.
-  </p>
-  <p>
-    The design system carries this across platforms: a flat theme background,
-    translucent glass-effect chrome for navigation and overlays, bold card
-    surfaces (<code>BrutalCard</code>) for content, and the National Park
-    typeface. Light and dark theming work throughout with no hardcoded colors,
-    so the same component tree renders correctly on iOS, Android, and web.
-  </p>
-
-  <h2>Riding Windows</h2>
-  <p>
-    A bad current rating should still answer the next question. The hour-by-hour
-    view turns “not now” into a specific window, showing ride quality tinted by
-    temperature with a Now marker and POOR stickers on bad stretches. Below it,
-    “Today’s kit” translates the same data into clothing guidance, and “The
-    numbers” keeps every raw signal visible for riders who want to audit the
-    verdict.
+    The weakest signal sets a five-level rating, and the app names the limiting
+    condition when the rating drops. Raw numbers stay visible for riders who
+    disagree with it. When the answer is no, the hour-by-hour view points to the
+    next usable window, and the same data drives kit guidance.
   </p>
 
   <figure>
@@ -144,50 +47,22 @@ const snapshotItems = [
     </figcaption>
   </figure>
 
-  <h2>Building Cross-Platform with Expo</h2>
+  <h2 id="system-design">System Design</h2>
   <p>
-    One Expo Router + React Native codebase ships iOS, Android, and web. The web
-    build is live at{" "}
-    <a href="https://wheelyweather.app" target="_blank" rel="noreferrer">
-      wheelyweather.app
-    </a>{" "}
-    on Cloudflare Workers.
-  </p>
-  <p>
-    A shared, framework-agnostic TypeScript scoring domain in{" "}
-    <code>src/domain/</code> holds the ride-quality logic and plain-language copy,
-    feeding every platform from the same source. Theme-aware components drive the
-    light/dark design system without hardcoded colors.
-  </p>
-  <p>
-    Data comes from Open-Meteo by default, with Apple WeatherKit on iOS through
-    a custom Expo native module (<code>modules/apple-weatherkit</code>).
-    Geocoding uses Nominatim on web and Apple MapKit on iOS; AQI stays on
-    Open-Meteo across all platforms. Acclimatization baselines come from 30 days
-    of Open-Meteo temperatures.
-  </p>
-  <p>
-    The idea started as an Astro/React web app that proved the verdict idea,
-    then a short native SwiftUI experiment. Consolidating on Expo gave one
-    codebase across platforms without giving up native capabilities where they
-    matter.
-  </p>
-  <p>
-    The tooling pipeline keeps the build honest: Prettier, ESLint with{" "}
-    <code>--max-warnings 0</code>, strict TypeScript, Vitest unit tests, a
-    Storybook component workshop, Playwright end-to-end tests, and GitHub
-    Actions CI. AI-assisted coding tools helped move faster from product
-    sketches to working UI.
+    Screen order follows the rider’s question sequence rather than the shape of
+    a forecast API: can I go, why that rating, what should I wear? A shared
+    TypeScript scoring domain in <code>src/domain/</code> feeds every platform, and
+    theme-aware components render the same tree on iOS, Android, and web.
   </p>
 
-  <h2>Outcome</h2>
+  <h2>Built With</h2>
   <p>
-    I use the app across iOS and web before rides now. The single-codebase
-    approach means a fix or feature ships across platforms at once, and the
-    shared scoring domain keeps verdict behavior consistent on phone and web.
-  </p>
-  <p>
-    The useful pattern was restraint: score the weakest signal, lead with a
-    verdict, and keep the rest of the forecast in supporting roles.
+    One Expo Router and React Native codebase for iOS, Android, and web, live on
+    Cloudflare Workers at <a
+      href="https://wheelyweather.app"
+      target="_blank"
+      rel="noreferrer">wheelyweather.app</a
+    >. Open-Meteo by default, Apple WeatherKit on iOS through a custom native
+    module. Strict TypeScript, Vitest, Playwright, and GitHub Actions CI.
   </p>
 </CaseStudy>

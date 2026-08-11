@@ -33,10 +33,8 @@ export interface Project {
   disciplines: ProjectDiscipline[]
   role: string
   year: string
-  teaser?: string
-  summary: string
+  teaser: string
   description: string
-  tags: string[]
   image?: ImageMetadata
   imageAlt?: string
   imageObjectPosition?: string
@@ -47,7 +45,6 @@ export interface Project {
   headerLinks?: ProjectHeaderLink[]
   headerDetails?: ProjectHeaderDetail[]
   whatICanShow?: string
-  featured?: boolean
 }
 
 export const projects: Project[] = [
@@ -57,15 +54,12 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["product-design", "mobile", "front-end"],
-    role: "Solo product designer and developer, from first sketch to shipped app (Expo)",
+    role: "Solo designer and developer",
     year: "2026",
     teaser:
       "A cycling weather app that answers one question: should I ride right now?",
-    summary:
-      "A cycling weather app that gives riders a clear go/no-go verdict instead of a wall of forecast data. Designed and built with Expo for iOS, Android, and web from one codebase.",
     description:
-      "Wheely Weather turns forecast data into a simple ride verdict, the best hourly windows, and what to wear. The key numbers stay visible; the app just does the interpreting first.",
-    tags: ["Expo & React Native", "TypeScript", "Design systems", "UX/UI"],
+      "Forecast data turned into a ride verdict, the best hourly windows, and what to wear. Built with Expo for iOS, Android, and web.",
     image: wheelyHeroImg,
     imageAlt:
       "Wheely Weather showing a green ‘CLEAR FOR RIDING’ ideal-conditions verdict for Portland.",
@@ -78,11 +72,9 @@ export const projects: Project[] = [
     headerDetails: [
       {
         label: "Status",
-        value:
-          "Actively developed. iOS, Android, and web from one Expo codebase; web app live at wheelyweather.app.",
+        value: "iOS, Android, and web from one Expo codebase.",
       },
     ],
-    featured: true,
   },
   {
     slug: "ncga-stationery-templates",
@@ -90,15 +82,12 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Print production and graphic design at the NCGA print shop since 2021. Designed the workflow and built the tool",
+    role: "Designed the workflow and built the tool",
     year: "2026",
     teaser:
-      "A template system that keeps official stationery consistent and print-ready for all 170 members of the NC legislature.",
-    summary:
-      "An internal print tool for all 170 General Assembly members: locked letterhead and envelope layouts, a print-accurate preview, and clean PDF handoff into mail merge.",
+      "Locked letterhead and envelope templates for all 170 NC legislators. Personalized mailings now run in one press pass instead of two.",
     description:
-      "A constrained template system for the North Carolina General Assembly print shop, not a freeform editor. One record per legislator feeds locked letterhead and envelope layouts, so staff can update details without breaking the design.",
-    tags: ["Information architecture", "Variable data", "Print production"],
+      "A constrained template system for the NCGA print shop. One record per legislator feeds locked letterhead and envelope layouts.",
     image: ncgaLetterheadImg,
     imageAlt:
       "NCGA letterhead editor with a form sidebar and print-accurate preview of legislator stationery.",
@@ -106,13 +95,11 @@ export const projects: Project[] = [
     headerDetails: [
       {
         label: "Built with",
-        value:
-          "HTML/CSS/JS, PDF generation, governed data model, print-ready output, variable-data workflow",
+        value: "HTML/CSS/JS, PDF generation, variable-data workflow",
       },
     ],
     whatICanShow:
-      "This is an internal print-shop tool, so it isn’t publicly hosted. The screenshots use fictional legislator data; I can demo the live tool or walk through the code on request.",
-    featured: true,
+      "An internal print-shop tool, not publicly hosted. Screenshots use fictional legislator data; I can demo it on request.",
   },
   {
     slug: "creative-printing-order-flow",
@@ -120,27 +107,17 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
-    role: "Product designer. Information architecture, responsive UI, and front-end build",
+    role: "Product designer and front-end build",
     year: "2019",
     teaser:
-      "A homepage redesign that gets print customers from “I need a thing” to the right order form without guesswork.",
-    summary:
-      "A responsive order-entry flow for a print shop’s website that routes customers from what they need to the right service category or intake form.",
+      "A homepage redesign that routes print customers straight to the right order form. Still live seven years later.",
     description:
-      "I redesigned Creative Printing’s homepage around a simple icon grid of print, sign, multimedia, website, and service requests, so customers pick a path instead of hunting through pages.",
-    tags: ["Workflow design", "IA", "Responsive web"],
+      "A homepage rebuilt around an icon grid of print, sign, multimedia, website, and service requests, so customers pick a path instead of hunting.",
     image: creativePrintingImg,
     imageAlt:
       "Creative Printing order-entry grid with eight service categories for online requests.",
     liveUrl: "https://creative-printing.com",
     liveUrlLabel: "View live site",
-    headerDetails: [
-      { label: "Shipped", value: "Live homepage order-entry flow" },
-      {
-        label: "Scope",
-        value: "IA, responsive UI, front-end implementation, shop owner review",
-      },
-    ],
   },
   {
     slug: "grouch",
@@ -151,17 +128,14 @@ export const projects: Project[] = [
     role: "Brand and apparel design",
     year: "2019",
     teaser:
-      "A DIY skate-inspired apparel brand: screen-printed shirts in two colorways, and a small production run.",
-    summary:
-      "A skate-inspired DIY apparel project: one artwork run in two colorways, screen-printed shirts, and a visual identity carried all the way through production.",
+      "A skate-inspired apparel run: one artwork, two colorways, screen printed by hand.",
     description:
-      "Grouch was a limited-run identity and apparel experiment built around a rough-edged wordmark, a reworked public-domain cartoon, and hands-on production.",
-    tags: ["Brand identity", "Apparel", "Print production"],
+      "A limited-run identity and apparel experiment: a rough-edged wordmark, a reworked public-domain cartoon, and hands-on production.",
     image: grouchImg,
     imageAlt:
       "White Grouch T-shirt screen printed with a red-orange Grouch wordmark above a black cartoon-cat graphic.",
     whatICanShow:
-      "Grouch was a small physical apparel run, so there’s no app or repo to open. The photos below document the identity and the printed pieces.",
+      "A small physical apparel run, so there’s no app or repo. The photos document the identity and the printed pieces.",
   },
 ]
 
