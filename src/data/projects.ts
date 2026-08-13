@@ -59,7 +59,7 @@ export const projects: Project[] = [
     teaser:
       "A cycling weather app that answers one question: should I ride right now?",
     description:
-      "Forecast data turned into a ride verdict, the best hourly windows, and what to wear. Built with Expo for iOS, Android, and web.",
+      "Forecast data turned into a ride verdict, optimal hourly windows, and kit recommendations. Built with Expo for iOS, Android, and web.",
     image: wheelyHeroImg,
     imageAlt:
       "Wheely Weather showing a green ‘CLEAR FOR RIDING’ ideal-conditions verdict for Portland.",
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     teaser:
       "Locked letterhead and envelope templates for all 170 NC legislators. Personalized mailings now run in one press pass instead of two.",
     description:
-      "A constrained template system for the NCGA print shop. One record per legislator feeds locked letterhead and envelope layouts.",
+      "A constrained template system for the NCGA print shop, using a single legislator record to drive locked letterhead and envelope layouts.",
     image: ncgaLetterheadImg,
     imageAlt:
       "NCGA letterhead editor with a form sidebar and print-accurate preview of legislator stationery.",
@@ -110,9 +110,9 @@ export const projects: Project[] = [
     role: "Product designer and front-end build",
     year: "2019",
     teaser:
-      "A homepage redesign that routes print customers straight to the right order form. Still live seven years later.",
+      "A homepage redesign that routes print customers directly to the service or intake form they need.",
     description:
-      "A homepage rebuilt around an icon grid of print, sign, multimedia, website, and service requests, so customers pick a path instead of hunting.",
+      "A homepage rebuilt around an intuitive icon grid for print, sign, multimedia, website, and service requests, allowing customers to pick a path instantly.",
     image: creativePrintingImg,
     imageAlt:
       "Creative Printing order-entry grid with eight service categories for online requests.",
@@ -130,12 +130,12 @@ export const projects: Project[] = [
     teaser:
       "A skate-inspired apparel run: one artwork, two colorways, screen printed by hand.",
     description:
-      "A limited-run identity and apparel experiment: a rough-edged wordmark, a reworked public-domain cartoon, and hands-on production.",
+      "A limited-run identity and apparel project: a rough-edged wordmark, a reworked public-domain cartoon, and hands-on print production.",
     image: grouchImg,
     imageAlt:
       "White Grouch T-shirt screen printed with a red-orange Grouch wordmark above a black cartoon-cat graphic.",
     whatICanShow:
-      "A small physical apparel run, so there’s no app or repo. The photos document the identity and the printed pieces.",
+      "A small physical apparel run, so there is no live web app or repository. The photos document the identity and hand-printed pieces.",
   },
 ]
 
