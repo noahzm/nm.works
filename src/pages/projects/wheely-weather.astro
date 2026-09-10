@@ -19,15 +19,21 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
   <h2>Overview</h2>
   <p>
     Wheely Weather answers one core question before a ride: <em
-      >is it worth going right now?</em
+      >should I ride right now?</em
     > Conversations with recreational and commuter cyclists highlighted three weather
     signals that mattered most: dew point, feels-like temperature, and wind speed.
-    Among these, dew point was the most critical indicator riders missed in standard weather apps.
+    Among these, dew point was the most critical indicator riders missed in standard
+    weather apps.
   </p>
 
   <h2>How It Works</h2>
   <p>
-    I designed the app around a clear verdict scored by the weakest weather signal. The app assigns a rating from Great to Bad and explicitly names the limiting factor whenever conditions drop. Raw weather numbers remain visible for riders who want to inspect the details. When conditions are poor, the hourly forecast highlights the next favorable riding window, while the same data powers personalized kit suggestions.
+    I designed the app around a clear verdict scored by the weakest weather
+    signal. The app assigns a rating from Great to Bad and explicitly names the
+    limiting factor whenever conditions drop. Raw weather numbers remain visible
+    for riders who want to inspect the details. When conditions are poor, the
+    hourly forecast highlights the next favorable riding window, while the same
+    data powers personalized kit suggestions.
   </p>
 
   <figure>
@@ -46,15 +52,24 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
 
   <h2 id="system-design">System Design</h2>
   <p>
-    The screen layout matches the sequence of questions a rider actually asks: can I go, why did it get that rating, and what should I wear? A shared TypeScript scoring domain in <code>src/domain/</code> powers the ride-quality logic across every platform, while theme-aware components render the same tree on iOS, Android, and web.
+    The screen layout matches the sequence of questions a rider actually asks:
+    can I go, why did it get that rating, and what should I wear? A shared
+    TypeScript scoring domain in <code>src/domain/</code> powers the ride-quality
+    logic across every platform, while theme-aware components render the same tree
+    on iOS, Android, and web.
   </p>
 
   <h2>Built With</h2>
   <p>
-    The app is built from a single Expo Router and React Native codebase targeting iOS, Android, and web. The web version is live on Cloudflare Workers at <a
+    The app is built from a single Expo Router and React Native codebase
+    targeting iOS, Android, and web. The web version is live on Cloudflare
+    Workers at <a
       href="https://wheelyweather.app"
       target="_blank"
       rel="noreferrer">wheelyweather.app</a
-    >. Open-Meteo provides forecast data by default, with Apple WeatherKit integrated on iOS through a custom native module. The project is backed by strict TypeScript, Vitest unit tests, Playwright end-to-end tests, and GitHub Actions CI.
+    >. Open-Meteo provides forecast data by default, with Apple WeatherKit
+    integrated on iOS through a custom native module. The project is backed by
+    strict TypeScript, Vitest unit tests, Playwright end-to-end tests, and
+    GitHub Actions CI.
   </p>
 </CaseStudy>

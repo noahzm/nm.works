@@ -71,7 +71,7 @@ export const projects: Project[] = [
     ],
     headerDetails: [
       {
-        label: "Status",
+        label: "Platform",
         value: "iOS, Android, and web from one Expo codebase.",
       },
     ],
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["information-architecture", "ux-ui", "front-end"],
-    role: "Designed the workflow and built the tool",
+    role: "Solo designer & developer",
     year: "2026",
     teaser:
       "Locked letterhead and envelope templates for all 170 NC legislators. Personalized mailings now run in one press pass instead of two.",
@@ -107,10 +107,10 @@ export const projects: Project[] = [
     category: "case-study",
     status: "published",
     disciplines: ["ux-ui", "information-architecture", "front-end"],
-    role: "Product designer and front-end build",
+    role: "Product designer & front-end developer",
     year: "2019",
     teaser:
-      "A homepage redesign that routes print customers directly to the service or intake form they need.",
+      "A print shop homepage redesign with an intuitive service grid. Still live seven years later.",
     description:
       "A homepage rebuilt around an intuitive icon grid for print, sign, multimedia, website, and service requests, allowing customers to pick a path instantly.",
     image: creativePrintingImg,

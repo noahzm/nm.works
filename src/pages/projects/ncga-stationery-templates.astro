@@ -15,23 +15,29 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
   project={project}
   title="NCGA Stationery Template System"
   seoTitle="NCGA Stationery Template System · Information Architecture"
-  seoDescription="Designing a constrained template engine for NCGA legislator letterhead and envelopes: LOCKED vs DATA-DRIVEN fields, print-accurate preview, and fewer production mistakes."
+  seoDescription="Designing a constrained template system for NCGA legislator letterhead and envelopes: locked vs. data-driven fields, print-accurate preview, and one press pass."
 >
   <h2>Overview</h2>
   <p>
     The North Carolina General Assembly print shop produces official stationery
-    for all 170 legislators. Each order follows the same formal brand guidelines,
-    but requires distinct contact information, committee assignments, and chamber wording.
-    Before this system, repeat orders relied on separate files for each member, allowing small
-    discrepancies in spacing, ink color, and committee data to compound across all 170 profiles.
+    for all 170 legislators. Each order follows the same formal brand
+    guidelines, but requires distinct contact information, committee
+    assignments, and chamber wording. Before this system, repeat orders relied
+    on separate files for each member, allowing small discrepancies in spacing,
+    ink color, and committee data to compound across all 170 profiles.
   </p>
 
   <h2>Locked vs. Data-Driven Fields</h2>
   <p>
-    Production-approved variation lives in a typed <strong>LegislatorRecord</strong>,
-    while core layout geometry and brand standards stay locked. <strong>Locked elements</strong>:
-    the state seal, the official masthead, licensed typefaces, page grids, margins, and recycling mark geometry.
-    <strong>Data-driven elements</strong>: member name, chamber, office address, phone number, committee list, and ink color, with visibility toggles that hide unused sections without deleting underlying data.
+    Production-approved variation lives in a typed <strong
+      >LegislatorRecord</strong
+    >, while core layout geometry and brand standards stay locked. <strong
+      >Locked elements</strong
+    >: the state seal, the official masthead, licensed typefaces, page grids,
+    margins, and recycling mark geometry.
+    <strong>Data-driven elements</strong>: member name, chamber, office address,
+    phone number, committee list, and ink color, with visibility toggles that
+    hide unused sections without deleting underlying data.
   </p>
 
   <div class="template-flow" aria-label="Legislator record to output">
@@ -53,7 +59,11 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
 
   <h2>Same Record, Different Surfaces</h2>
   <p>
-    Letterhead and envelopes share a single underlying data model, but present tailored input forms. The envelope editor removes phone numbers and committee lists, omits the state seal to match production artwork, and restricts return addresses to official legislative buildings with fixed ZIP codes. Recipient addresses are left to a downstream mail merge.
+    Letterhead and envelopes share a single underlying data model, but present
+    tailored input forms. The envelope editor removes phone numbers and
+    committee lists, omits the state seal to match production artwork, and
+    restricts return addresses to official legislative buildings with fixed ZIP
+    codes. Recipient addresses are left to a downstream mail merge.
   </p>
 
   <figure class="case-figure">
@@ -72,7 +82,10 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
 
   <h2>Outcome</h2>
   <p>
-    The browser preview renders in exact inches and points, while PDF output uses a second renderer that shares identical logic for chamber copy, ink colors, and visible committees. Personalized mailings to all 170 members now go out in one press pass instead of two.
+    The browser preview renders in exact inches and points, while PDF output
+    uses a second renderer that shares identical logic for chamber copy, ink
+    colors, and visible committees. Personalized mailings to all 170 members now
+    run in one press pass instead of two.
   </p>
   <p>
     Related NCGA work not shown here includes a press-split calculator, identity
