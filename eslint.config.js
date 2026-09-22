@@ -11,8 +11,8 @@ export default defineConfig([
   js.configs.recommended,
   ...tseslint.configs.recommended,
 
-  ...astro.configs["flat/recommended"],
-  ...astro.configs["flat/jsx-a11y-recommended"],
+  ...astro.configs.recommended,
+  ...astro.configs["jsx-a11y-recommended"],
 
   {
     files: ["**/*.config.{js,mjs,ts}", "scripts/**/*.mjs"],
