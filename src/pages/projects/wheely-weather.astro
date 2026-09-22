@@ -17,12 +17,11 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
 >
   <h2>Overview</h2>
   <p>
-    Wheely Weather answers one core question before a ride: <em
-      >should I ride right now?</em
-    > Conversations with recreational and commuter cyclists highlighted three weather
-    signals that mattered most: dew point, feels-like temperature, and wind speed.
-    Among these, dew point was the most critical indicator riders missed in standard
-    weather apps.
+    Wheely Weather answers one core question before a ride:{" "}
+    <em>should I ride right now?</em> Conversations with recreational and
+    commuter cyclists highlighted three weather signals that mattered most: dew
+    point, feels-like temperature, and wind speed. Among these, dew point was
+    the most critical indicator riders missed in standard weather apps.
   </p>
 
   <h2 id="how-it-works">How It Works</h2>
@@ -32,16 +31,17 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
   </p>
   <ul>
     <li>
-      <strong>Verdict:</strong> a rule-based rating from Ideal to Don’t Ride, scored
-      by the weakest signal, that names the limiting factor whenever conditions drop.
+      <strong>Verdict:</strong> a rule-based rating from Ideal to Don’t Ride,
+      scored by the weakest signal, that names the limiting factor whenever
+      conditions drop.
     </li>
     <li>
-      <strong>Signals:</strong> temperature, dew point, and wind, plus precipitation,
-      air quality, UV index, and sunset timing.
+      <strong>Signals:</strong> temperature, dew point, and wind, plus
+      precipitation, air quality, UV index, and sunset timing.
     </li>
     <li>
-      <strong>Riding window:</strong> when conditions are poor, the hourly forecast
-      highlights the next favorable window.
+      <strong>Riding window:</strong> when conditions are poor, the hourly
+      forecast highlights the next favorable window.
     </li>
     <li>
       <strong>Kit:</strong> the same data powers personalized kit suggestions.
@@ -71,19 +71,19 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
   </p>
   <ul>
     <li>
-      <strong>Web:</strong> live on Cloudflare Workers at <a
-        href="https://wheelyweather.app"
-        target="_blank"
-        rel="noreferrer">wheelyweather.app</a
-      >.
+      <strong>Web:</strong> live on Cloudflare Workers at{" "}
+      <a href="https://wheelyweather.app" target="_blank" rel="noreferrer">
+        wheelyweather.app
+      </a>
+      .
     </li>
     <li>
-      <strong>Data:</strong> Open-Meteo by default, with Apple WeatherKit on iOS through
-      a small Swift native module (my Swift is basic).
+      <strong>Data:</strong> Open-Meteo by default, with Apple WeatherKit on iOS
+      through a small Swift native module (my Swift is basic).
     </li>
     <li>
-      <strong>Quality:</strong> strict TypeScript, Vitest unit tests, Playwright end-to-end
-      tests, and GitHub Actions CI.
+      <strong>Quality:</strong> strict TypeScript, Vitest unit tests, Playwright
+      end-to-end tests, and GitHub Actions CI.
     </li>
   </ul>
 </CaseStudy>

@@ -29,24 +29,20 @@ const links = [
 
 <footer class="content-shell pb-14">
   <Separator />
-  <div
-    class="flex flex-col gap-4 pt-8 sm:flex-row sm:items-baseline sm:justify-between"
-  >
+  <div class="flex flex-col gap-4 pt-8 sm:flex-row sm:items-baseline sm:justify-between">
     <p class="text-sm text-muted-foreground">
-      {siteName}. Raleigh, NC. &copy;{" "}{year}
+      {siteName}. Raleigh, NC. &copy; {year}
     </p>
     <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
-      {
-        links.map((link) => (
-          <a
-            href={link.href}
-            {...(link.external ? { target: "_blank", rel: "noreferrer" } : {})}
-            class="subtle-link"
-          >
-            {link.label}
-          </a>
-        ))
-      }
+      {links.map((link) => (
+        <a
+          href={link.href}
+          {...(link.external ? { target: "_blank", rel: "noreferrer" } : {})}
+          class="subtle-link"
+        >
+          {link.label}
+        </a>
+      ))}
     </nav>
   </div>
 </footer>

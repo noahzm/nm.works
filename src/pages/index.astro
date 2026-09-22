@@ -54,9 +54,7 @@ const highlights = [
         tools. I work hands-on in HTML/CSS and WordPress/Drupal, with basic
         Python scripting. Based in Raleigh, NC.
       </p>
-      <p
-        class="mt-5 flex max-w-2xl flex-wrap items-baseline gap-x-2 gap-y-1 text-sm leading-relaxed"
-      >
+      <p class="mt-5 flex max-w-2xl flex-wrap items-baseline gap-x-2 gap-y-1 text-sm leading-relaxed">
         <Badge variant="outline" class="self-center text-muted-foreground">
           In progress
         </Badge>
@@ -81,25 +79,23 @@ const highlights = [
           />
           Get in touch
         </a>
-        {
-          hasResume && (
-            <a
-              href={resumePath}
-              download
-              data-slot="button"
-              data-variant="outline"
-              data-size="default"
-              class={buttonVariants({ variant: "outline" })}
-            >
-              <Icon
-                name="lucide:download"
-                aria-hidden="true"
-                data-affix="inline-start"
-              />
-              Resume (PDF)
-            </a>
-          )
-        }
+        {hasResume && (
+          <a
+            href={resumePath}
+            download
+            data-slot="button"
+            data-variant="outline"
+            data-size="default"
+            class={buttonVariants({ variant: "outline" })}
+          >
+            <Icon
+              name="lucide:download"
+              aria-hidden="true"
+              data-affix="inline-start"
+            />
+            Resume (PDF)
+          </a>
+        )}
       </div>
     </section>
     <Separator />
@@ -107,16 +103,14 @@ const highlights = [
     <section class="py-12" aria-labelledby="highlights-title">
       <SectionHeader titleId="highlights-title" title="Highlights" />
       <ul class="mt-8 grid max-w-2xl gap-5">
-        {
-          highlights.map((text) => (
-            <li class="text-base leading-relaxed">{text}</li>
-          ))
-        }
+        {highlights.map((text) => (
+          <li class="text-base leading-relaxed">{text}</li>
+        ))}
       </ul>
       <p class="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-        <span class="font-bold text-foreground">Education:</span> B.S. in Graphic
-        Arts and Imaging Technology, Cross Media Production concentration, General
-        Business minor. Appalachian State University.
+        <span class="font-bold text-foreground">Education:</span> B.S. in
+        Graphic Arts and Imaging Technology, Cross Media Production
+        concentration, General Business minor. Appalachian State University.
       </p>
     </section>
     <Separator />
@@ -125,40 +119,38 @@ const highlights = [
       <SectionHeader titleId="work-title" title="Selected work" />
 
       <div class="mt-10 grid grid-cols-1 gap-y-14">
-        {
-          selectedWork.map((project, index) => (
-            <a
-              href={`/projects/${project.slug}`}
-              aria-label={`View ${project.title}`}
-              class="group block rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
-            >
-              <div class="mb-5 flex items-start justify-between gap-4">
-                <div>
-                  {project.category === "side-project" && (
-                    <p class="mb-1 text-xs font-bold text-muted-foreground uppercase">
-                      Side project
-                    </p>
-                  )}
-                  <h3 class="text-xl font-bold group-hover:underline">
-                    {project.title}
-                  </h3>
-                  <p class="mt-2 max-w-prose text-sm text-muted-foreground">
-                    {project.teaser}
+        {selectedWork.map((project, index) => (
+          <a
+            href={`/projects/${project.slug}`}
+            aria-label={`View ${project.title}`}
+            class="group block rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+          >
+            <div class="mb-5 flex items-start justify-between gap-4">
+              <div>
+                {project.category === "side-project" && (
+                  <p class="mb-1 text-xs font-bold text-muted-foreground uppercase">
+                    Side project
                   </p>
-                </div>
-                <span class="shrink-0 text-sm text-muted-foreground tabular-nums">
-                  {project.year}
-                </span>
+                )}
+                <h3 class="text-xl font-bold group-hover:underline">
+                  {project.title}
+                </h3>
+                <p class="mt-2 max-w-prose text-sm text-muted-foreground">
+                  {project.teaser}
+                </p>
               </div>
-              <ProjectPreview
-                project={project}
-                widths={[600, 1000]}
-                sizes="(min-width: 768px) 768px, 100vw"
-                priority={index === 0}
-              />
-            </a>
-          ))
-        }
+              <span class="shrink-0 text-sm text-muted-foreground tabular-nums">
+                {project.year}
+              </span>
+            </div>
+            <ProjectPreview
+              project={project}
+              widths={[600, 1000]}
+              sizes="(min-width: 768px) 768px, 100vw"
+              priority={index === 0}
+            />
+          </a>
+        ))}
       </div>
 
       <div class="mt-12 flex flex-wrap items-baseline gap-x-6 gap-y-3">

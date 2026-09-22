@@ -50,31 +50,29 @@ const next = hasNextProject
 
     <CTA />
 
-    {
-      next && (
-        <footer class="mt-16 pt-7 sm:mt-20">
-          <Separator class="-mt-7 mb-7" />
-          <a
-            href={`/projects/${next.slug}`}
-            class="group flex items-center justify-between gap-6 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none [&_svg]:size-4 [&_svg]:shrink-0"
-          >
-            <span>
-              <span class="block text-xs font-bold text-muted-foreground uppercase">
-                Next project
-              </span>
-              <span class="mt-1 block text-base font-bold transition-colors group-hover:text-muted-foreground">
-                View {next.title}
-              </span>
+    {next && (
+      <footer class="mt-16 pt-7 sm:mt-20">
+        <Separator class="-mt-7 mb-7" />
+        <a
+          href={`/projects/${next.slug}`}
+          class="group flex items-center justify-between gap-6 rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none [&_svg]:size-4 [&_svg]:shrink-0"
+        >
+          <span>
+            <span class="block text-xs font-bold text-muted-foreground uppercase">
+              Next project
             </span>
-            <Icon
-              name="lucide:arrow-right"
-              aria-hidden="true"
-              data-affix="inline-end"
-            />
-          </a>
-        </footer>
-      )
-    }
+            <span class="mt-1 block text-base font-bold transition-colors group-hover:text-muted-foreground">
+              View {next.title}
+            </span>
+          </span>
+          <Icon
+            name="lucide:arrow-right"
+            aria-hidden="true"
+            data-affix="inline-end"
+          />
+        </a>
+      </footer>
+    )}
   </div>
 </Layout>
 

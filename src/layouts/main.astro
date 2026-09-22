@@ -91,22 +91,22 @@ const navLinkClass =
           {siteName}
         </a>
         <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
-          <a href="/projects" class={navLinkClass}>Projects</a>
-          {
-            showEmailWork && (
-              <a href={emailWorkPath} class={navLinkClass}>
-                Email work
-              </a>
-            )
-          }
-          <a href="/#contact" class={navLinkClass}>Contact</a>
-          {
-            hasResume && (
-              <a href={resumePath} class={navLinkClass}>
-                Resume
-              </a>
-            )
-          }
+          <a href="/projects" class={navLinkClass}>
+            Projects
+          </a>
+          {showEmailWork && (
+            <a href={emailWorkPath} class={navLinkClass}>
+              Email work
+            </a>
+          )}
+          <a href="/#contact" class={navLinkClass}>
+            Contact
+          </a>
+          {hasResume && (
+            <a href={resumePath} class={navLinkClass}>
+              Resume
+            </a>
+          )}
           <a
             href={linkedInUrl}
             target="_blank"

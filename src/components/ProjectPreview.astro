@@ -22,29 +22,27 @@ const {
 const hasImage = project.image && project.imageAlt
 ---
 
-{
-  hasImage ? (
-    <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
-      <AspectRatio ratio={4 / 3}>
-        <Picture
-          src={project.image!}
-          formats={["avif", "webp"]}
-          widths={widths}
-          sizes={sizes}
-          alt={project.imageAlt ?? ""}
-          priority={priority ? true : undefined}
-          style={
-            project.imageObjectPosition
-              ? `object-position: ${project.imageObjectPosition}`
-              : undefined
-          }
-          class="h-full w-full object-cover"
-        />
-      </AspectRatio>
-    </div>
-  ) : (
-    <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
-      <AspectRatio ratio={4 / 3} />
-    </div>
-  )
-}
+{hasImage ? (
+  <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
+    <AspectRatio ratio={4 / 3}>
+      <Picture
+        src={project.image!}
+        formats={["avif", "webp"]}
+        widths={widths}
+        sizes={sizes}
+        alt={project.imageAlt ?? ""}
+        priority={priority ? true : undefined}
+        style={
+          project.imageObjectPosition
+            ? `object-position: ${project.imageObjectPosition}`
+            : undefined
+        }
+        class="h-full w-full object-cover"
+      />
+    </AspectRatio>
+  </div>
+) : (
+  <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
+    <AspectRatio ratio={4 / 3} />
+  </div>
+)}

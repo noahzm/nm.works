@@ -65,127 +65,111 @@ function isExternalLink(link: ProjectHeaderLink) {
       label={`${project.title} disciplines`}
     />
   </div>
-  <h1
-    class="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl"
-  >
+  <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
     {title}
   </h1>
-  <p
-    class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-  >
+  <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
     {description}
   </p>
-  <dl
-    class="mt-7 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-4 border-y border-border py-4 text-sm"
-  >
-    {
-      metadataItems.map((item, index) => (
-        <div
-          class:list={[
-            index === 0 && "col-span-2 sm:col-span-1",
-            item.fullWidth && "col-span-2",
-          ]}
-        >
-          <dt class="text-muted-foreground">{item.label}</dt>
-          <dd class:list={["mt-1", "font-normal"]}>{item.value}</dd>
-        </div>
-      ))
-    }
+  <dl class="mt-7 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-4 border-y border-border py-4 text-sm">
+    {metadataItems.map((item, index) => (
+      <div
+        class:list={[
+          index === 0 && "col-span-2 sm:col-span-1",
+          item.fullWidth && "col-span-2",
+        ]}
+      >
+        <dt class="text-muted-foreground">{item.label}</dt>
+        <dd class:list={["mt-1", "font-normal"]}>{item.value}</dd>
+      </div>
+    ))}
   </dl>
-  {
-    hasHeaderLinks && (
-      <div class="mt-5 flex max-w-2xl flex-wrap gap-2">
-        {project.appStoreUrl && (
-          <a
-            href={project.appStoreUrl}
-            target="_blank"
-            rel="noreferrer"
-            data-slot="button"
-            data-variant="default"
-            data-size="sm"
-            class={buttonVariants({ variant: "default", size: "sm" })}
-          >
-            Download on the App Store
-            <ExternalArrow />
-          </a>
-        )}
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            data-slot="button"
-            data-variant="default"
-            data-size="sm"
-            class={buttonVariants({ variant: "default", size: "sm" })}
-          >
-            {project.liveUrlLabel ?? "View web app"}
-            <ExternalArrow />
-          </a>
-        )}
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            data-slot="button"
-            data-variant="outline"
-            data-size="sm"
-            class={buttonVariants({ variant: "outline", size: "sm" })}
-          >
-            View on GitHub
-            <ExternalArrow />
-          </a>
-        )}
-        {project.headerLinks?.map((link) => (
-          <a
-            href={link.href}
-            {...(isExternalLink(link)
-              ? { target: "_blank", rel: "noreferrer" }
-              : {})}
-            data-slot="button"
-            data-variant="outline"
-            data-size="sm"
-            class={buttonVariants({ variant: "outline", size: "sm" })}
-          >
-            {link.label}
-            {isExternalLink(link) && <ExternalArrow />}
-          </a>
-        ))}
-      </div>
-    )
-  }
-  {
-    project.whatICanShow && (
-      <div class="mt-5 max-w-2xl rounded-md border border-border bg-muted/30 p-4">
-        <p class="text-xs font-bold text-muted-foreground uppercase">
-          What I can show
-        </p>
-        <p class="mt-1.5 text-sm text-muted-foreground">
-          {project.whatICanShow}
-        </p>
-      </div>
-    )
-  }
-  {
-    project.image && project.imageAlt && (
-      <figure class="mt-9 sm:mt-10">
-        <Picture
-          src={project.image}
-          formats={["avif", "webp"]}
-          widths={[720, 1200, 1600]}
-          sizes="(min-width: 768px) 768px, 100vw"
-          alt={project.imageAlt}
-          loading="eager"
-          fetchpriority="high"
-          style={
-            project.imageObjectPosition
-              ? `object-position: ${project.imageObjectPosition}`
-              : undefined
-          }
-          class="aspect-[3/2] w-full rounded-md border object-cover"
-        />
-      </figure>
-    )
-  }
+  {hasHeaderLinks && (
+    <div class="mt-5 flex max-w-2xl flex-wrap gap-2">
+      {project.appStoreUrl && (
+        <a
+          href={project.appStoreUrl}
+          target="_blank"
+          rel="noreferrer"
+          data-slot="button"
+          data-variant="default"
+          data-size="sm"
+          class={buttonVariants({ variant: "default", size: "sm" })}
+        >
+          Download on the App Store
+          <ExternalArrow />
+        </a>
+      )}
+      {project.liveUrl && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noreferrer"
+          data-slot="button"
+          data-variant="default"
+          data-size="sm"
+          class={buttonVariants({ variant: "default", size: "sm" })}
+        >
+          {project.liveUrlLabel ?? "View web app"}
+          <ExternalArrow />
+        </a>
+      )}
+      {project.githubUrl && (
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noreferrer"
+          data-slot="button"
+          data-variant="outline"
+          data-size="sm"
+          class={buttonVariants({ variant: "outline", size: "sm" })}
+        >
+          View on GitHub
+          <ExternalArrow />
+        </a>
+      )}
+      {project.headerLinks?.map((link) => (
+        <a
+          href={link.href}
+          {...(isExternalLink(link)
+            ? { target: "_blank", rel: "noreferrer" }
+            : {})}
+          data-slot="button"
+          data-variant="outline"
+          data-size="sm"
+          class={buttonVariants({ variant: "outline", size: "sm" })}
+        >
+          {link.label}
+          {isExternalLink(link) && <ExternalArrow />}
+        </a>
+      ))}
+    </div>
+  )}
+  {project.whatICanShow && (
+    <div class="mt-5 max-w-2xl rounded-md border border-border bg-muted/30 p-4">
+      <p class="text-xs font-bold text-muted-foreground uppercase">
+        What I can show
+      </p>
+      <p class="mt-1.5 text-sm text-muted-foreground">{project.whatICanShow}</p>
+    </div>
+  )}
+  {project.image && project.imageAlt && (
+    <figure class="mt-9 sm:mt-10">
+      <Picture
+        src={project.image}
+        formats={["avif", "webp"]}
+        widths={[720, 1200, 1600]}
+        sizes="(min-width: 768px) 768px, 100vw"
+        alt={project.imageAlt}
+        loading="eager"
+        fetchpriority="high"
+        style={
+          project.imageObjectPosition
+            ? `object-position: ${project.imageObjectPosition}`
+            : undefined
+        }
+        class="aspect-[3/2] w-full rounded-md border object-cover"
+      />
+    </figure>
+  )}
 </header>

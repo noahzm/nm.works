@@ -25,13 +25,43 @@ import {
     <section aria-labelledby="case-studies-title">
       <SectionHeader titleId="case-studies-title" title="Case studies" />
       <div class="mt-8 divide-y">
-        {
-          publishedCaseStudies.map((project) => (
-            <a
-              href={`/projects/${project.slug}`}
-              aria-label={`View ${project.title}`}
-              class="group project-listing-link"
-            >
+        {publishedCaseStudies.map((project) => (
+          <a
+            href={`/projects/${project.slug}`}
+            aria-label={`View ${project.title}`}
+            class="group project-listing-link"
+          >
+            <ProjectPreview
+              project={project}
+              widths={[360, 600]}
+              sizes="(min-width: 768px) 224px, 100vw"
+            />
+            <div>
+              <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <ProjectDisciplines
+                  disciplines={project.disciplines}
+                  label={`${project.title} disciplines`}
+                />
+              </div>
+              <h3 class="text-xl font-bold group-hover:underline">
+                {project.title}
+              </h3>
+              <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
+                {project.teaser}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {upcomingCaseStudies.length > 0 && (
+      <section class="mt-14 pt-12" aria-labelledby="upcoming-title">
+        <Separator class="-mt-12 mb-12" />
+        <SectionHeader titleId="upcoming-title" title="In progress" />
+        <div class="mt-8 divide-y">
+          {upcomingCaseStudies.map((project) => (
+            <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
               <ProjectPreview
                 project={project}
                 widths={[360, 600]}
@@ -43,88 +73,52 @@ import {
                     disciplines={project.disciplines}
                     label={`${project.title} disciplines`}
                   />
+                  <Badge variant="outline" class="text-muted-foreground">
+                    Coming soon
+                  </Badge>
                 </div>
-                <h3 class="text-xl font-bold group-hover:underline">
-                  {project.title}
-                </h3>
+                <h3 class="text-xl font-bold">{project.title}</h3>
                 <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
                   {project.teaser}
                 </p>
               </div>
-            </a>
-          ))
-        }
-      </div>
-    </section>
-
-    {
-      upcomingCaseStudies.length > 0 && (
-        <section class="mt-14 pt-12" aria-labelledby="upcoming-title">
-          <Separator class="-mt-12 mb-12" />
-          <SectionHeader titleId="upcoming-title" title="In progress" />
-          <div class="mt-8 divide-y">
-            {upcomingCaseStudies.map((project) => (
-              <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
-                <ProjectPreview
-                  project={project}
-                  widths={[360, 600]}
-                  sizes="(min-width: 768px) 224px, 100vw"
-                />
-                <div>
-                  <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-                    <ProjectDisciplines
-                      disciplines={project.disciplines}
-                      label={`${project.title} disciplines`}
-                    />
-                    <Badge variant="outline" class="text-muted-foreground">
-                      Coming soon
-                    </Badge>
-                  </div>
-                  <h3 class="text-xl font-bold">{project.title}</h3>
-                  <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                    {project.teaser}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      )
-    }
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
 
     <section class="mt-14 pt-12" aria-labelledby="side-projects-title">
       <Separator class="-mt-12 mb-12" />
       <SectionHeader titleId="side-projects-title" title="Side projects" />
       <div class="mt-8 divide-y">
-        {
-          sideProjects.map((project) => (
-            <a
-              href={`/projects/${project.slug}`}
-              aria-label={`View ${project.title}`}
-              class="group project-listing-link"
-            >
-              <ProjectPreview
-                project={project}
-                widths={[360, 600]}
-                sizes="(min-width: 768px) 224px, 100vw"
-              />
-              <div>
-                <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-                  <ProjectDisciplines
-                    disciplines={project.disciplines}
-                    label={`${project.title} disciplines`}
-                  />
-                </div>
-                <h3 class="text-xl font-bold group-hover:underline">
-                  {project.title}
-                </h3>
-                <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                  {project.teaser}
-                </p>
+        {sideProjects.map((project) => (
+          <a
+            href={`/projects/${project.slug}`}
+            aria-label={`View ${project.title}`}
+            class="group project-listing-link"
+          >
+            <ProjectPreview
+              project={project}
+              widths={[360, 600]}
+              sizes="(min-width: 768px) 224px, 100vw"
+            />
+            <div>
+              <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <ProjectDisciplines
+                  disciplines={project.disciplines}
+                  label={`${project.title} disciplines`}
+                />
               </div>
-            </a>
-          ))
-        }
+              <h3 class="text-xl font-bold group-hover:underline">
+                {project.title}
+              </h3>
+              <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
+                {project.teaser}
+              </p>
+            </div>
+          </a>
+        ))}
       </div>
     </section>
 

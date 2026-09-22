@@ -22,81 +22,79 @@ import { siteName } from "@/data/site"
       </p>
     </header>
 
-    {
-      emailTemplates.length === 0 ? (
-        <p class="rounded-md border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
-          Templates are on the way.
-        </p>
-      ) : (
-        <div class="divide-y">
-          {emailTemplates.map((template) => (
-            <article
-              class="py-10 first:pt-0"
-              aria-labelledby={`email-${template.slug}`}
+    {emailTemplates.length === 0 ? (
+      <p class="rounded-md border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+        Templates are on the way.
+      </p>
+    ) : (
+      <div class="divide-y">
+        {emailTemplates.map((template) => (
+          <article
+            class="py-10 first:pt-0"
+            aria-labelledby={`email-${template.slug}`}
+          >
+            <h2
+              id={`email-${template.slug}`}
+              class="text-xl font-bold tracking-tight"
             >
-              <h2
-                id={`email-${template.slug}`}
-                class="text-xl font-bold tracking-tight"
+              {template.title}
+            </h2>
+            <p class="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              {template.description}
+            </p>
+            {template.techniques.length > 0 && (
+              <ul
+                class="mt-4 flex flex-wrap gap-2"
+                aria-label={`Techniques used in ${template.title}`}
               >
-                {template.title}
-              </h2>
-              <p class="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                {template.description}
-              </p>
-              {template.techniques.length > 0 && (
-                <ul
-                  class="mt-4 flex flex-wrap gap-2"
-                  aria-label={`Techniques used in ${template.title}`}
+                {template.techniques.map((technique) => (
+                  <li>
+                    <Badge variant="outline" class="text-muted-foreground">
+                      {technique}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {template.previewHtml ? (
+              <div class="mt-6">
+                <iframe
+                  src={template.previewHtml}
+                  title={`Live preview of ${template.title}`}
+                  sandbox=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                  class="h-[40rem] w-full rounded-md border border-border bg-white"
+                ></iframe>
+                <a
+                  href={template.previewHtml}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="subtle-link mt-2 inline-flex items-center gap-1 [&_svg]:size-3.5"
                 >
-                  {template.techniques.map((technique) => (
-                    <li>
-                      <Badge variant="outline" class="text-muted-foreground">
-                        {technique}
-                      </Badge>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {template.previewHtml ? (
-                <div class="mt-6">
-                  <iframe
-                    src={template.previewHtml}
-                    title={`Live preview of ${template.title}`}
-                    sandbox=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer"
-                    class="h-[40rem] w-full rounded-md border border-border bg-white"
+                  Open full preview
+                  <ExternalArrow />
+                </a>
+              </div>
+            ) : (
+              template.screenshot &&
+              template.screenshotAlt && (
+                <figure class="mt-6">
+                  <Picture
+                    src={template.screenshot}
+                    formats={["avif", "webp"]}
+                    widths={[600, 1000]}
+                    sizes="(min-width: 768px) 768px, 100vw"
+                    alt={template.screenshotAlt}
+                    class="w-full rounded-md border border-border"
                   />
-                  <a
-                    href={template.previewHtml}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="subtle-link mt-2 inline-flex items-center gap-1 [&_svg]:size-3.5"
-                  >
-                    Open full preview
-                    <ExternalArrow />
-                  </a>
-                </div>
-              ) : (
-                template.screenshot &&
-                template.screenshotAlt && (
-                  <figure class="mt-6">
-                    <Picture
-                      src={template.screenshot}
-                      formats={["avif", "webp"]}
-                      widths={[600, 1000]}
-                      sizes="(min-width: 768px) 768px, 100vw"
-                      alt={template.screenshotAlt}
-                      class="w-full rounded-md border border-border"
-                    />
-                  </figure>
-                )
-              )}
-            </article>
-          ))}
-        </div>
-      )
-    }
+                </figure>
+              )
+            )}
+          </article>
+        ))}
+      </div>
+    )}
 
     <CTA />
   </div>

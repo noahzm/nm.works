@@ -10,19 +10,17 @@ const { eyebrow, title, titleId, description } = Astro.props
 ---
 
 <header class="max-w-2xl">
-  {
-    eyebrow && (
-      <p class="mb-3 text-xs font-bold text-muted-foreground uppercase">
-        {eyebrow}
-      </p>
-    )
-  }
-  <h2 id={titleId} class="section-title sm:text-3xl">{title}</h2>
-  {
-    description && (
-      <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        {description}
-      </p>
-    )
-  }
+  {eyebrow && (
+    <p class="mb-3 text-xs font-bold text-muted-foreground uppercase">
+      {eyebrow}
+    </p>
+  )}
+  <h2 id={titleId} class="section-title sm:text-3xl">
+    {title}
+  </h2>
+  {description && (
+    <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+      {description}
+    </p>
+  )}
 </header>
