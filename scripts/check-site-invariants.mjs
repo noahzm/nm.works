@@ -1,10 +1,11 @@
-import { readdir, readFile } from "node:fs/promises"
+import { access, readdir, readFile } from "node:fs/promises"
 import path from "node:path"
 
 const root = process.cwd()
 const publicDir = path.join(root, "public")
 const projectsDataPath = path.join(root, "src/data/projects.ts")
 const projectPagesDir = path.join(root, "src/pages/projects")
+const emailTemplatesDataPath = path.join(root, "src/data/email-templates.ts")
 
 async function findFilesByName(dir, fileName) {
   const matches = []
@@ -81,6 +82,26 @@ if (missingPages.length > 0) {
 
 if (missingData.length > 0) {
   fail("Project invariant failed: every project page needs an entry in src/data/projects.ts.", missingData)
+}
+
+const emailTemplatesSource = await readFile(emailTemplatesDataPath, "utf8")
+const missingPreviews = []
+
+for (const match of emailTemplatesSource.matchAll(
+  /^\s*previewHtml:\s*"([^"]+)",/gm
+)) {
+  try {
+    await access(path.join(publicDir, match[1]))
+  } catch {
+    missingPreviews.push(match[1])
+  }
+}
+
+if (missingPreviews.length > 0) {
+  fail(
+    "Email invariant failed: every previewHtml in src/data/email-templates.ts needs a file under public/.",
+    missingPreviews
+  )
 }
 
 if (process.exitCode) {

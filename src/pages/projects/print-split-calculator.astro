@@ -1,0 +1,157 @@
+---
+import { Picture } from "astro:assets"
+import CaseStudy from "@/layouts/case-study.astro"
+import { getProject } from "@/data/projects"
+import calculatorImg from "@/assets/projects/print-split-calculator/calculator-full.png"
+
+const project = getProject("print-split-calculator")!
+
+const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
+const pictureWidths = [480, 720, 960]
+const pictureSizes = "(min-width: 768px) 560px, 100vw"
+---
+
+<CaseStudy
+  project={project}
+  title="Print Split Calculator"
+  seoDescription="A portable web tool for the NCGA print shop that turns originals, copies, press speeds, and setup time into a recommended split across the shop’s printers."
+>
+  <h2>Overview</h2>
+  <p>
+    The NCGA print shop runs jobs across several digital printers. Splitting a
+    job across more machines finishes it sooner, but every added printer costs
+    setup time, so past a certain point another machine isn’t worth it. The
+    calculator answers that question from the job’s own numbers: how many
+    printers to use, which ones, in what order, and how many copies to send to
+    each.
+  </p>
+
+  <h2>How It Works</h2>
+  <p>
+    Each job is entered as originals and copies, which gives total impressions.
+    Every printer has a per-minute speed, and printers are set up one after
+    another, so each added machine starts a little later than the last. The
+    calculator finds the finish time where every chosen printer ends together,
+    splits the copies to match, and only adds another printer if it saves more
+    than a set threshold.
+  </p>
+
+  <div class="split-flow" aria-label="Production data to machine split">
+    <div class="split-flow__node">
+      <span>Job specs</span>
+      <strong>Originals and copies</strong>
+    </div>
+    <div class="split-flow__connector" aria-hidden="true"></div>
+    <div class="split-flow__node">
+      <span>Shop settings</span>
+      <strong>Press speeds, setup time, threshold</strong>
+    </div>
+    <div class="split-flow__connector" aria-hidden="true"></div>
+    <div class="split-flow__node">
+      <span>Output</span>
+      <strong>Printers, order, and copies each</strong>
+    </div>
+  </div>
+
+  <figure class="case-figure split-figure">
+    <Picture
+      src={calculatorImg}
+      alt="Print Split calculator for a 25-original, 55-copy job. It recommends 3 printers, KM 1, KM 2, and KM 4, finishing in 4 minutes 22 seconds, with 21, 18, and 16 copies to send. The options table shows a fourth printer would save only 36 seconds."
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+    />
+    <figcaption>
+      The built-in example job. A fourth printer would save only 36 seconds,
+      under the one-minute threshold, so the recommendation stops at three.
+    </figcaption>
+  </figure>
+
+  <h2>Several Jobs at Once</h2>
+  <p>
+    When several files run at the same time and there are enough fast printers,
+    each file gets its own machines, and any spare printers go to whichever file
+    is holding up the shop. The slower printer joins only as a last resort, and
+    only if it lowers the shop-wide finish time. With more files than fast
+    printers, the largest jobs are scheduled first and printers are shared in
+    sequence. Each file is color-tagged, and numbered badges show the order to
+    send them.
+  </p>
+
+  <h2>Built to Travel</h2>
+  <p>
+    The whole tool is one self-contained HTML file with no install, no
+    dependencies, and no network connection, so it runs in any browser on any
+    machine. Printer count, speeds, setup time, and the time-saving threshold
+    are all adjustable, with a reset to shop defaults, and printer names follow
+    the shop’s real machine numbering.
+  </p>
+
+  <h2>Outcome</h2>
+  <p>
+    The shop uses it when large jobs come in, so they can be split across the
+    right printers and finished as quickly as possible.
+  </p>
+  <p>
+    It’s the same kind of logic that drives segmentation and journey decisions
+    in marketing automation: turn the data you have into clear rules, then let
+    the rules make the call.
+  </p>
+</CaseStudy>
+
+<style>
+  .split-flow {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.75rem 0;
+  }
+
+  .split-flow__node {
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background: color-mix(in oklch, var(--background) 96%, var(--muted));
+  }
+
+  .split-flow__node span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .split-flow__node strong {
+    display: block;
+    font-size: 0.9375rem;
+  }
+
+  .split-flow__connector {
+    width: 1px;
+    height: 1.25rem;
+    margin-left: 1.25rem;
+    background: var(--border);
+  }
+
+  .split-figure {
+    max-width: 35rem;
+  }
+
+  @media (min-width: 640px) {
+    .split-flow {
+      grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1fr) 2rem minmax(
+          0,
+          1fr
+        );
+      align-items: center;
+      gap: 0;
+    }
+
+    .split-flow__connector {
+      width: 100%;
+      height: 1px;
+      margin-left: 0;
+    }
+  }
+</style>

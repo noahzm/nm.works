@@ -97,6 +97,18 @@ const next = hasNextProject
   .case-study p + p {
     margin-top: 0.875rem;
   }
+  .case-study :is(p, li) a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    border-radius: 0.125rem;
+  }
+  .case-study :is(p, li) a:hover {
+    color: var(--muted-foreground);
+  }
+  .case-study :is(p, li) a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
   .case-study h2 {
     margin-top: clamp(2.5rem, 5vw, 3.25rem);
     margin-bottom: 1rem;

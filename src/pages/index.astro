@@ -2,29 +2,121 @@
 import { Icon } from "astro-icon/components"
 import Layout from "@/layouts/main.astro"
 import ProjectPreview from "@/components/ProjectPreview.astro"
-import CTA from "@/components/CTA.astro"
+import Contact from "@/components/Contact.astro"
 import SectionHeader from "@/components/SectionHeader.astro"
+import Badge from "@/components/ui/badge.astro"
+import { buttonVariants } from "@/components/ui/button-variants"
 import Separator from "@/components/ui/separator.astro"
 import { getProject } from "@/data/projects"
+import {
+  defaultDescription,
+  defaultTitle,
+  hasResume,
+  resumePath,
+  siteHeadline,
+  siteName,
+} from "@/data/site"
 
 const selectedWork = [
-  getProject("wheely-weather")!,
-  getProject("ncga-stationery-templates")!,
+  getProject("ncga-variable-data-stationery")!,
+  getProject("print-split-calculator")!,
   getProject("creative-printing-order-flow")!,
+  getProject("wheely-weather")!,
+]
+
+const highlights = [
+  "Built a one-pass variable data workflow that merges base stationery with recipient-specific addresses and letter body content, for all 170 NC General Assembly members.",
+  "Built an internal web tool that converts production data, like press speeds and job specs, into recommended machine splits.",
+  "Built and maintained 20+ responsive client websites for Creative Printing in HTML/CSS, WordPress, and Drupal.",
+  "Side project: Wheely Weather, an Expo app for iOS, Android, and web that turns live weather and air-quality data into rule-based ride recommendations.",
 ]
 ---
 
 <Layout
-  description="I bridge product design and print production: interfaces, internal tools, front-end code, and press-ready files. Based in Raleigh, NC."
+  title={defaultTitle}
+  socialTitle={`${siteName} · ${siteHeadline}`}
+  description={defaultDescription}
 >
   <div class="content-shell pt-4 pb-12 sm:pb-16">
-    <section class="pb-10 md:pb-14" aria-label="About">
-      <h1 class="max-w-3xl text-xl leading-relaxed text-foreground">
-        I design software and printed matter.
+    <section class="pb-10 md:pb-14" aria-labelledby="intro-title">
+      <h1
+        id="intro-title"
+        class="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl"
+      >
+        Email &amp; Marketing Automation
       </h1>
-      <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
-        I bridge product design and print production: interfaces, internal
-        tools, front-end code, and press-ready files. Based in Raleigh, NC.
+      <p class="mt-4 max-w-3xl text-lg leading-relaxed text-foreground">
+        Variable data personalization, HTML/CSS, and production QA.
+      </p>
+      <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+        I’ve spent 5+ years building data-driven print and digital output:
+        variable data campaigns, responsive websites, and internal workflow
+        tools. I work hands-on in HTML/CSS and WordPress/Drupal, with basic
+        Python scripting. Based in Raleigh, NC.
+      </p>
+      <p
+        class="mt-5 flex max-w-2xl flex-wrap items-baseline gap-x-2 gap-y-1 text-sm leading-relaxed"
+      >
+        <Badge variant="outline" class="self-center text-muted-foreground">
+          In progress
+        </Badge>
+        <span>
+          Salesforce Marketing Cloud Engagement Specialist certification,
+          focused on email, segmentation, and journey automation.
+        </span>
+      </p>
+      <div class="mt-7 flex flex-wrap gap-2">
+        <a
+          href="#contact"
+          data-slot="button"
+          data-variant="default"
+          data-size="default"
+          class={buttonVariants({ variant: "default" })}
+        >
+          <Icon
+            name="lucide:message-circle"
+            aria-hidden="true"
+            data-affix="inline-start"
+            class="[&_path]:fill-current [&_path]:[stroke-width:1.5]"
+          />
+          Get in touch
+        </a>
+        {
+          hasResume && (
+            <a
+              href={resumePath}
+              download
+              data-slot="button"
+              data-variant="outline"
+              data-size="default"
+              class={buttonVariants({ variant: "outline" })}
+            >
+              <Icon
+                name="lucide:download"
+                aria-hidden="true"
+                data-affix="inline-start"
+              />
+              Resume (PDF)
+            </a>
+          )
+        }
+      </div>
+    </section>
+    <Separator />
+
+    <section class="py-12" aria-labelledby="highlights-title">
+      <SectionHeader titleId="highlights-title" title="Highlights" />
+      <ul class="mt-8 grid max-w-2xl gap-5">
+        {
+          highlights.map((text) => (
+            <li class="text-base leading-relaxed">{text}</li>
+          ))
+        }
+      </ul>
+      <p class="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+        <span class="font-bold text-foreground">Education:</span> B.S. in Graphic
+        Arts and Imaging Technology, Cross Media Production concentration, General
+        Business minor. Appalachian State University.
       </p>
     </section>
     <Separator />
@@ -42,6 +134,11 @@ const selectedWork = [
             >
               <div class="mb-5 flex items-start justify-between gap-4">
                 <div>
+                  {project.category === "side-project" && (
+                    <p class="mb-1 text-xs font-bold text-muted-foreground uppercase">
+                      Side project
+                    </p>
+                  )}
                   <h3 class="text-xl font-bold group-hover:underline">
                     {project.title}
                   </h3>
@@ -87,6 +184,6 @@ const selectedWork = [
       </div>
     </section>
 
-    <CTA />
+    <Contact />
   </div>
 </Layout>

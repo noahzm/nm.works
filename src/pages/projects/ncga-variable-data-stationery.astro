@@ -1,0 +1,224 @@
+---
+import { Picture } from "astro:assets"
+import CaseStudy from "@/layouts/case-study.astro"
+import { getProject } from "@/data/projects"
+import envelopeImg from "@/assets/projects/ncga-stationery/envelope-editor.png"
+
+const project = getProject("ncga-variable-data-stationery")!
+
+const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
+const pictureWidths = [640, 960, 1280]
+const pictureSizes = "(min-width: 768px) 960px, 100vw"
+---
+
+<CaseStudy
+  project={project}
+  title="NCGA Variable Data Stationery"
+  seoDescription="Variable data stationery for all 170 NC legislators: locked letterhead and envelope templates, a mail-merge pipeline that prints stationery, address, and letter body in one pass, and automated production QA."
+>
+  <h2>Overview</h2>
+  <p>
+    The North Carolina General Assembly print shop produces official stationery
+    for all 170 legislators. Every order follows the same formal brand
+    guidelines, but each member needs their own contact details, committee
+    assignments, and chamber wording. Repeat orders used to rely on a separate
+    file for each member, so small differences in spacing, ink color, and
+    committee data crept in across all 170.
+  </p>
+  <p>
+    I split the job into two parts: locked templates that keep the stationery
+    consistent, and a merge step that adds each recipient’s address and letter
+    so the whole mailing prints in one pass.
+  </p>
+
+  <div class="template-flow" aria-label="Stationery pipeline">
+    <div class="template-flow__node">
+      <span>1. Stationery</span>
+      <strong>Legislator record into a locked template</strong>
+    </div>
+    <div class="template-flow__connector" aria-hidden="true"></div>
+    <div class="template-flow__node">
+      <span>2. Merge</span>
+      <strong>Recipient address and letter body, one per page</strong>
+    </div>
+    <div class="template-flow__connector" aria-hidden="true"></div>
+    <div class="template-flow__node">
+      <span>Output</span>
+      <strong>One flat PDF, printed in one pass</strong>
+    </div>
+  </div>
+
+  <h2>Locked Templates</h2>
+  <p>
+    Each legislator is one record. The template decides what can change and what
+    can’t.
+  </p>
+  <div class="field-lists">
+    <div>
+      <h3>Locked</h3>
+      <ul>
+        <li>State seal and official masthead</li>
+        <li>Licensed typefaces</li>
+        <li>Page grid and margins</li>
+        <li>Recycling mark</li>
+      </ul>
+    </div>
+    <div>
+      <h3>From the record</h3>
+      <ul>
+        <li>Member name and chamber</li>
+        <li>Office address and phone</li>
+        <li>Committee list</li>
+        <li>Ink color</li>
+      </ul>
+    </div>
+  </div>
+  <p>
+    Visibility toggles hide a section without deleting its data. The browser
+    preview renders in exact inches and points, and the PDF renderer shares the
+    same logic for chamber copy, ink colors, and visible committees, so the
+    preview matches what prints.
+  </p>
+
+  <h3>Envelopes</h3>
+  <p>
+    Envelopes use the same record with a simpler form. There’s no phone number,
+    committee list, or state seal, matching the production artwork, and the
+    return address is picked from the official legislative buildings instead of
+    typed in.
+  </p>
+
+  <figure class="case-figure">
+    <Picture
+      src={envelopeImg}
+      alt="Envelope editor with a building picker and a print-accurate envelope preview."
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+    />
+    <figcaption>
+      The envelope editor: a building picker instead of a free-text address, and
+      no seal. Recipients are added in the merge step.
+    </figcaption>
+  </figure>
+
+  <h2>One-Pass Mail Merge</h2>
+  <p>
+    The personalization comes from a Word mail merge: one letter, or one
+    recipient address, per page. The merge step lays the letterhead or envelope
+    template onto every page of that output, so the stationery, address, and
+    letter print together on the shop’s Xante En/Press digital press.
+  </p>
+  <p>I built two versions and use whichever the job needs:</p>
+  <ul>
+    <li>
+      <strong>Browser merge</strong>, built into the stationery tool. It runs
+      entirely in the browser, so files never leave the machine.
+    </li>
+    <li>
+      <strong>Python pipeline</strong> with a terminal UI, for jobs that need deeper
+      checks.
+    </li>
+  </ul>
+
+  <h2>Production QA</h2>
+  <p>
+    The press queue spools slowly when a PDF carries transparency, so both
+    versions output flat PDF 1.3 files. Before anything goes to press:
+  </p>
+  <ul>
+    <li>
+      The browser merge blocks the run on a page-size mismatch, which would
+      otherwise stretch the letterhead instead of failing.
+    </li>
+    <li>
+      The Python pipeline flattens the letterhead once at the source instead of
+      across the whole merged file, then runs a deep transparency audit,
+      confirms the page count matches the merge, and checks page dimensions and
+      file size.
+    </li>
+    <li>
+      Each finished job is archived with a manifest of its run options and
+      verification results.
+    </li>
+  </ul>
+
+  <h2>Outcome</h2>
+  <p>
+    Personalized mailings to all 170 members now run in one press pass instead
+    of two. It’s the same model as a personalized email send: a locked template,
+    one data record per recipient, and QA before anything goes out.
+  </p>
+  <p>
+    Related NCGA work includes the <a href="/projects/print-split-calculator"
+      >Print Split Calculator</a
+    >, plus identity systems, job tickets, proofing tools, and high-volume
+    production workflows.
+  </p>
+</CaseStudy>
+
+<style>
+  .template-flow {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.75rem 0;
+  }
+
+  .template-flow__node {
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background: color-mix(in oklch, var(--background) 96%, var(--muted));
+  }
+
+  .template-flow__node span {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--muted-foreground);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .template-flow__node strong {
+    display: block;
+    font-size: 0.9375rem;
+  }
+
+  .template-flow__connector {
+    width: 1px;
+    height: 1.25rem;
+    margin-left: 1.25rem;
+    background: var(--border);
+  }
+
+  .field-lists {
+    display: grid;
+    gap: 0.5rem 2rem;
+  }
+
+  .field-lists h3 {
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .field-lists {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .template-flow {
+      grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1.2fr) 2rem minmax(
+          0,
+          1fr
+        );
+      align-items: center;
+      gap: 0;
+    }
+
+    .template-flow__connector {
+      width: 100%;
+      height: 1px;
+      margin-left: 0;
+    }
+  }
+</style>

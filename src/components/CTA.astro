@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components"
 import { buttonVariants } from "@/components/ui/button-variants"
 import Separator from "@/components/ui/separator.astro"
+import { contactHref } from "@/data/site"
 
 interface Props {
   title?: string
@@ -12,9 +13,9 @@ interface Props {
 
 const {
   title = "Let\u2019s build something useful.",
-  description = "Open to UX, product, graphic design, and prepress roles.",
-  href = "mailto:hi@nm.works?subject=Hi%20from%20nm.works",
-  label = "Start a conversation",
+  description = "Open to email marketing, marketing automation, and production roles.",
+  href = contactHref,
+  label = "Get in touch",
 } = Astro.props
 ---
 

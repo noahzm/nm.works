@@ -11,3 +11,10 @@
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Standalone HTML email previews, framed by /email in a sandboxed iframe.
+# Detach the site-wide framing headers so same-origin framing works.
+/email-previews/*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  X-Robots-Tag: noindex

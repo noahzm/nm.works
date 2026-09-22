@@ -2,9 +2,20 @@
 import "@/styles/global.css"
 import { ClientRouter } from "astro:transitions"
 import Footer from "@/components/Footer.astro"
+import { emailWorkPath, showEmailWork } from "@/data/email-templates"
+import {
+  defaultDescription,
+  defaultTitle,
+  gitHubUrl,
+  hasResume,
+  linkedInUrl,
+  resumePath,
+  siteName,
+} from "@/data/site"
 
 interface Props {
   title?: string
+  socialTitle?: string
   description?: string
   image?: string
   ogType?: "website" | "article"
@@ -12,8 +23,9 @@ interface Props {
 }
 
 const {
-  title = "Noah Michaels · Product Designer & Print Production, Raleigh, NC",
-  description = "I bridge product design and print production: interfaces, internal tools, front-end code, and press-ready files. Based in Raleigh, NC.",
+  title = defaultTitle,
+  socialTitle,
+  description = defaultDescription,
   image = "/og.png",
   ogType = "website",
   noindex = false,
@@ -26,6 +38,9 @@ const canonicalURL = new URL(
 const socialImageURL = image ? new URL(image, canonicalURL) : null
 
 const headerWidthClass = "max-w-3xl"
+
+const navLinkClass =
+  "-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
 ---
 
 <html lang="en">
@@ -39,16 +54,16 @@ const headerWidthClass = "max-w-3xl"
     <link rel="canonical" href={canonicalURL} />
     <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="Noah Michaels" />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={socialTitle ?? title} />
     <meta property="og:description" content={description} />
     {socialImageURL && <meta property="og:image" content={socialImageURL} />}
     <meta
       name="twitter:card"
       content={socialImageURL ? "summary_large_image" : "summary"}
     />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={socialTitle ?? title} />
     <meta name="twitter:description" content={description} />
     {socialImageURL && <meta name="twitter:image" content={socialImageURL} />}
     <title>{title}</title>
@@ -73,36 +88,40 @@ const headerWidthClass = "max-w-3xl"
           href="/"
           class="rounded-sm text-2xl font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
         >
-          Noah Michaels
+          {siteName}
         </a>
         <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+          <a href="/projects" class={navLinkClass}>Projects</a>
+          {
+            showEmailWork && (
+              <a href={emailWorkPath} class={navLinkClass}>
+                Email work
+              </a>
+            )
+          }
+          <a href="/#contact" class={navLinkClass}>Contact</a>
+          {
+            hasResume && (
+              <a href={resumePath} class={navLinkClass}>
+                Resume
+              </a>
+            )
+          }
           <a
-            href="/projects"
-            class="-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
-          >
-            Projects
-          </a>
-          <a
-            href="https://www.linkedin.com/in/noahzm/"
+            href={linkedInUrl}
             target="_blank"
             rel="noreferrer"
-            class="-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+            class={navLinkClass}
           >
             LinkedIn
           </a>
           <a
-            href="https://github.com/noahzm"
+            href={gitHubUrl}
             target="_blank"
             rel="noreferrer"
-            class="-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+            class={navLinkClass}
           >
             GitHub
-          </a>
-          <a
-            href="mailto:hi@nm.works?subject=Hi%20from%20nm.works"
-            class="-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
-          >
-            hi@nm.works
           </a>
         </div>
       </nav>

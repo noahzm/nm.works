@@ -14,25 +14,27 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
 <CaseStudy
   project={project}
   title="Creative Printing Order Flow"
-  seoTitle="Creative Printing Order Flow · UX Redesign"
-  seoDescription="Redesigning Creative Printing’s homepage order path with responsive icon-grid navigation, clearer information architecture, and direct routes into service intake."
+  seoDescription="A responsive WordPress and Elementor homepage for Creative Printing, built around an icon grid that routes customers straight into the right service intake. One of 20+ client sites I built and maintained for the shop."
 >
   <h2>Overview</h2>
   <p>
-    Creative Printing needed a homepage that helped customers immediately start
-    the right type of order, whether requesting copies, business cards,
-    envelopes, wide-format signs, multimedia conversions, or website services.
-    Each service category requires distinct intake questions and workflows, so a
-    single generic form was impractical.
+    Creative Printing builds and manages websites for its own clients, and I
+    built and maintained 20+ responsive sites for the shop. This one is its own
+    homepage.
+  </p>
+  <p>
+    The shop needed a homepage that helped customers start the right type of
+    order right away, whether copies, business cards, envelopes, wide-format
+    signs, multimedia conversions, or website services. Each service needs its
+    own intake questions, so a single generic form wasn’t practical.
   </p>
 
   <h2>The Category Grid</h2>
   <p>
-    I restructured the homepage around the primary ordering moment. The main
-    service categories sit in a prominent icon grid, labeled with terms
-    customers naturally use rather than internal shop jargon. Each tile routes
-    directly to the relevant service page or intake form, making the order path
-    clear and immediate.
+    I built the homepage in WordPress with Elementor and organized it around
+    placing an order. The main service categories sit in an icon grid, labeled
+    with the words customers actually use rather than shop jargon, and each tile
+    goes straight to the right service page or intake form.
   </p>
 
   <div class="order-flow" aria-label="Creative Printing order flow">
@@ -41,7 +43,7 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
       <strong>Order Now</strong>
     </div>
     <div class="order-flow__connector" aria-hidden="true"></div>
-    <div class="order-flow__node order-flow__node--wide">
+    <div class="order-flow__node">
       <span>Category grid</span>
       <strong>Recognize the job type</strong>
     </div>
@@ -61,9 +63,8 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
       sizes={pictureSizes}
     />
     <figcaption>
-      The complete homepage layout. A single call-to-action button in the hero
-      leads directly to the eight-tile service grid, making order selection the
-      focal point of the page.
+      The full homepage: an Order Now button in the hero, the eight-tile service
+      grid, and a location map.
     </figcaption>
   </figure>
 
@@ -71,6 +72,11 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
   <p>
     The shop owner reviewed and approved the grid layout before launch. Seven
     years later, the category grid still anchors the live site.
+  </p>
+  <p>
+    Keeping responsive layouts working across 20+ client sites is groundwork for
+    email development, where a layout has to hold up across even more screens
+    and email clients.
   </p>
 </CaseStudy>
 

@@ -13,8 +13,7 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  seoTitle="Wheely Weather · Cross-Platform Cycling Weather App (Expo)"
-  seoDescription="Wheely Weather is a cross-platform cycling weather app built with Expo for iOS, Android, and web, with ride-quality verdicts, hourly riding windows, and weather-based kit guidance."
+  seoDescription="Wheely Weather is a side project: an Expo app for iOS, Android, and web that turns live weather and air-quality data into rule-based ride verdicts, hourly riding windows, and kit guidance."
 >
   <h2>Overview</h2>
   <p>
@@ -26,15 +25,29 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
     weather apps.
   </p>
 
-  <h2>How It Works</h2>
+  <h2 id="how-it-works">How It Works</h2>
   <p>
-    I designed the app around a clear verdict scored by the weakest weather
-    signal. The app assigns a rating from Great to Bad and explicitly names the
-    limiting factor whenever conditions drop. Raw weather numbers remain visible
-    for riders who want to inspect the details. When conditions are poor, the
-    hourly forecast highlights the next favorable riding window, while the same
-    data powers personalized kit suggestions.
+    The screen follows the order of a rider’s questions: can I go, why did it
+    get that rating, and what should I wear?
   </p>
+  <ul>
+    <li>
+      <strong>Verdict:</strong> a rule-based rating from Ideal to Don’t Ride, scored
+      by the weakest signal, that names the limiting factor whenever conditions drop.
+    </li>
+    <li>
+      <strong>Signals:</strong> temperature, dew point, and wind, plus precipitation,
+      air quality, UV index, and sunset timing.
+    </li>
+    <li>
+      <strong>Riding window:</strong> when conditions are poor, the hourly forecast
+      highlights the next favorable window.
+    </li>
+    <li>
+      <strong>Kit:</strong> the same data powers personalized kit suggestions.
+    </li>
+  </ul>
+  <p>Raw weather numbers stay visible for riders who want the details.</p>
 
   <figure>
     <Picture
@@ -50,26 +63,27 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
     </figcaption>
   </figure>
 
-  <h2 id="system-design">System Design</h2>
-  <p>
-    The screen layout matches the sequence of questions a rider actually asks:
-    can I go, why did it get that rating, and what should I wear? A shared
-    TypeScript scoring domain in <code>src/domain/</code> powers the ride-quality
-    logic across every platform, while theme-aware components render the same tree
-    on iOS, Android, and web.
-  </p>
-
   <h2>Built With</h2>
   <p>
-    The app is built from a single Expo Router and React Native codebase
-    targeting iOS, Android, and web. The web version is live on Cloudflare
-    Workers at <a
-      href="https://wheelyweather.app"
-      target="_blank"
-      rel="noreferrer">wheelyweather.app</a
-    >. Open-Meteo provides forecast data by default, with Apple WeatherKit
-    integrated on iOS through a custom native module. The project is backed by
-    strict TypeScript, Vitest unit tests, Playwright end-to-end tests, and
-    GitHub Actions CI.
+    One Expo Router and React Native codebase covers iOS, Android, and web. The
+    ride-scoring rules live in a single shared TypeScript module, so every
+    platform scores conditions the same way.
   </p>
+  <ul>
+    <li>
+      <strong>Web:</strong> live on Cloudflare Workers at <a
+        href="https://wheelyweather.app"
+        target="_blank"
+        rel="noreferrer">wheelyweather.app</a
+      >.
+    </li>
+    <li>
+      <strong>Data:</strong> Open-Meteo by default, with Apple WeatherKit on iOS through
+      a small Swift native module (my Swift is basic).
+    </li>
+    <li>
+      <strong>Quality:</strong> strict TypeScript, Vitest unit tests, Playwright end-to-end
+      tests, and GitHub Actions CI.
+    </li>
+  </ul>
 </CaseStudy>

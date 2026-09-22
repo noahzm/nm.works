@@ -1,14 +1,14 @@
 # nm.works
 
-Portfolio site for Noah Michaels, a designer working across product UX, information architecture, front-end development, and print production.
+Portfolio site for Noah Michaels, focused on email and marketing automation: variable data personalization, HTML/CSS, and production QA.
 
 Built as a static Astro site with TypeScript and Tailwind CSS v4, and deployed on Cloudflare Pages.
 
 ## What this site showcases
 
-- Case studies from shipped product, internal tool, and print production work
-- Visual and UI craft across web, product, and brand surfaces
-- Ongoing work-in-progress projects
+- Case studies from variable data, production QA, and responsive web work
+- An email portfolio at `/email` (hidden until it has content)
+- Side projects
 
 ## Built with
 
@@ -50,6 +50,14 @@ When adding a new case study, update both:
 - `src/pages/projects/<slug>.astro`
 
 Build checks enforce that data slugs and project pages stay in sync.
+
+Site-wide copy, contact links, and the resume path live in `src/data/site.ts`. Resume links render only when the PDF exists under `public/` at build time.
+
+## Email portfolio
+
+Templates live in `src/data/email-templates.ts`. Each has a title, description, techniques, and a `previewHtml` file under `public/email-previews/` (shown in a sandboxed iframe) and/or a screenshot imported from `src/assets/email/`. The build fails if a `previewHtml` file is missing.
+
+`/email` stays out of navigation and the sitemap, and is noindexed, until `emailWorkLive` is `true` and at least one template exists.
 
 ## Deploy
 
