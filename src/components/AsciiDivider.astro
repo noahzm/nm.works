@@ -8,9 +8,11 @@ const { class: className } = Astro.props
 ---
 
 <p class:list={["ascii-divider", className]} aria-hidden="true">
-  {"^ ~ ^^ ~~ ^ ~~~ ^^^ ~~ "}
-  <span class="dogwood">(@)</span>
-  {" ~~ ^^^ ~~~ ^ ~~ ^^ ~ ^"}
+  <span class="ascii-divider-line">
+    {"^ ~ ^^ ~~ ^ ~~~ ^^^ ~~ "}
+    <span class="dogwood">(@)</span>
+    {" ~~ ^^^ ~~~ ^ ~~ ^^ ~ ^"}
+  </span>
 </p>
 
 <style>
@@ -21,6 +23,11 @@ const { class: className } = Astro.props
     text-align: center;
     white-space: pre;
     color: var(--heading);
+    container-type: inline-size;
+  }
+  /* The rule is 49 monospace chars (~29.4em); shrink it to fit narrow screens. */
+  .ascii-divider-line {
+    font-size: min(0.8125rem, 100cqi / 30);
   }
   .dogwood {
     color: var(--bar);
