@@ -9,18 +9,18 @@ interface Props {
 }
 
 const {
-  title = "Let’s build something useful.",
-  description = "Open to email marketing, marketing automation, and production roles.",
+  title,
+  description = "I’m open to email marketing, marketing automation, and production roles.",
   href = contactHref,
-  label = "Get in touch",
+  label = "Say hi",
 } = Astro.props
 ---
 
 <section class="mt-8">
   <hr class="mb-4" />
   <p class="text-center">
-    <b>{title}</b>
-    {description && <> {description}</>}
+    {title && <b>{title} </b>}
+    {description}
     <br />
     <a href={href}>{label} &raquo;</a>
   </p>
