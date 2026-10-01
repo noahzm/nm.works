@@ -1,7 +1,6 @@
 ---
 import { Picture } from "astro:assets"
 import CTA from "@/components/CTA.astro"
-import Badge from "@/components/ui/badge.astro"
 import Layout from "@/layouts/main.astro"
 import { emailTemplates, showEmailWork } from "@/data/email-templates"
 import { siteName } from "@/data/site"
@@ -35,16 +34,9 @@ import { siteName } from "@/data/site"
             </h2>
             <p class="mt-2">{template.description}</p>
             {template.techniques.length > 0 && (
-              <ul
-                class="mt-4 flex flex-wrap gap-2"
-                aria-label={`Techniques used in ${template.title}`}
-              >
-                {template.techniques.map((technique) => (
-                  <li>
-                    <Badge variant="outline">{technique}</Badge>
-                  </li>
-                ))}
-              </ul>
+              <p class="arial mt-2 text-xs italic">
+                Techniques: {template.techniques.join(", ")}
+              </p>
             )}
             {template.previewHtml ? (
               <div class="mt-6">

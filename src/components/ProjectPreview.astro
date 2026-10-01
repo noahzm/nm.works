@@ -1,6 +1,5 @@
 ---
 import { Picture } from "astro:assets"
-import AspectRatio from "@/components/ui/aspect-ratio.astro"
 import type { Project } from "@/data/projects"
 
 interface Props {
@@ -23,26 +22,22 @@ const hasImage = project.image && project.imageAlt
 ---
 
 {hasImage ? (
-  <div class:list={["overflow-hidden", className]}>
-    <AspectRatio ratio={4 / 3}>
-      <Picture
-        src={project.image!}
-        formats={["avif", "webp"]}
-        widths={widths}
-        sizes={sizes}
-        alt={project.imageAlt ?? ""}
-        priority={priority ? true : undefined}
-        style={
-          project.imageObjectPosition
-            ? `object-position: ${project.imageObjectPosition}`
-            : undefined
-        }
-        class="feather feather-sm h-full w-full object-cover"
-      />
-    </AspectRatio>
+  <div class:list={["aspect-[4/3] overflow-hidden", className]}>
+    <Picture
+      src={project.image!}
+      formats={["avif", "webp"]}
+      widths={widths}
+      sizes={sizes}
+      alt={project.imageAlt ?? ""}
+      priority={priority ? true : undefined}
+      style={
+        project.imageObjectPosition
+          ? `object-position: ${project.imageObjectPosition}`
+          : undefined
+      }
+      class="feather feather-sm h-full w-full object-cover"
+    />
   </div>
 ) : (
-  <div class:list={["overflow-hidden", className]}>
-    <AspectRatio ratio={4 / 3} />
-  </div>
+  <div class:list={["aspect-[4/3] overflow-hidden", className]} />
 )}

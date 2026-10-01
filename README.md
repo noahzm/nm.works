@@ -15,7 +15,6 @@ Built as a static Astro site with TypeScript and Tailwind CSS v4, and deployed o
 - Astro 7 (static output)
 - TypeScript
 - Tailwind CSS v4 via Vite
-- CVA-based styling with `tailwind-merge`
 - Cloudflare Pages project `nm-works`
 - System fonts only (Times New Roman for body, Arial for labels and tables), no webfonts
 - Header name in `public/wordmark.svg`: text outlined from Naive Font by Mr.Fisk (personal use); the font file itself is not in the repo
