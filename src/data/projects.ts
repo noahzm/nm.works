@@ -1,4 +1,5 @@
 import type { ImageMetadata } from "astro"
+import grouchImg from "@/assets/projects/grouch/grouchorange.png"
 import creativePrintingImg from "@/assets/projects/creative-printing/order-grid-current.png"
 import ncgaLetterheadImg from "@/assets/projects/ncga-stationery/letterhead-house.png"
 import printSplitImg from "@/assets/projects/print-split-calculator/calculator-full.png"
@@ -13,6 +14,8 @@ export type ProjectDiscipline =
   | "wordpress"
   | "front-end"
   | "mobile"
+  | "brand-identity"
+  | "screen-printing"
 export type ProjectStatus = "published" | "coming-soon"
 
 export interface ProjectHeaderLink {
@@ -148,6 +151,26 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "grouch",
+    title: "Grouch",
+    category: "side-project",
+    status: "published",
+    disciplines: ["brand-identity", "screen-printing"],
+    role: "Design & screen printing",
+    year: "2022",
+    teaser:
+      "A small clothing project: hand-printed shirts, plus hats, tote bags, and stickers.",
+    description:
+      "A small clothing project: hand-printed shirts, plus hats, tote bags, and stickers.",
+    image: grouchImg,
+    imageAlt:
+      "White Grouch T-shirt with a jagged red-orange wordmark above three black cartoon cats.",
+    imageObjectPosition: "center 30%",
+    headerDetails: [
+      { label: "With", value: "Amari, who helped with printing and marketing" },
+    ],
+  },
 ]
 
 export const disciplineLabels: Record<ProjectDiscipline, string> = {
@@ -158,6 +181,8 @@ export const disciplineLabels: Record<ProjectDiscipline, string> = {
   wordpress: "WordPress",
   "front-end": "Front-End",
   mobile: "Mobile",
+  "brand-identity": "Brand Identity",
+  "screen-printing": "Screen Printing",
 }
 
 export const caseStudies = projects.filter(

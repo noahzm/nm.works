@@ -1,0 +1,77 @@
+---
+import { Picture } from "astro:assets"
+import CaseStudy from "@/layouts/case-study.astro"
+import { getProject } from "@/data/projects"
+import grouchWhiteImg from "@/assets/projects/grouch/grouchwhite.png"
+import hatImg from "@/assets/projects/grouch/hat.jpg"
+import setupImg from "@/assets/projects/grouch/setup.jpg"
+import stickersImg from "@/assets/projects/grouch/stickers.jpg"
+
+const project = getProject("grouch")!
+const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
+---
+
+<CaseStudy
+  project={project}
+  title="Grouch"
+  seoDescription="Grouch was a small clothing project by Noah Michaels: hand-printed shirts, plus hats, tote bags, and stickers."
+>
+  <p>
+    Grouch was a small clothing project I did with my roommate, Amari. I made
+    the design, a jagged Grouch logo over an old public-domain cartoon, and
+    Amari helped me print it and get the word out.
+  </p>
+  <p>
+    We screen printed the shirts by hand in two versions: all black, and black
+    with a red-orange logo. There were also hats, tote bags, and stickers.
+  </p>
+
+  <figure>
+    <Picture
+      src={grouchWhiteImg}
+      formats={pictureFormats}
+      widths={[600, 1000]}
+      sizes="(min-width: 768px) 768px, 100vw"
+      alt="White Grouch T-shirt printed in black only, with the jagged wordmark above three cartoon cats."
+      class="aspect-[4/3]"
+    />
+    <figcaption>The all-black version.</figcaption>
+  </figure>
+
+  <figure>
+    <Picture
+      src={setupImg}
+      formats={pictureFormats}
+      widths={[720, 1200]}
+      sizes="(min-width: 768px) 768px, 100vw"
+      alt="Red screen-printing screen clamped above a platen, with the Grouch graphic burned into it in reverse."
+      class="aspect-[3/2]"
+    />
+    <figcaption>The screen, ready to go.</figcaption>
+  </figure>
+
+  <div class="grid gap-x-6 sm:grid-cols-2">
+    <figure>
+      <Picture
+        src={hatImg}
+        formats={pictureFormats}
+        widths={[480, 800]}
+        sizes="(min-width: 768px) 380px, 100vw"
+        alt="Black foam trucker hat with an embroidered white-and-gold Grouch logo, a cartoon cat, and stars."
+        class="aspect-square"
+      />
+      <figcaption>The hat.</figcaption>
+    </figure>
+    <figure>
+      <Picture
+        src={stickersImg}
+        formats={pictureFormats}
+        widths={[480, 800]}
+        sizes="(min-width: 768px) 380px, 100vw"
+        alt="A stack of die-cut Grouch stickers with orange lettering layered over the black wordmark."
+        class="aspect-square"
+      />
+      <figcaption>Stickers.</figcaption>
+    </figure>
+  </div>
+</CaseStudy>
