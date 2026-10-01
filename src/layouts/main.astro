@@ -6,9 +6,7 @@ import { emailWorkPath, showEmailWork } from "@/data/email-templates"
 import {
   defaultDescription,
   defaultTitle,
-  gitHubUrl,
   hasResume,
-  linkedInUrl,
   resumePath,
   siteName,
 } from "@/data/site"
@@ -49,8 +47,6 @@ const navLinks = [
   ...(hasResume
     ? [{ label: "Resume", href: resumePath, external: false }]
     : []),
-  { label: "LinkedIn", href: linkedInUrl, external: true },
-  { label: "GitHub", href: gitHubUrl, external: true },
 ]
 
 function isActive(href: string) {
