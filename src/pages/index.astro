@@ -21,13 +21,6 @@ const selectedWork = [
   getProject("wheely-weather")!,
   getProject("grouch")!,
 ]
-
-const highlights = [
-  "Set up a one-pass variable data workflow for all 170 NC General Assembly members: base stationery, their address, and their letter body, merged in a single run.",
-  "Made an internal web tool that takes press speeds and job specs and tells you how to split a job across machines.",
-  "Built and looked after 20+ responsive client websites for Creative Printing, in HTML/CSS, WordPress, and Drupal.",
-  "For fun: Wheely Weather, an Expo app for iOS, Android, and web that checks live weather and air quality and tells you if it’s a good time to ride.",
-]
 ---
 
 <Layout
@@ -52,6 +45,11 @@ const highlights = [
         automation.
       </p>
       <p class="mt-3">
+        <b>School:</b> I studied Graphic Arts and Imaging Technology at
+        Appalachian State (B.S., Cross Media Production concentration, General
+        Business minor).
+      </p>
+      <p class="mt-3">
         <a href="#contact">Say hi</a>
         {hasResume && (
           <>
@@ -73,22 +71,6 @@ const highlights = [
       <ProjectTable projects={selectedWork} caption="Things I’ve made" />
       <p class="arial mt-2 text-right text-xs">
         <a href="/projects">All projects &raquo;</a>
-      </p>
-    </section>
-
-    <AsciiDivider class="my-5" />
-
-    <section aria-labelledby="highlights-title">
-      <SectionHeader titleId="highlights-title" title="A Few Highlights" />
-      <ul class="list-disc space-y-2 pl-6">
-        {highlights.map((text) => (
-          <li>{text}</li>
-        ))}
-      </ul>
-      <p class="mt-4">
-        <b>School:</b> I studied Graphic Arts and Imaging Technology at
-        Appalachian State (B.S., Cross Media Production concentration, General
-        Business minor).
       </p>
     </section>
 
