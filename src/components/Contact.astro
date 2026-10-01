@@ -1,8 +1,4 @@
 ---
-import { Icon } from "astro-icon/components"
-import ExternalArrow from "@/components/ExternalArrow.astro"
-import { buttonVariants } from "@/components/ui/button-variants"
-import Separator from "@/components/ui/separator.astro"
 import {
   contactEmail,
   contactHref,
@@ -13,68 +9,48 @@ import {
 } from "@/data/site"
 ---
 
-<section id="contact" class="scroll-mt-8 py-12" aria-labelledby="contact-title">
-  <Separator />
-  <div class="pt-12">
-    <h2 id="contact-title" class="section-title">
-      Contact
-    </h2>
-    <p class="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground">
-      Open to email marketing, marketing automation, and production roles. Email
-      is the fastest way to reach me.
-    </p>
-    <div class="mt-6 flex flex-wrap gap-2">
-      <a
-        href={contactHref}
-        data-slot="button"
-        data-variant="default"
-        data-size="default"
-        class={buttonVariants({ variant: "default" })}
-      >
-        <Icon name="lucide:mail" aria-hidden="true" data-affix="inline-start" />
-        {contactEmail}
-      </a>
+<section id="contact" class="scroll-mt-8" aria-labelledby="contact-title">
+  <h2 id="contact-title" class="section-title">
+    Contact
+  </h2>
+  <p>
+    Open to email marketing, marketing automation, and production roles. Email
+    is the fastest way to reach me.
+  </p>
+  <table class="old-table mt-3 max-w-md">
+    <tbody>
+      <tr>
+        <th scope="row">Email</th>
+        <td>
+          <a href={contactHref}>{contactEmail}</a>
+        </td>
+      </tr>
       {hasResume && (
-        <a
-          href={resumePath}
-          download
-          data-slot="button"
-          data-variant="outline"
-          data-size="default"
-          class={buttonVariants({ variant: "outline" })}
-        >
-          <Icon
-            name="lucide:download"
-            aria-hidden="true"
-            data-affix="inline-start"
-          />
-          Resume (PDF)
-        </a>
+        <tr>
+          <th scope="row">Resume</th>
+          <td>
+            <a href={resumePath} download>
+              Download (PDF)
+            </a>
+          </td>
+        </tr>
       )}
-    </div>
-    <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2" aria-label="Elsewhere">
-      <li>
-        <a
-          href={linkedInUrl}
-          target="_blank"
-          rel="noreferrer"
-          class="subtle-link inline-flex items-center gap-1 [&_svg]:size-3.5"
-        >
-          LinkedIn
-          <ExternalArrow />
-        </a>
-      </li>
-      <li>
-        <a
-          href={gitHubUrl}
-          target="_blank"
-          rel="noreferrer"
-          class="subtle-link inline-flex items-center gap-1 [&_svg]:size-3.5"
-        >
-          GitHub
-          <ExternalArrow />
-        </a>
-      </li>
-    </ul>
-  </div>
+      <tr>
+        <th scope="row">LinkedIn</th>
+        <td>
+          <a href={linkedInUrl} target="_blank" rel="noreferrer">
+            linkedin.com/in/noahzm
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">GitHub</th>
+        <td>
+          <a href={gitHubUrl} target="_blank" rel="noreferrer">
+            github.com/noahzm
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </section>

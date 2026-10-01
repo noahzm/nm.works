@@ -1,0 +1,75 @@
+---
+import ProjectPreview from "@/components/ProjectPreview.astro"
+import { disciplineLabels, type Project } from "@/data/projects"
+
+interface Props {
+  projects: Project[]
+  caption?: string
+}
+
+const { projects, caption } = Astro.props
+---
+
+<table class="old-table">
+  {caption && <caption class="sr-only">{caption}</caption>}
+  <thead>
+    <tr>
+      <th scope="col" class="hidden w-14 sm:table-cell">
+        Year
+      </th>
+      <th scope="col">Project and Description</th>
+      <th scope="col" class="w-[104px] sm:w-[176px]">
+        Example
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {projects.map((project, index) => {
+      const href = `/projects/${project.slug}`
+      const isComingSoon = project.status === "coming-soon"
+      return (
+        <tr>
+          <td class="hidden text-center sm:table-cell">{project.year}</td>
+          <td>
+            <p class="text-sm">
+              {isComingSoon ? (
+                <b>{project.title}</b>
+              ) : (
+                <a href={href} class="project-listing-link">
+                  {project.title}
+                </a>
+              )}
+              {isComingSoon && " (coming soon)"}
+              <span class="sm:hidden"> ({project.year})</span>
+            </p>
+            <p class="mt-2 leading-snug">{project.teaser}</p>
+            <p class="mt-2 text-xs italic">
+              {project.category === "side-project"
+                ? "Side project. "
+                : "Case study. "}
+              {project.disciplines.map((d) => disciplineLabels[d]).join(", ")}
+            </p>
+          </td>
+          <td>
+            {isComingSoon ? (
+              <ProjectPreview
+                project={project}
+                widths={[208, 352]}
+                sizes="(min-width: 640px) 176px, 104px"
+              />
+            ) : (
+              <a href={href} tabindex="-1" aria-hidden="true">
+                <ProjectPreview
+                  project={project}
+                  widths={[208, 352]}
+                  sizes="(min-width: 640px) 176px, 104px"
+                  priority={index === 0}
+                />
+              </a>
+            )}
+          </td>
+        </tr>
+      )
+    })}
+  </tbody>
+</table>

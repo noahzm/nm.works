@@ -1,10 +1,10 @@
 ---
 import { Picture } from "astro:assets"
-import { Icon } from "astro-icon/components"
-import ExternalArrow from "@/components/ExternalArrow.astro"
-import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
-import { buttonVariants } from "@/components/ui/button-variants"
-import type { Project, ProjectHeaderLink } from "@/data/projects"
+import {
+  disciplineLabels,
+  type Project,
+  type ProjectHeaderLink,
+} from "@/data/projects"
 
 interface Props {
   project: Project
@@ -47,119 +47,85 @@ function isExternalLink(link: ProjectHeaderLink) {
 }
 ---
 
-<header class="mb-10 sm:mb-12">
-  <a
-    href="/projects"
-    class="-my-3 mb-4 inline-flex items-center gap-1 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none [&_svg]:size-3.5 [&_svg]:shrink-0"
-  >
-    <Icon
-      name="lucide:arrow-left"
-      aria-hidden="true"
-      data-affix="inline-start"
-    />
-    Back to projects
-  </a>
-  <div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-    <ProjectDisciplines
-      disciplines={project.disciplines}
-      label={`${project.title} disciplines`}
-    />
-  </div>
-  <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-    {title}
-  </h1>
-  <p class="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-    {description}
+<header class="mb-6">
+  <p class="arial text-xs">
+    <a href="/projects">&laquo; Back to projects</a>
   </p>
-  <dl class="mt-7 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-4 border-y border-border py-4 text-sm">
-    {metadataItems.map((item, index) => (
-      <div
-        class:list={[
-          index === 0 && "col-span-2 sm:col-span-1",
-          item.fullWidth && "col-span-2",
-        ]}
-      >
-        <dt class="text-muted-foreground">{item.label}</dt>
-        <dd class:list={["mt-1", "font-normal"]}>{item.value}</dd>
-      </div>
-    ))}
-  </dl>
-  {hasHeaderLinks && (
-    <div class="mt-5 flex max-w-2xl flex-wrap gap-2">
-      {project.appStoreUrl && (
-        <a
-          href={project.appStoreUrl}
-          target="_blank"
-          rel="noreferrer"
-          data-slot="button"
-          data-variant="default"
-          data-size="sm"
-          class={buttonVariants({ variant: "default", size: "sm" })}
-        >
-          Download on the App Store
-          <ExternalArrow />
-        </a>
-      )}
-      {project.liveUrl && (
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noreferrer"
-          data-slot="button"
-          data-variant="default"
-          data-size="sm"
-          class={buttonVariants({ variant: "default", size: "sm" })}
-        >
-          {project.liveUrlLabel ?? "View web app"}
-          <ExternalArrow />
-        </a>
-      )}
-      {project.githubUrl && (
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noreferrer"
-          data-slot="button"
-          data-variant="outline"
-          data-size="sm"
-          class={buttonVariants({ variant: "outline", size: "sm" })}
-        >
-          View on GitHub
-          <ExternalArrow />
-        </a>
-      )}
-      {project.headerLinks?.map((link) => (
-        <a
-          href={link.href}
-          {...(isExternalLink(link)
-            ? { target: "_blank", rel: "noreferrer" }
-            : {})}
-          data-slot="button"
-          data-variant="outline"
-          data-size="sm"
-          class={buttonVariants({ variant: "outline", size: "sm" })}
-        >
-          {link.label}
-          {isExternalLink(link) && <ExternalArrow />}
-        </a>
+  <h1 class="page-title">{title}</h1>
+  <p>{description}</p>
+  <table class="old-table mt-4">
+    <caption class="sr-only">Project details</caption>
+    <tbody>
+      {metadataItems.map((item) => (
+        <tr>
+          <th scope="row">{item.label}</th>
+          <td>{item.value}</td>
+        </tr>
       ))}
-    </div>
-  )}
-  {project.whatICanShow && (
-    <div class="mt-5 max-w-2xl rounded-md border border-border bg-muted/30 p-4">
-      <p class="text-xs font-bold text-muted-foreground uppercase">
-        What I can show
-      </p>
-      <p class="mt-1.5 text-sm text-muted-foreground">{project.whatICanShow}</p>
-    </div>
-  )}
+      <tr>
+        <th scope="row">Disciplines</th>
+        <td>
+          {project.disciplines.map((d) => disciplineLabels[d]).join(", ")}
+        </td>
+      </tr>
+      {project.whatICanShow && (
+        <tr>
+          <th scope="row">What I can show</th>
+          <td>{project.whatICanShow}</td>
+        </tr>
+      )}
+      {hasHeaderLinks && (
+        <tr>
+          <th scope="row">Links</th>
+          <td>
+            {[
+              project.appStoreUrl && {
+                label: "Download on the App Store",
+                href: project.appStoreUrl,
+                external: true,
+              },
+              project.liveUrl && {
+                label: project.liveUrlLabel ?? "View web app",
+                href: project.liveUrl,
+                external: true,
+              },
+              project.githubUrl && {
+                label: "View on GitHub",
+                href: project.githubUrl,
+                external: true,
+              },
+              ...(project.headerLinks?.map((link) => ({
+                label: link.label,
+                href: link.href,
+                external: isExternalLink(link),
+              })) ?? []),
+            ]
+              .filter((link) => !!link)
+              .map((link, index) => (
+                <>
+                  {index > 0 && " | "}
+                  <a
+                    href={link.href}
+                    {...(link.external
+                      ? { target: "_blank", rel: "noreferrer" }
+                      : {})}
+                  >
+                    {link.label}
+                  </a>
+                </>
+              ))}
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
   {project.image && project.imageAlt && (
-    <figure class="mt-9 sm:mt-10">
+    <figure class="mt-5">
       <Picture
         src={project.image}
         formats={["avif", "webp"]}
         widths={[720, 1200, 1600]}
-        sizes="(min-width: 768px) 768px, 100vw"
+        sizes="(min-width: 850px) 810px, 100vw"
         alt={project.imageAlt}
         loading="eager"
         fetchpriority="high"
@@ -168,7 +134,7 @@ function isExternalLink(link: ProjectHeaderLink) {
             ? `object-position: ${project.imageObjectPosition}`
             : undefined
         }
-        class="aspect-[3/2] w-full rounded-md border object-cover"
+        class="feather aspect-[3/2] w-full object-cover [--feather:24px]"
       />
     </figure>
   )}

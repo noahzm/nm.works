@@ -9,18 +9,10 @@ interface Props {
 const { eyebrow, title, titleId, description } = Astro.props
 ---
 
-<header class="max-w-2xl">
-  {eyebrow && (
-    <p class="mb-3 text-xs font-bold text-muted-foreground uppercase">
-      {eyebrow}
-    </p>
-  )}
-  <h2 id={titleId} class="section-title sm:text-3xl">
+<header class="mb-3">
+  {eyebrow && <p class="arial mb-1 text-xs italic">{eyebrow}</p>}
+  <h2 id={titleId} class="section-title mb-0!">
     {title}
   </h2>
-  {description && (
-    <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
-      {description}
-    </p>
-  )}
+  {description && <p class="mt-2">{description}</p>}
 </header>

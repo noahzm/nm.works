@@ -23,7 +23,7 @@ const hasImage = project.image && project.imageAlt
 ---
 
 {hasImage ? (
-  <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
+  <div class:list={["overflow-hidden", className]}>
     <AspectRatio ratio={4 / 3}>
       <Picture
         src={project.image!}
@@ -37,12 +37,12 @@ const hasImage = project.image && project.imageAlt
             ? `object-position: ${project.imageObjectPosition}`
             : undefined
         }
-        class="h-full w-full object-cover"
+        class="feather feather-sm h-full w-full object-cover"
       />
     </AspectRatio>
   </div>
 ) : (
-  <div class:list={["overflow-hidden rounded-md border bg-muted", className]}>
+  <div class:list={["overflow-hidden", className]}>
     <AspectRatio ratio={4 / 3} />
   </div>
 )}

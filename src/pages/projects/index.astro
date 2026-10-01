@@ -1,11 +1,8 @@
 ---
 import Layout from "@/layouts/main.astro"
-import ProjectPreview from "@/components/ProjectPreview.astro"
-import ProjectDisciplines from "@/components/ProjectDisciplines.astro"
+import ProjectTable from "@/components/ProjectTable.astro"
 import SectionHeader from "@/components/SectionHeader.astro"
 import CTA from "@/components/CTA.astro"
-import Badge from "@/components/ui/badge.astro"
-import Separator from "@/components/ui/separator.astro"
 import {
   publishedCaseStudies,
   upcomingCaseStudies,
@@ -17,109 +14,24 @@ import {
   title="Projects · Noah Michaels"
   description="Case studies by Noah Michaels: variable data personalization, production QA, responsive web builds, and side projects."
 >
-  <div class="content-shell pt-4 pb-14">
-    <header class="max-w-2xl pb-10">
-      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Projects</h1>
-    </header>
+  <div class="content-shell pt-3 pb-6">
+    <h1 class="page-title">Projects</h1>
 
     <section aria-labelledby="case-studies-title">
-      <SectionHeader titleId="case-studies-title" title="Case studies" />
-      <div class="mt-8 divide-y">
-        {publishedCaseStudies.map((project) => (
-          <a
-            href={`/projects/${project.slug}`}
-            aria-label={`View ${project.title}`}
-            class="group project-listing-link"
-          >
-            <ProjectPreview
-              project={project}
-              widths={[360, 600]}
-              sizes="(min-width: 768px) 224px, 100vw"
-            />
-            <div>
-              <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-                <ProjectDisciplines
-                  disciplines={project.disciplines}
-                  label={`${project.title} disciplines`}
-                />
-              </div>
-              <h3 class="text-xl font-bold group-hover:underline">
-                {project.title}
-              </h3>
-              <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                {project.teaser}
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
+      <SectionHeader titleId="case-studies-title" title="Case Studies" />
+      <ProjectTable projects={publishedCaseStudies} caption="Case studies" />
     </section>
 
     {upcomingCaseStudies.length > 0 && (
-      <section class="mt-14 pt-12" aria-labelledby="upcoming-title">
-        <Separator class="-mt-12 mb-12" />
-        <SectionHeader titleId="upcoming-title" title="In progress" />
-        <div class="mt-8 divide-y">
-          {upcomingCaseStudies.map((project) => (
-            <article class="grid gap-6 py-8 md:grid-cols-[14rem_1fr]">
-              <ProjectPreview
-                project={project}
-                widths={[360, 600]}
-                sizes="(min-width: 768px) 224px, 100vw"
-              />
-              <div>
-                <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-                  <ProjectDisciplines
-                    disciplines={project.disciplines}
-                    label={`${project.title} disciplines`}
-                  />
-                  <Badge variant="outline" class="text-muted-foreground">
-                    Coming soon
-                  </Badge>
-                </div>
-                <h3 class="text-xl font-bold">{project.title}</h3>
-                <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                  {project.teaser}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
+      <section class="mt-6" aria-labelledby="upcoming-title">
+        <SectionHeader titleId="upcoming-title" title="In Progress" />
+        <ProjectTable projects={upcomingCaseStudies} caption="In progress" />
       </section>
     )}
 
-    <section class="mt-14 pt-12" aria-labelledby="side-projects-title">
-      <Separator class="-mt-12 mb-12" />
-      <SectionHeader titleId="side-projects-title" title="Side projects" />
-      <div class="mt-8 divide-y">
-        {sideProjects.map((project) => (
-          <a
-            href={`/projects/${project.slug}`}
-            aria-label={`View ${project.title}`}
-            class="group project-listing-link"
-          >
-            <ProjectPreview
-              project={project}
-              widths={[360, 600]}
-              sizes="(min-width: 768px) 224px, 100vw"
-            />
-            <div>
-              <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-                <ProjectDisciplines
-                  disciplines={project.disciplines}
-                  label={`${project.title} disciplines`}
-                />
-              </div>
-              <h3 class="text-xl font-bold group-hover:underline">
-                {project.title}
-              </h3>
-              <p class="mt-3 max-w-2xl text-sm text-muted-foreground">
-                {project.teaser}
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
+    <section class="mt-6" aria-labelledby="side-projects-title">
+      <SectionHeader titleId="side-projects-title" title="Side Projects" />
+      <ProjectTable projects={sideProjects} caption="Side projects" />
     </section>
 
     <CTA />

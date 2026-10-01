@@ -37,10 +37,26 @@ const canonicalURL = new URL(
 )
 const socialImageURL = image ? new URL(image, canonicalURL) : null
 
-const headerWidthClass = "max-w-3xl"
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/"
 
-const navLinkClass =
-  "-my-3 rounded-sm py-3 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
+const navLinks = [
+  { label: "Home", href: "/", external: false },
+  { label: "Projects", href: "/projects", external: false },
+  ...(showEmailWork
+    ? [{ label: "Email work", href: emailWorkPath, external: false }]
+    : []),
+  { label: "Contact", href: "/#contact", external: false },
+  ...(hasResume
+    ? [{ label: "Resume", href: resumePath, external: false }]
+    : []),
+  { label: "LinkedIn", href: linkedInUrl, external: true },
+  { label: "GitHub", href: gitHubUrl, external: true },
+]
+
+function isActive(href: string) {
+  if (href === "/") return pathname === "/"
+  return !href.includes("#") && pathname.startsWith(href)
+}
 ---
 
 <html lang="en">
@@ -52,7 +68,7 @@ const navLinkClass =
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalURL} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#a8462a" />
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:url" content={canonicalURL} />
@@ -72,63 +88,59 @@ const navLinkClass =
   <body>
     <a
       href="#main"
-      class="sr-only bg-background text-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-sm focus:px-3 focus:py-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
+      class="sr-only bg-background focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-2"
     >
       Skip to content
     </a>
-    <header class="px-6 py-10 md:py-14">
-      <nav
-        class:list={[
-          "mx-auto flex flex-col items-baseline gap-4 md:flex-row md:justify-between md:gap-6",
-          headerWidthClass,
-        ]}
-        aria-label="Main navigation"
-      >
-        <a
-          href="/"
-          class="rounded-sm text-2xl font-bold transition-colors hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:outline-none"
-        >
-          {siteName}
+    <div class="page-panel">
+      <div class="pink-bar arial px-2 py-1 text-right text-xs font-bold">
+        <a href="/" class="text-inherit! no-underline!">
+          nm.works
         </a>
-        <div class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
-          <a href="/projects" class={navLinkClass}>
-            Projects
+      </div>
+      <header class="content-shell pt-4 text-center">
+        <p>
+          <a href="/" class="mx-auto block w-fit">
+            <img
+              src="/wordmark.svg"
+              width="600"
+              height="102"
+              alt={siteName}
+              class="mx-auto h-auto w-full max-w-[460px]"
+            />
           </a>
-          {showEmailWork && (
-            <a href={emailWorkPath} class={navLinkClass}>
-              Email work
-            </a>
-          )}
-          <a href="/#contact" class={navLinkClass}>
-            Contact
-          </a>
-          {hasResume && (
-            <a href={resumePath} class={navLinkClass}>
-              Resume
-            </a>
-          )}
-          <a
-            href={linkedInUrl}
-            target="_blank"
-            rel="noreferrer"
-            class={navLinkClass}
-          >
-            LinkedIn
-          </a>
-          <a
-            href={gitHubUrl}
-            target="_blank"
-            rel="noreferrer"
-            class={navLinkClass}
-          >
-            GitHub
-          </a>
-        </div>
-      </nav>
-    </header>
-    <main id="main">
-      <slot />
-    </main>
-    <Footer />
+        </p>
+        <p class="mt-2 text-sm italic">
+          email &amp; marketing automation, variable data, production QA
+        </p>
+        <nav
+          class="arial mt-3 text-[0.8125rem] leading-relaxed lowercase"
+          aria-label="Main navigation"
+        >
+          [
+          {navLinks.map((link, index) => (
+            <>
+              {index > 0 && " | "}
+              <a
+                href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                class:list={[isActive(link.href) && "font-bold"]}
+              >
+                {link.label}
+              </a>
+            </>
+          ))}
+          ]
+        </nav>
+        <hr class="mt-4" />
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>

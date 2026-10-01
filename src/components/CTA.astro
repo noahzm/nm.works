@@ -1,7 +1,4 @@
 ---
-import { Icon } from "astro-icon/components"
-import { buttonVariants } from "@/components/ui/button-variants"
-import Separator from "@/components/ui/separator.astro"
 import { contactHref } from "@/data/site"
 
 interface Props {
@@ -12,38 +9,19 @@ interface Props {
 }
 
 const {
-  title = "Let\u2019s build something useful.",
+  title = "Let’s build something useful.",
   description = "Open to email marketing, marketing automation, and production roles.",
   href = contactHref,
   label = "Get in touch",
 } = Astro.props
 ---
 
-<section class="py-12">
-  <Separator />
-  <div class="flex flex-col gap-6 pt-12 sm:flex-row sm:items-center sm:justify-between">
-    <div class="max-w-xl">
-      <h2 class="section-title">{title}</h2>
-      {description && (
-        <p class="mt-3 text-base leading-relaxed text-muted-foreground">
-          {description}
-        </p>
-      )}
-    </div>
-    <a
-      href={href}
-      data-slot="button"
-      data-variant="default"
-      data-size="default"
-      class={buttonVariants({ variant: "default", className: "w-fit" })}
-    >
-      <Icon
-        name="lucide:message-circle"
-        aria-hidden="true"
-        data-affix="inline-start"
-        class="[&_path]:fill-current [&_path]:[stroke-width:1.5]"
-      />
-      {label}
-    </a>
-  </div>
+<section class="mt-8">
+  <hr class="mb-4" />
+  <p class="text-center">
+    <b>{title}</b>
+    {description && <> {description}</>}
+    <br />
+    <a href={href}>{label} &raquo;</a>
+  </p>
 </section>

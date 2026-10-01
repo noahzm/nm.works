@@ -2,7 +2,6 @@
 
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "astro/config"
-import icon from "astro-icon"
 import sitemap from "@astrojs/sitemap"
 import { emailWorkPath, showEmailWork } from "./src/data/email-templates.ts"
 
@@ -14,7 +13,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
-    icon(),
     sitemap({
       // The email portfolio stays out of the sitemap until it has content.
       filter: (page) =>
