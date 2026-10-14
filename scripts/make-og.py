@@ -138,7 +138,7 @@ def main():
 
     # Tagline and rule.
     ty = my + mark.height + 22 * SS
-    centered(d, "email & marketing automation, variable data, production QA", ty, font("Times New Roman Italic.ttf", 30), INK)
+    centered(d, "print & web production, moving into email marketing", ty, font("Times New Roman Italic.ttf", 30), INK)
     ry = ty + 62 * SS
     d.line([(x0 + 110 * SS, ry), (x1 - 110 * SS, ry)], fill=STONE, width=SS)
     d.line([(x0 + 110 * SS, ry + SS), (x1 - 110 * SS, ry + SS)], fill=HIGHLIGHT, width=SS)
