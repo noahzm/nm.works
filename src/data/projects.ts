@@ -106,7 +106,7 @@ export const projects: Project[] = [
   },
   {
     slug: "creative-printing-order-flow",
-    title: "Creative Printing Order Flow",
+    title: "Creative Printing Homepage",
     category: "case-study",
     status: "published",
     disciplines: ["wordpress"],
