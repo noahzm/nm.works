@@ -2,26 +2,38 @@
 import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
 import { getProject } from "@/data/projects"
-import hourlyKitNumbersImg from "@/assets/projects/wheely-weather/hourly-kit-numbers.png"
+import verdictPoorImg from "@/assets/projects/wheely-weather/verdict-poor.png"
+import weekAheadImg from "@/assets/projects/wheely-weather/week-ahead.png"
 
 const project = getProject("wheely-weather")!
 const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
-const pictureWidths = [640, 960, 1280]
+const pictureWidths = [640, 960, 1200]
 const pictureSizes = "(min-width: 768px) 960px, 100vw"
 ---
 
 <CaseStudy
   project={project}
   title="Wheely Weather"
-  seoDescription="Wheely Weather is a side project: an Expo app for iOS, Android, and web that turns live weather and air-quality data into rule-based ride verdicts, hourly riding windows, and kit guidance."
+  seoDescription="Wheely Weather is a side project, now on the App Store: an Expo app for iOS, Android, and web that turns live weather and air-quality data into a 0–5 star ride verdict, hourly and 8-day ratings, and kit picks."
 >
   <h2>Overview</h2>
   <p>
     Wheely Weather answers one core question before a ride:{" "}
-    <em>should I ride right now?</em> Conversations with recreational and
+    <em>is it a good day to ride?</em> Conversations with recreational and
     commuter cyclists highlighted three weather signals that mattered most: dew
     point, feels-like temperature, and wind speed. Among these, dew point was
     the most critical indicator riders missed in standard weather apps.
+  </p>
+  <p>
+    Wheely Weather is live on the{" "}
+    <a href={project.appStoreUrl} target="_blank" rel="noreferrer">
+      App Store
+    </a>
+    , and the same app runs on the web at{" "}
+    <a href="https://wheelyweather.app" target="_blank" rel="noreferrer">
+      wheelyweather.app
+    </a>
+    .
   </p>
 
   <h2 id="how-it-works">How It Works</h2>
@@ -31,35 +43,56 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
   </p>
   <ul>
     <li>
-      <strong>Verdict:</strong> a rule-based rating from Ideal to Don’t Ride,
-      scored by the weakest signal, that names the limiting factor whenever
-      conditions drop.
+      <strong>Ride verdict:</strong> a 0–5 star score and a go, maybe, or skip
+      call for the best daylight ride window, built from temperature, wind and
+      gusts, rain, dew point, air quality, UV, and daylight. The verdict names
+      the deciding issues first. Once the light is gone, it looks ahead to
+      tomorrow.
     </li>
     <li>
-      <strong>Signals:</strong> temperature, dew point, and wind, plus
-      precipitation, air quality, UV index, and sunset timing.
+      <strong>Hourly and 8-day ratings:</strong> every hour and day is rated
+      Good to Bad with a one-line reason, and the week view highlights the best
+      ride day ahead.
     </li>
     <li>
-      <strong>Riding window:</strong> when conditions are poor, the hourly
-      forecast highlights the next favorable window.
+      <strong>Kit picks:</strong> what to wear for the conditions, tuned for
+      Casual or Roadie riders.
     </li>
     <li>
-      <strong>Kit:</strong> the same data powers personalized kit suggestions.
+      <strong>Home climate:</strong> comfort limits shift if your home runs hot,
+      humid, or cold, more so the more often you ride outdoors.
+    </li>
+    <li>
+      <strong>Alerts and widget:</strong> severe weather and air quality
+      warnings, plus an iOS Home Screen widget with the verdict and the next 12
+      hours.
     </li>
   </ul>
   <p>Raw weather numbers stay visible for riders who want the details.</p>
 
   <figure>
     <Picture
-      src={hourlyKitNumbersImg}
+      src={verdictPoorImg}
       formats={pictureFormats}
       widths={pictureWidths}
       sizes={pictureSizes}
-      alt="Wheely Weather hour-by-hour ride-quality chart with a POOR sticker, Today’s kit guidance, and The numbers cards showing raw weather signals."
+      alt="Wheely Weather on iPhone showing a 1.5-star ‘Wrench day’ verdict for Austin, very hot at 93°F, with an ‘After dark: lights on’ note on the hourly chart."
     />
     <figcaption>
-      The hour-by-hour chart reads as a window, not a forecast: ride quality by
-      hour, a Now marker, and kit guidance below.
+      On a bad day the verdict leads with the reason: here, the heat.
+    </figcaption>
+  </figure>
+
+  <figure>
+    <Picture
+      src={weekAheadImg}
+      formats={pictureFormats}
+      widths={pictureWidths}
+      sizes={pictureSizes}
+      alt="Wheely Weather’s week ahead list for Portland, each day rated Fair or Good, with Monday tagged Best."
+    />
+    <figcaption>
+      The week ahead rates each day and tags the best one to ride.
     </figcaption>
   </figure>
 
@@ -71,19 +104,30 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
   </p>
   <ul>
     <li>
-      <strong>Web:</strong> live on Cloudflare Workers at{" "}
+      <strong>iOS:</strong> released on the{" "}
+      <a href={project.appStoreUrl} target="_blank" rel="noreferrer">
+        App Store
+      </a>
+      , built and submitted with EAS. Apple WeatherKit and MapKit run through
+      small Swift native modules, and the Home Screen widget is SwiftUI (my
+      Swift is basic).
+    </li>
+    <li>
+      <strong>Web:</strong> live on Cloudflare at{" "}
       <a href="https://wheelyweather.app" target="_blank" rel="noreferrer">
         wheelyweather.app
       </a>
-      .
+      , with a Cloudflare Worker that serves WeatherKit forecasts and falls back
+      to Open-Meteo.
     </li>
     <li>
-      <strong>Data:</strong> Open-Meteo by default, with Apple WeatherKit on iOS
-      through a small Swift native module (my Swift is basic).
+      <strong>Data:</strong> Apple WeatherKit on iOS and web, Open-Meteo on
+      Android and for air quality everywhere.
     </li>
     <li>
-      <strong>Quality:</strong> strict TypeScript, Vitest unit tests, Playwright
-      end-to-end tests, and GitHub Actions CI.
+      <strong>Quality:</strong> strict TypeScript, Vitest unit tests with
+      coverage floors, Maestro end-to-end flows on iOS, Sentry error reporting,
+      and GitHub Actions CI that gates deploys.
     </li>
   </ul>
 </CaseStudy>

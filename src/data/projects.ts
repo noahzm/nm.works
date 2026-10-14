@@ -132,12 +132,13 @@ export const projects: Project[] = [
     role: "Solo designer & developer",
     year: "2026",
     teaser:
-      "Live weather and air-quality data turned into rule-based ride recommendations, on iOS, Android, and web.",
+      "A cyclist-first weather app, now on the App Store: live weather and air-quality data turned into a 0–5 star ride verdict, on iOS, Android, and web.",
     description:
-      "Live weather and air-quality data turned into a rule-based ride verdict, hourly riding windows, and kit recommendations. Built with Expo for iOS, Android, and web.",
+      "A cyclist-first weather app that turns live weather and air-quality data into a 0–5 star ride verdict, hourly and 8-day ratings, and kit picks. Built with Expo for iOS, Android, and web, and live on the App Store.",
     image: wheelyHeroImg,
     imageAlt:
-      "Wheely Weather showing a green ‘CLEAR FOR RIDING’ ideal-conditions verdict for Portland.",
+      "Wheely Weather on iPhone showing a 4.5-star ‘Go get lost’ verdict for Portland with a best ride window of 3 PM–6 PM, the hour-by-hour chart, and Today’s kit.",
+    appStoreUrl: "https://apps.apple.com/app/id6788117343",
     liveUrl: "https://wheelyweather.app",
     liveUrlLabel: "View live web app",
     githubUrl: "https://github.com/noahzm/wheely-weather",
