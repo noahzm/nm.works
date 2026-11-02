@@ -3,23 +3,25 @@ import Layout from "@/layouts/main.astro"
 import ProjectTable from "@/components/ProjectTable.astro"
 import SectionHeader from "@/components/SectionHeader.astro"
 import CTA from "@/components/CTA.astro"
-import {
-  publishedCaseStudies,
-  upcomingCaseStudies,
-  sideProjects,
-} from "@/data/projects"
+import { publishedProjects, upcomingCaseStudies } from "@/data/projects"
 ---
 
 <Layout
   title="Projects · Noah Michaels"
-  description="Case studies by Noah Michaels: variable data personalization, production QA, responsive web builds, and side projects."
+  description="Projects and case studies by Noah Michaels: print production, typography and layout, brand identity, screen printing, web systems, and product design."
 >
   <div class="content-shell pt-3 pb-6">
     <h1 class="page-title">Projects</h1>
 
-    <section aria-labelledby="case-studies-title">
-      <SectionHeader titleId="case-studies-title" title="Case Studies" />
-      <ProjectTable projects={publishedCaseStudies} caption="Case studies" />
+    <section aria-labelledby="selected-work-title">
+      <SectionHeader
+        titleId="selected-work-title"
+        title="Case Studies & Side Projects"
+      />
+      <ProjectTable
+        projects={publishedProjects}
+        caption="Case studies and side projects"
+      />
     </section>
 
     {upcomingCaseStudies.length > 0 && (
@@ -28,11 +30,6 @@ import {
         <ProjectTable projects={upcomingCaseStudies} caption="In progress" />
       </section>
     )}
-
-    <section class="mt-6" aria-labelledby="side-projects-title">
-      <SectionHeader titleId="side-projects-title" title="Side Projects" />
-      <ProjectTable projects={sideProjects} caption="Side projects" />
-    </section>
 
     <CTA />
   </div>

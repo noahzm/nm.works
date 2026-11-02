@@ -1,12 +1,12 @@
 # nm.works
 
-Portfolio site for Noah Michaels: print and web production (variable data personalization, HTML/CSS, and production QA), moving into email marketing.
+Portfolio site for Noah Michaels: marketing design, print production, brand identity, and the web.
 
 Built as a static Astro site with TypeScript and Tailwind CSS v4, and deployed on Cloudflare Pages.
 
 ## What this site showcases
 
-- Case studies from variable data, production QA, and responsive web work
+- Case studies across print production, typography & layout, brand systems, and web design
 - An email portfolio at `/email` (hidden until it has content)
 - Side projects
 

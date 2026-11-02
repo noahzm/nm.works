@@ -4,12 +4,12 @@ import path from "node:path"
 export const siteName = "Noah Michaels"
 
 export const siteHeadline =
-  "Print & Web Production, Moving Into Email Marketing | Variable Data, HTML/CSS, Production QA"
+  "Marketing & Print Production Design | Prepress, Brand Identity, HTML/CSS"
 
-export const defaultTitle = `${siteName} · Print & Web Production`
+export const defaultTitle = `${siteName} · Marketing & Print Production Design`
 
 export const defaultDescription =
-  "Production and web professional in Raleigh, NC: variable data campaigns, responsive HTML/CSS, and production QA. Pursuing the Salesforce Marketing Cloud Engagement Specialist certification."
+  "Marketing and print production designer: 4-color prepress, Pantone color systems, brand identity, promotional print, and responsive HTML/CSS. Open to NYC roles."
 
 export const contactEmail = "hi@nm.works"
 export const contactHref = `mailto:${contactEmail}?subject=Hi%20from%20nm.works`

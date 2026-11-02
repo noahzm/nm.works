@@ -29,7 +29,9 @@ const { projects, caption } = Astro.props
       const isComingSoon = project.status === "coming-soon"
       return (
         <tr>
-          <td class="hidden text-center sm:table-cell">{project.year}</td>
+          <td class="hidden text-center whitespace-nowrap sm:table-cell">
+            {project.year}
+          </td>
           <td>
             <p class="text-sm">
               {isComingSoon ? (

@@ -7,15 +7,18 @@ import wheelyHeroImg from "@/assets/projects/wheely-weather/home-verdict.png"
 
 export type ProjectCategory = "case-study" | "side-project"
 export type ProjectDiscipline =
-  | "variable-data"
-  | "production-qa"
-  | "workflow-tools"
+  | "print-production"
+  | "typography-layout"
   | "html-css"
+  | "web-design"
+  | "brand-systems"
   | "wordpress"
-  | "front-end"
-  | "mobile"
   | "brand-identity"
-  | "screen-printing"
+  | "merchandising-screen-print"
+  | "mobile"
+  | "front-end"
+  | "production-workflow"
+  | "html-css-js"
 export type ProjectStatus = "published" | "coming-soon"
 
 export interface ProjectHeaderLink {
@@ -57,7 +60,7 @@ export const projects: Project[] = [
     title: "NCGA Variable Data Stationery",
     category: "case-study",
     status: "published",
-    disciplines: ["variable-data", "production-qa", "html-css"],
+    disciplines: ["print-production", "typography-layout", "html-css"],
     role: "Solo designer & developer",
     year: "2026",
     teaser:
@@ -79,49 +82,43 @@ export const projects: Project[] = [
       "An internal print-shop tool, not publicly hosted. Screenshots use fictional legislator data; I can demo it on request.",
   },
   {
-    slug: "print-split-calculator",
-    title: "Print Split Calculator",
-    category: "case-study",
-    status: "published",
-    disciplines: ["workflow-tools", "html-css"],
-    role: "Solo designer & developer",
-    year: "2026",
-    teaser:
-      "A portable web tool that turns originals, copies, and press speeds into a recommended split across the shop’s printers.",
-    description:
-      "An internal tool for the NCGA print shop that converts production data, like press speeds, setup time, and job specs, into a recommended machine split: which printers to use, in what order, and how many copies to send each.",
-    image: printSplitImg,
-    imageAlt:
-      "Print Split calculator for a 25-original, 55-copy job recommending 3 printers, KM 1, KM 2, and KM 4, with a finish time of 4 minutes 22 seconds.",
-    imageObjectPosition: "center top",
-    headerDetails: [
-      {
-        label: "Built with",
-        value:
-          "One self-contained HTML file: HTML, CSS, and vanilla JavaScript",
-      },
-    ],
-    whatICanShow:
-      "An internal print-shop tool, not publicly hosted. The screenshot shows the calculator’s built-in example job; I can demo it on request.",
-  },
-  {
     slug: "creative-printing-order-flow",
-    title: "Creative Printing Homepage",
+    title: "Creative Printing & Client Web Systems",
     category: "case-study",
     status: "published",
-    disciplines: ["wordpress"],
+    disciplines: ["web-design", "brand-systems", "wordpress"],
     role: "Web designer & front-end developer",
-    year: "2019",
+    year: "2019–2026",
     teaser:
-      "Creative Printing’s own homepage, one of 20+ responsive client sites I built and maintained for the shop. Still live seven years later.",
+      "Creative Printing’s order-entry portal and 20+ responsive client sites, print-to-web brand systems, and promotional eBlasts built and maintained for the shop.",
     description:
-      "A responsive homepage rebuilt around an icon grid for print, sign, multimedia, website, and service requests, so customers can start the right order right away.",
+      "Creative Printing’s order-entry portal and 20+ responsive client sites, print-to-web brand systems, and promotional eBlasts built and maintained for the shop.",
     image: creativePrintingImg,
     imageAlt:
       "Creative Printing order-entry grid with eight service categories for online requests.",
     liveUrl: "https://creative-printing.com",
     liveUrlLabel: "View live site",
     headerDetails: [{ label: "Built with", value: "WordPress and Elementor" }],
+  },
+  {
+    slug: "grouch",
+    title: "Grouch",
+    category: "side-project",
+    status: "published",
+    disciplines: ["brand-identity", "merchandising-screen-print"],
+    role: "Design & screen printing",
+    year: "2022",
+    teaser:
+      "An independent apparel and print goods line: original brand identity, spot-color screen printing separations, headwear, tote bags, and die-cut stickers.",
+    description:
+      "An independent apparel and print goods line: original brand identity, spot-color screen printing separations, headwear, tote bags, and die-cut stickers.",
+    image: grouchImg,
+    imageAlt:
+      "White Grouch T-shirt with a jagged red-orange wordmark above three black cartoon cats.",
+    imageObjectPosition: "center 30%",
+    headerDetails: [
+      { label: "With", value: "Amari, who helped with printing and marketing" },
+    ],
   },
   {
     slug: "wheely-weather",
@@ -153,37 +150,46 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "grouch",
-    title: "Grouch",
-    category: "side-project",
+    slug: "print-split-calculator",
+    title: "Print Split Calculator",
+    category: "case-study",
     status: "published",
-    disciplines: ["brand-identity", "screen-printing"],
-    role: "Design & screen printing",
-    year: "2022",
+    disciplines: ["production-workflow", "html-css-js"],
+    role: "Solo designer & developer",
+    year: "2026",
     teaser:
-      "A small clothing project: hand-printed shirts, plus hats, tote bags, and stickers.",
+      "A portable web tool that turns originals, copies, and press speeds into a recommended split across the shop’s printers.",
     description:
-      "A small clothing project: hand-printed shirts, plus hats, tote bags, and stickers.",
-    image: grouchImg,
+      "An internal tool for the NCGA print shop that converts production data, like press speeds, setup time, and job specs, into a recommended machine split: which printers to use, in what order, and how many copies to send each.",
+    image: printSplitImg,
     imageAlt:
-      "White Grouch T-shirt with a jagged red-orange wordmark above three black cartoon cats.",
-    imageObjectPosition: "center 30%",
+      "Print Split calculator for a 25-original, 55-copy job recommending 3 printers, KM 1, KM 2, and KM 4, with a finish time of 4 minutes 22 seconds.",
+    imageObjectPosition: "center top",
     headerDetails: [
-      { label: "With", value: "Amari, who helped with printing and marketing" },
+      {
+        label: "Built with",
+        value:
+          "One self-contained HTML file: HTML, CSS, and vanilla JavaScript",
+      },
     ],
+    whatICanShow:
+      "An internal print-shop tool, not publicly hosted. The screenshot shows the calculator’s built-in example job; I can demo it on request.",
   },
 ]
 
 export const disciplineLabels: Record<ProjectDiscipline, string> = {
-  "variable-data": "Variable Data",
-  "production-qa": "Production QA",
-  "workflow-tools": "Workflow Tools",
+  "print-production": "Print Production",
+  "typography-layout": "Typography & Layout",
   "html-css": "HTML/CSS",
+  "web-design": "Web Design",
+  "brand-systems": "Brand Systems",
   wordpress: "WordPress",
-  "front-end": "Front-End",
-  mobile: "Mobile",
   "brand-identity": "Brand Identity",
-  "screen-printing": "Screen Printing",
+  "merchandising-screen-print": "Merchandising & Screen Print",
+  mobile: "Mobile",
+  "front-end": "Front-End",
+  "production-workflow": "Production Workflow",
+  "html-css-js": "HTML/CSS/JS",
 }
 
 export const caseStudies = projects.filter(
