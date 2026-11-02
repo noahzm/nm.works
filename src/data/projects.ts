@@ -75,7 +75,7 @@ export const projects: Project[] = [
       {
         label: "Built with",
         value:
-          "HTML/CSS/JS, PDF generation, browser-based and basic Python merge tools",
+          "HTML/CSS/JS, PDF generation, browser merge tool, and Python CLI pipeline",
       },
     ],
     whatICanShow:
@@ -90,9 +90,9 @@ export const projects: Project[] = [
     role: "Web designer & front-end developer",
     year: "2019–2026",
     teaser:
-      "Creative Printing’s order-entry portal and 20+ responsive client sites, print-to-web brand systems, and promotional eBlasts built and maintained for the shop.",
+      "Creative Printing’s order-entry portal, 20+ responsive client websites, print-to-web brand systems, and promotional email campaigns.",
     description:
-      "Creative Printing’s order-entry portal and 20+ responsive client sites, print-to-web brand systems, and promotional eBlasts built and maintained for the shop.",
+      "Creative Printing’s order-entry portal, 20+ responsive client websites, print-to-web brand systems, and promotional email campaigns.",
     image: creativePrintingImg,
     imageAlt:
       "Creative Printing order-entry grid with eight service categories for online requests.",
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     role: "Solo designer & developer",
     year: "2026",
     teaser:
-      "A cyclist-first weather app, now on the App Store: live weather and air-quality data turned into a 0–5 star ride verdict, on iOS, Android, and web.",
+      "A cyclist-first weather app, now on the App Store: live weather and air-quality data turned into a 0–5 star ride verdict across iOS, Android, and web.",
     description:
       "A cyclist-first weather app that turns live weather and air-quality data into a 0–5 star ride verdict, hourly and 8-day ratings, and kit picks. Built with Expo for iOS, Android, and web, and live on the App Store.",
     image: wheelyHeroImg,
