@@ -1,14 +1,11 @@
 ---
-import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
+import CaseStudyFigure from "@/components/CaseStudyFigure.astro"
 import { getProject } from "@/data/projects"
 import verdictPoorImg from "@/assets/projects/wheely-weather/verdict-poor.png"
 import weekAheadImg from "@/assets/projects/wheely-weather/week-ahead.png"
 
 const project = getProject("wheely-weather")!
-const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
-const pictureWidths = [640, 960, 1200]
-const pictureSizes = "(min-width: 768px) 960px, 100vw"
 ---
 
 <CaseStudy
@@ -67,31 +64,17 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
     and the next 12 hours.
   </p>
 
-  <figure>
-    <Picture
-      src={verdictPoorImg}
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-      alt="Wheely Weather on iPhone showing a 1.5-star ‘Wrench day’ verdict for Austin, very hot at 93°F, with an ‘After dark: lights on’ note on the hourly chart."
-    />
-    <figcaption>
-      On a bad day the verdict leads with the reason: here, the heat.
-    </figcaption>
-  </figure>
+  <CaseStudyFigure
+    src={verdictPoorImg}
+    alt="Wheely Weather on iPhone showing a 1.5-star ‘Wrench day’ verdict for Austin, very hot at 93°F, with an ‘After dark: lights on’ note on the hourly chart."
+    caption="On a bad day the verdict leads with the reason: here, the heat."
+  />
 
-  <figure>
-    <Picture
-      src={weekAheadImg}
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-      alt="Wheely Weather’s week ahead list for Portland, each day rated Fair or Good, with Monday tagged Best."
-    />
-    <figcaption>
-      The week ahead rates each day and tags the best one to ride.
-    </figcaption>
-  </figure>
+  <CaseStudyFigure
+    src={weekAheadImg}
+    alt="Wheely Weather’s week ahead list for Portland, each day rated Fair or Good, with Monday tagged Best."
+    caption="The week ahead rates each day and tags the best one to ride."
+  />
 
   <h2>Built With</h2>
   <p>

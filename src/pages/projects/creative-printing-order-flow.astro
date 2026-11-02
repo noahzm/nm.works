@@ -1,14 +1,10 @@
 ---
-import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
+import CaseStudyFigure from "@/components/CaseStudyFigure.astro"
 import { getProject } from "@/data/projects"
 import homepageImg from "@/assets/projects/creative-printing/creative-printing.png"
 
 const project = getProject("creative-printing-order-flow")!
-
-const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
-const pictureWidths = [640, 960, 1280]
-const pictureSizes = "(min-width: 768px) 960px, 100vw"
 ---
 
 <CaseStudy
@@ -55,19 +51,12 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
     </div>
   </div>
 
-  <figure class="case-figure">
-    <Picture
-      src={homepageImg}
-      alt="Full Creative Printing homepage: logo and phone number, main navigation, an illustrated storefront hero with an Order Now button, the eight-tile order grid, and a location map."
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-    />
-    <figcaption>
-      The full homepage: an Order Now button in the hero, the eight-tile service
-      grid, and a location map.
-    </figcaption>
-  </figure>
+  <CaseStudyFigure
+    src={homepageImg}
+    alt="Full Creative Printing homepage: logo and phone number, main navigation, an illustrated storefront hero with an Order Now button, the eight-tile order grid, and a location map."
+    variant="contain"
+    caption="The full homepage: an Order Now button in the hero, the eight-tile service grid, and a location map."
+  />
 
   <h2>Outcome</h2>
   <p>

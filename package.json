@@ -5,14 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run check:site && astro build",
+    "build": "npm run check:site && ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check:site": "node scripts/check-site-invariants.mjs",
     "lint": "eslint \"**/*.{ts,astro}\"",
     "format": "prettier --write \"**/*.{ts,astro}\"",
     "format:check": "prettier --check \"**/*.{ts,astro}\"",
-    "typecheck": "astro check"
+    "typecheck": "ASTRO_TELEMETRY_DISABLED=1 astro check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

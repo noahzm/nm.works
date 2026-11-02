@@ -1,14 +1,10 @@
 ---
-import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
+import CaseStudyFigure from "@/components/CaseStudyFigure.astro"
 import { getProject } from "@/data/projects"
 import envelopeImg from "@/assets/projects/ncga-stationery/envelope-editor.png"
 
 const project = getProject("ncga-variable-data-stationery")!
-
-const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
-const pictureWidths = [640, 960, 1280]
-const pictureSizes = "(min-width: 768px) 960px, 100vw"
 ---
 
 <CaseStudy
@@ -88,19 +84,12 @@ const pictureSizes = "(min-width: 768px) 960px, 100vw"
     typed in.
   </p>
 
-  <figure class="case-figure">
-    <Picture
-      src={envelopeImg}
-      alt="Envelope editor with a building picker and a print-accurate envelope preview."
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-    />
-    <figcaption>
-      The envelope editor: a building picker instead of a free-text address, and
-      no seal. Recipients are added in the merge step.
-    </figcaption>
-  </figure>
+  <CaseStudyFigure
+    src={envelopeImg}
+    alt="Envelope editor with a building picker and a print-accurate envelope preview."
+    variant="contain"
+    caption="The envelope editor: a building picker instead of a free-text address, and no seal. Recipients are added in the merge step."
+  />
 
   <h2>One-Pass Mail Merge</h2>
   <p>

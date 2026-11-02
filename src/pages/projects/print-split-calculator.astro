@@ -1,14 +1,10 @@
 ---
-import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
+import CaseStudyFigure from "@/components/CaseStudyFigure.astro"
 import { getProject } from "@/data/projects"
 import calculatorImg from "@/assets/projects/print-split-calculator/calculator-full.png"
 
 const project = getProject("print-split-calculator")!
-
-const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
-const pictureWidths = [480, 720, 960]
-const pictureSizes = "(min-width: 768px) 560px, 100vw"
 ---
 
 <CaseStudy
@@ -53,19 +49,15 @@ const pictureSizes = "(min-width: 768px) 560px, 100vw"
     </div>
   </div>
 
-  <figure class="case-figure split-figure">
-    <Picture
-      src={calculatorImg}
-      alt="Print Split calculator for a 25-original, 55-copy job. It recommends 3 printers, KM 1, KM 2, and KM 4, finishing in 4 minutes 22 seconds, with 21, 18, and 16 copies to send. The options table shows a fourth printer would save only 36 seconds."
-      formats={pictureFormats}
-      widths={pictureWidths}
-      sizes={pictureSizes}
-    />
-    <figcaption>
-      The built-in example job. A fourth printer would save only 36 seconds,
-      under the one-minute threshold, so the recommendation stops at three.
-    </figcaption>
-  </figure>
+  <CaseStudyFigure
+    src={calculatorImg}
+    alt="Print Split calculator for a 25-original, 55-copy job. It recommends 3 printers, KM 1, KM 2, and KM 4, finishing in 4 minutes 22 seconds, with 21, 18, and 16 copies to send. The options table shows a fourth printer would save only 36 seconds."
+    variant="contain"
+    class="split-figure"
+    widths={[480, 720, 960]}
+    sizes="(min-width: 768px) 560px, 100vw"
+    caption="The built-in example job. A fourth printer would save only 36 seconds, under the one-minute threshold, so the recommendation stops at three."
+  />
 
   <h2>Several Jobs at Once</h2>
   <p>

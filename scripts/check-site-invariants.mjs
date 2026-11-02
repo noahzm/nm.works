@@ -1,5 +1,6 @@
 import { access, readdir, readFile } from "node:fs/promises"
 import path from "node:path"
+import ts from "typescript"
 
 const root = process.cwd()
 const publicDir = path.join(root, "public")
@@ -24,15 +25,33 @@ async function findFilesByName(dir, fileName) {
   return matches
 }
 
-function parseProjectSlugs(source) {
-  const slugs = []
-  const slugPattern = /^\s*slug:\s*"([^"]+)",/gm
+function parseStringProperties(sourceText, propertyName) {
+  const sourceFile = ts.createSourceFile(
+    "source.ts",
+    sourceText,
+    ts.ScriptTarget.Latest,
+    true
+  )
+  const results = []
 
-  for (const match of source.matchAll(slugPattern)) {
-    slugs.push(match[1])
+  function visit(node) {
+    if (
+      ts.isPropertyAssignment(node) &&
+      ts.isIdentifier(node.name) &&
+      node.name.text === propertyName
+    ) {
+      if (
+        ts.isStringLiteral(node.initializer) ||
+        ts.isNoSubstitutionTemplateLiteral(node.initializer)
+      ) {
+        results.push(node.initializer.text)
+      }
+    }
+    ts.forEachChild(node, visit)
   }
 
-  return slugs
+  visit(sourceFile)
+  return results
 }
 
 async function getProjectPageSlugs() {
@@ -70,7 +89,7 @@ if (dsStoreFiles.length > 0) {
 }
 
 const projectsSource = await readFile(projectsDataPath, "utf8")
-const projectSlugs = parseProjectSlugs(projectsSource).sort()
+const projectSlugs = parseStringProperties(projectsSource, "slug").sort()
 const pageSlugs = await getProjectPageSlugs()
 
 const missingPages = difference(projectSlugs, pageSlugs)
@@ -85,15 +104,14 @@ if (missingData.length > 0) {
 }
 
 const emailTemplatesSource = await readFile(emailTemplatesDataPath, "utf8")
+const previewHtmlPaths = parseStringProperties(emailTemplatesSource, "previewHtml")
 const missingPreviews = []
 
-for (const match of emailTemplatesSource.matchAll(
-  /^\s*previewHtml:\s*"([^"]+)",/gm
-)) {
+for (const previewPath of previewHtmlPaths) {
   try {
-    await access(path.join(publicDir, match[1]))
+    await access(path.join(publicDir, previewPath))
   } catch {
-    missingPreviews.push(match[1])
+    missingPreviews.push(previewPath)
   }
 }
 

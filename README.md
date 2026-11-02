@@ -18,7 +18,7 @@ Built as a static Astro site with TypeScript and Tailwind CSS v4, and deployed o
 - Cloudflare Pages project `nm-works`
 - System fonts only (Times New Roman for body, Arial for labels and tables), no webfonts
 - Header name in `public/wordmark.svg`: text outlined from Naive Font by Mr.Fisk (personal use); the font file itself is not in the repo
-- Footer 88x31 button and favicon drawn by `scripts/make-badge.py`; social preview `public/og.png` drawn by `scripts/make-og.py` from the wordmark and badge (run both with `python3`, needs Pillow; `make-og.py` uses macOS system fonts)
+- Footer 88x31 button and favicon drawn by `scripts/make-badge.py`; social preview `public/og.png` drawn by `scripts/make-og.py` from the wordmark and badge (run both with `python3`, dependencies in `scripts/requirements.txt`; `make-og.py` uses macOS system fonts)
 
 ## SEO & performance
 

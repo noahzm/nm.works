@@ -1,6 +1,6 @@
 ---
-import { Picture } from "astro:assets"
 import CaseStudy from "@/layouts/case-study.astro"
+import CaseStudyFigure from "@/components/CaseStudyFigure.astro"
 import { getProject } from "@/data/projects"
 import grouchWhiteImg from "@/assets/projects/grouch/grouchwhite.png"
 import hatImg from "@/assets/projects/grouch/hat.jpg"
@@ -8,7 +8,6 @@ import setupImg from "@/assets/projects/grouch/setup.jpg"
 import stickersImg from "@/assets/projects/grouch/stickers.jpg"
 
 const project = getProject("grouch")!
-const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
 ---
 
 <CaseStudy
@@ -31,54 +30,40 @@ const pictureFormats: ("avif" | "webp")[] = ["avif", "webp"]
     bags, and die-cut vinyl stickers.
   </p>
 
-  <figure>
-    <Picture
-      src={grouchWhiteImg}
-      formats={pictureFormats}
-      widths={[600, 1000]}
-      sizes="(min-width: 768px) 768px, 100vw"
-      alt="White Grouch T-shirt printed in black only, with the jagged wordmark above three cartoon cats."
-      class="aspect-[4/3]"
-    />
-    <figcaption>Single-color black print on white cotton tee.</figcaption>
-  </figure>
+  <CaseStudyFigure
+    src={grouchWhiteImg}
+    widths={[600, 1000]}
+    sizes="(min-width: 768px) 768px, 100vw"
+    imgClass="aspect-[4/3]"
+    alt="White Grouch T-shirt printed in black only, with the jagged wordmark above three cartoon cats."
+    caption="Single-color black print on white cotton tee."
+  />
 
-  <figure>
-    <Picture
-      src={setupImg}
-      formats={pictureFormats}
-      widths={[720, 1200]}
-      sizes="(min-width: 768px) 768px, 100vw"
-      alt="Red screen-printing screen clamped above a platen, with the Grouch graphic burned into it in reverse."
-      class="aspect-[3/2]"
-    />
-    <figcaption>
-      Screen burned with emulsion, clamped on the press platen.
-    </figcaption>
-  </figure>
+  <CaseStudyFigure
+    src={setupImg}
+    widths={[720, 1200]}
+    sizes="(min-width: 768px) 768px, 100vw"
+    imgClass="aspect-[3/2]"
+    alt="Red screen-printing screen clamped above a platen, with the Grouch graphic burned into it in reverse."
+    caption="Screen burned with emulsion, clamped on the press platen."
+  />
 
   <div class="grid gap-x-6 sm:grid-cols-2">
-    <figure>
-      <Picture
-        src={hatImg}
-        formats={pictureFormats}
-        widths={[480, 800]}
-        sizes="(min-width: 768px) 380px, 100vw"
-        alt="Black foam trucker hat with an embroidered white-and-gold Grouch logo, a cartoon cat, and stars."
-        class="aspect-square"
-      />
-      <figcaption>Trucker hat with direct embroidery.</figcaption>
-    </figure>
-    <figure>
-      <Picture
-        src={stickersImg}
-        formats={pictureFormats}
-        widths={[480, 800]}
-        sizes="(min-width: 768px) 380px, 100vw"
-        alt="A stack of die-cut Grouch stickers with orange lettering layered over the black wordmark."
-        class="aspect-square"
-      />
-      <figcaption>Die-cut vinyl stickers with spot-color layering.</figcaption>
-    </figure>
+    <CaseStudyFigure
+      src={hatImg}
+      widths={[480, 800]}
+      sizes="(min-width: 768px) 380px, 100vw"
+      imgClass="aspect-square"
+      alt="Black foam trucker hat with an embroidered white-and-gold Grouch logo, a cartoon cat, and stars."
+      caption="Trucker hat with direct embroidery."
+    />
+    <CaseStudyFigure
+      src={stickersImg}
+      widths={[480, 800]}
+      sizes="(min-width: 768px) 380px, 100vw"
+      imgClass="aspect-square"
+      alt="A stack of die-cut Grouch stickers with orange lettering layered over the black wordmark."
+      caption="Die-cut vinyl stickers with spot-color layering."
+    />
   </div>
 </CaseStudy>

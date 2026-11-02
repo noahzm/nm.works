@@ -1,0 +1,2 @@
+# Python dependencies for scripts/make-badge.py and scripts/make-og.py
+pillow>=10.0.0
