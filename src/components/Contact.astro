@@ -3,8 +3,10 @@ import {
   contactEmail,
   contactHref,
   gitHubUrl,
+  hasPortfolio,
   hasResume,
   linkedInUrl,
+  portfolioPath,
   resumePath,
 } from "@/data/site"
 ---
@@ -14,8 +16,9 @@ import {
     Contact
   </h2>
   <p>
-    I’m open to marketing design, book/print production, and cross-media design
-    roles in NYC. Or just say hi. Email is the quickest way to reach me.
+    I’m open to marketing design, packaging and print production, and
+    cross-media design roles, remote or in NYC. Or just say hi. Email is the
+    quickest way to reach me.
   </p>
   <table class="old-table mt-3 max-w-md">
     <tbody>
@@ -25,6 +28,14 @@ import {
           <a href={contactHref}>{contactEmail}</a>
         </td>
       </tr>
+      {hasPortfolio && (
+        <tr>
+          <th scope="row">Portfolio</th>
+          <td>
+            <a href={portfolioPath}>Packaging &amp; production (PDF)</a>
+          </td>
+        </tr>
+      )}
       {hasResume && (
         <tr>
           <th scope="row">Resume</th>
